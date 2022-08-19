@@ -99,7 +99,6 @@ const idInvalidCardCompanies = (arr) => {
                 console.log('Amex not found: pushing Amex');
                 invalidCompanies.push('Amex');
             }
-            
         } else if (card[0] === 4){
             if (invalidCompanies.includes('Visa')){
                 console.log('Visa found');
