@@ -1,4 +1,5 @@
 // All valid credit card numbers
+const valid1 = [4, 5, 3, 9, 6, 7, 7, 9, 0, 8, 0, 1, 6, 8, 0, 8]
 const valid2 = [5, 5, 3, 5, 7, 6, 6, 7, 6, 8, 7, 5, 1, 4, 3, 9]
 const valid3 = [3, 7, 1, 6, 1, 2, 0, 1, 9, 9, 8, 5, 2, 3, 6]
 const valid4 = [6, 0, 1, 1, 1, 4, 4, 3, 4, 0, 6, 8, 2, 9, 0, 5]
@@ -105,6 +106,20 @@ const idInvalidCardCompanies = (arr) => {
             } else {
                 console.log('Visa not found: pushing Visa');
                 invalidCompanies.push('Visa');
+            }
+        } else if (card[0] === 5){
+            if (invalidCompanies.includes('Mastercard')){
+                console.log('Mastercard found');
+            } else {
+                console.log('Mastercard not found: pushing Mastercard');
+                invalidCompanies.push('Mastercard');
+            }
+        } else if (card[0] === 6){
+            if (invalidCompanies.includes('Discover')){
+                console.log('Discover found');
+            } else {
+                console.log('Discover not found: pushing Discover');
+                invalidCompanies.push('Discover');
             }
         }
     }
