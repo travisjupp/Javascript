@@ -22,6 +22,23 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3]
 // An array of all the arrays above
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5]
 
+// Use different credit card numbers from a credit card number generator and validator site and test if your functions work for all types of credit cards.
+
+// Invalid numbers from https://www.freeformatter.com/credit-card-number-generator-validator.html
+const valid6 = [4, 9, 2, 9, 9, 6, 5, 0, 5, 6, 2, 0, 0, 0, 1, 1];
+const invalid6 = [4, 9, 2, 9, 9, 6, 5, 0, 5, 6, 2, 0, 0, 0, 1, 2];
+
+// To make it easier to test credit card numbers, create a function that accepts a string and converts it into an array of numbers like the initially provided arrays. (Check the hint for a helpful function)
+console.log('====== str2arr ======');
+function str2arr (str) {
+    let newArr = [];
+    for (let i of str){
+        newArr.push(parseInt(i)); // convert to number and push
+    }
+    return newArr;
+}
+console.log(str2arr('4929965056200011'));
+// console.log(str2arr(4929965056200011))
 
 // Luhn Algorithm
 // https://en.wikipedia.org/wiki/Luhn_algorithm#Description
@@ -64,11 +81,13 @@ const validateCred = arr => {
         return 'array is invalid';
     };
 }
-validateCred(valid1);
+// console.log(validateCred(valid1));
+console.log(validateCred(valid6));
 
 console.log('====== findInvalidCards ======');
 // The role of findInvalidCards() is to check through the nested array for which numbers are invalid, and return another nested array of invalid cards.
 const findInvalidCards = (arr) => {
+    let invalidCards = [];
     arr.filter(i => {
         // console.log('i: ', i);
         if(validateCred(i) === 'array is invalid'){
@@ -80,7 +99,7 @@ const findInvalidCards = (arr) => {
     // console.table(invalidCards);
     return invalidCards;
 }
-findInvalidCards(batch);
+console.log(findInvalidCards(batch));
 
 console.log('====== idInvalidCardCompanies ======');
 // find invalid nums, return array of companies (one entry per; no dupes). First number in CC reveals card Co. Nums not in the list print msg: "Company not found"
@@ -119,6 +138,8 @@ const idInvalidCardCompanies = (arr) => {
                 console.log('Discover not found: pushing Discover');
                 invalidCompanies.push('Discover');
             }
+        } else {
+            console.log('Company not found');
         }
     }
     console.log(invalidCompanies)
@@ -128,4 +149,5 @@ idInvalidCardCompanies(batch);
 
 
 
+// Create a function that will convert invalid numbers into valid numbers.
 
