@@ -1,3 +1,5 @@
+// wrapping mind around method used in solution
+
 numArr = ['1a',2,'1b',2,'1c',2,'1d',2,'1e'];
 console.log(numArr)
 
