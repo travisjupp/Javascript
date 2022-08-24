@@ -38,7 +38,6 @@ function str2arr (str) {
     return newArr;
 }
 console.log(str2arr('4929965056200011'));
-// console.log(str2arr(4929965056200011))
 
 // Luhn Algorithm
 // https://en.wikipedia.org/wiki/Luhn_algorithm#Description
@@ -48,32 +47,21 @@ const validateCred = arr => {
     let sum = 0;
     // iterate every other digit right to left
     for (let i = arr.length - 2; i >= 0; i = i - 2) {
-        // console.log('i: ', i-2);
-        // console.log('i: ', i);
-        // console.log('arr[i]: ', arr[i]);
-// CHECK DIGIT (LAST DIGIT) IS NOT DOUBLED
-        
+    // CHECK DIGIT (LAST DIGIT) IS NOT DOUBLED
         n = arr[i] * 2; // double iterated digits
-        // console.log(n);
-
         // if doubled digit > 9 subtract 9
         if (n > 9) {
             n -= 9;
         }
-        // console.log(n);
-        // sum up all digits and add to sum 
-        sum = n + sum;
+        // sum digits and add to sum 
+        sum += n;
     };
-    // sum every other digit starting from end of arr
-    for(let i = arr.length - 1; i >= 0; i = i - 2){
-        // console.log('i2: ', arr[i]);
-        // console.log('n: ', n);
+    // sum every other digit (not yet processed) starting from end of arr
+    for (let i = arr.length - 1; i >= 0; i = i - 2){
         n = 0; // zero out n
         n = arr[i]; // add to n
-        sum = n + sum; // add to sum
+        sum += n; // add to sum
     };
-
-    // console.log('sum: ', sum, 'n: ', n);
     // if sum modulo 10 = 0 the array is valid
     if (sum % 10 === 0) {
         return 'array is valid';
@@ -86,17 +74,13 @@ console.log(validateCred(valid6));
 
 console.log('====== findInvalidCards ======');
 // The role of findInvalidCards() is to check through the nested array for which numbers are invalid, and return another nested array of invalid cards.
-const findInvalidCards = (arr) => {
+const findInvalidCards = arr => {
     let invalidCards = [];
     arr.filter(i => {
-        // console.log('i: ', i);
         if(validateCred(i) === 'array is invalid'){
             invalidCards.push(i);
         }
-        
     });
-
-    // console.table(invalidCards);
     return invalidCards;
 }
 console.log(findInvalidCards(batch));
@@ -104,11 +88,10 @@ console.log(findInvalidCards(batch));
 console.log('====== idInvalidCardCompanies ======');
 // find invalid nums, return array of companies (one entry per; no dupes). First number in CC reveals card Co. Nums not in the list print msg: "Company not found"
 // 3 Amex (American Express) // 4 Visa // 5 Mastercard // 6 Discover
-// For param use invalidCards array
-const idInvalidCardCompanies = (arr) => {
+const idInvalidCardCompanies = arr => {
     let invalidCompanies = [];
     for(card of arr){
-        console.log('card[0]: ', card[0]);
+        // console.log('card[0]: ', card[0]);
         // if statement card num analysis
         if (card[0] === 3){
             if (invalidCompanies.includes('Amex')){
@@ -146,8 +129,52 @@ const idInvalidCardCompanies = (arr) => {
 }
 idInvalidCardCompanies(batch);
 
-
-
-
 // Create a function that will convert invalid numbers into valid numbers.
+// const invalid1 = [4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 5]
+const invalidMod1 = [5, 4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 5] // valid
+//                  ^ result (5) added to invalid1
+// const invalid2 = [5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3]
+const invalidMod2 = [2, 5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3] // invalid
+//                   ^ result (2) added to invalid2
 
+
+// pushing 5 to the end still returns invalid array
+// pushing 5 (from invalidCard result) to invalidMod -3 (before the last two nums) makes it valid
+// shifting 5 to beginning of array also works
+console.log('===== makeCardValid =====');
+const makeCardValid = invalidCard => {
+    let n;
+    let sum = 0;
+    let result;
+    if (validateCred(invalidCard) === 'array is invalid') {
+        console.log('validateCred says: array is invalid');
+        for (let i = invalidCard.length - 2; i >= 0; i = i - 2) {
+            n = invalidCard[i] * 2;
+            if (n > 9) {
+                n -= 9;
+            }
+            sum += n;
+        }
+        for (let i = invalidCard.length - 1; i >= 0; i = i - 2) {
+            n = 0;
+            n = invalidCard[i];
+            sum += n;
+        }
+        // check sum mod 10 = 0
+        result = sum % 10;
+        
+        // copy invalidCard array to newValidCard
+        let newValidCard = [...invalidCard];
+        
+        console.log('newValidCard: ',newValidCard);
+        // add result to newValidCard
+        newValidCard.unshift(result);
+        console.log('newValidCard: ',newValidCard);
+        console.log('result: ',result, 'sum: ',sum);
+
+    } else {
+        console.log('validateCred says: array is valid');
+    }
+}
+
+makeCardValid(invalid2);
