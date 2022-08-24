@@ -136,7 +136,53 @@ const invalidMod1 = [5, 4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 5] // valid
 // const invalid2 = [5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3]
 const invalidMod2 = [2, 5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3] // invalid
 //                   ^ result (2) added to invalid2
+const invalidMod3 = [8, 5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3] // valid
+//                   ^ 10 - result = (8) added to invalid2  
 
+// const invalid3 = [3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4]
+const invalidMod4 = [2, 3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4] // invalid
+//                   ^ 10 - result = (2) added to invalid3
+
+// must add result to a section that does not get doubled
+// since every other num after the check number gets doubled, would prob be best to add at index -3
+
+// const invalid3 = [3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4]
+const invalidMod5 = [2, 0, 3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4] // valid
+//                   ^--^-- retain array.length parity by adding two numbers
+//                          (0) does not get doubled 
+
+// const invalid2 = [5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3]
+const invalidMod6 = [5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 1] // valid
+// try to modify check digit if check digit > result, subtract result else add
+// result is 2 so 2 is subtracted from check digit
+
+// const invalid1 = [4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 5]
+const invalidMod7 = [4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 0] // valid
+// result (5) subtracted from check digit
+
+// const invalid1 = [4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 5]
+const invalidMod8 = [4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 5, 0, 5] // valid
+// made result check digit (5) with (0) preceeding to keep parity
+
+// const invalid2 = [5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3]
+const invalidMod9 = [5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3, 0, 8] // valid
+// made result check digit (8) with (0) preceeding to keep parity
+
+// const invalid3 = [3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4]
+const invalidMod10 = [3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4, 0, 2] // valid
+// made result check digit (2) with (0) preceeding to keep parity
+
+// const invalid4 = [6, 0, 1, 1, 1, 2, 7, 9, 6, 1, 7, 7, 7, 9, 3, 5]
+const invalidMod11 = [6, 0, 1, 1, 1, 2, 7, 9, 6, 1, 7, 7, 7, 9, 3, 5, 0, 5] // valid
+// made result check digit (5) with (0) preceeding to keep parity
+
+// const invalid5 = [5, 3, 8, 2, 0, 1, 9, 7, 7, 2, 8, 8, 3, 8, 5, 4]
+const invalidMod12 = [5, 3, 8, 2, 0, 1, 9, 7, 7, 2, 8, 8, 3, 8, 5, 4, 0, 9] // valid
+// made result check digit (9) with (0) preceeding to keep parity
+
+// const invalid6 = [4, 9, 2, 9, 9, 6, 5, 0, 5, 6, 2, 0, 0, 0, 1, 2]
+const invalidMod13 = [4, 9, 2, 9, 9, 6, 5, 0, 5, 6, 2, 0, 0, 0, 1, 2, 0, 9] // valid
+// made result check digit (9) with (0) preceeding to keep parity
 
 // pushing 5 to the end still returns invalid array
 // pushing 5 (from invalidCard result) to invalidMod -3 (before the last two nums) makes it valid
@@ -150,6 +196,7 @@ const makeCardValid = invalidCard => {
         console.log('validateCred says: array is invalid');
         for (let i = invalidCard.length - 2; i >= 0; i = i - 2) {
             n = invalidCard[i] * 2;
+            console.log('n: ',n);
             if (n > 9) {
                 n -= 9;
             }
@@ -158,6 +205,7 @@ const makeCardValid = invalidCard => {
         for (let i = invalidCard.length - 1; i >= 0; i = i - 2) {
             n = 0;
             n = invalidCard[i];
+            console.log('i: ',invalidCard[i]);
             sum += n;
         }
         // check sum mod 10 = 0
@@ -165,16 +213,19 @@ const makeCardValid = invalidCard => {
         
         // copy invalidCard array to newValidCard
         let newValidCard = [...invalidCard];
-        
-        console.log('newValidCard: ',newValidCard);
+        // New check digit to push to newValidCard
+        let checkDigit = 10 - result;
+
+        console.log('invalidCard: ',invalidCard);
         // add result to newValidCard
-        newValidCard.unshift(result);
+        newValidCard.push(0); // keep the parity of the length of cc
+        newValidCard.push(checkDigit);
+        console.log('result: ',result, 'sum: ',sum, 'checkDigit: ', checkDigit);
         console.log('newValidCard: ',newValidCard);
-        console.log('result: ',result, 'sum: ',sum);
 
     } else {
         console.log('validateCred says: array is valid');
     }
 }
 
-makeCardValid(invalid2);
+makeCardValid(invalid1);
