@@ -13,11 +13,11 @@ const invalid4 = [6, 0, 1, 1, 1, 2, 7, 9, 6, 1, 7, 7, 7, 9, 3, 5]
 const invalid5 = [5, 3, 8, 2, 0, 1, 9, 7, 7, 2, 8, 8, 3, 8, 5, 4]
 
 // Can be either valid or invalid
-const mystery1 = [3, 4, 4, 8, 0, 1, 9, 6, 8, 3, 0, 5, 4, 1, 4]
-const mystery2 = [5, 4, 6, 6, 1, 0, 0, 8, 6, 1, 6, 2, 0, 2, 3, 9]
-const mystery3 = [6, 0, 1, 1, 3, 7, 7, 0, 2, 0, 9, 6, 2, 6, 5, 6, 2, 0, 3]
-const mystery4 = [4, 9, 2, 9, 8, 7, 7, 1, 6, 9, 2, 1, 7, 0, 9, 3]
-const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3]
+const mystery1 = [3, 4, 4, 8, 0, 1, 9, 6, 8, 3, 0, 5, 4, 1, 4] // invalid
+const mystery2 = [5, 4, 6, 6, 1, 0, 0, 8, 6, 1, 6, 2, 0, 2, 3, 9] // valid
+const mystery3 = [6, 0, 1, 1, 3, 7, 7, 0, 2, 0, 9, 6, 2, 6, 5, 6, 2, 0, 3] // invalid
+const mystery4 = [4, 9, 2, 9, 8, 7, 7, 1, 6, 9, 2, 1, 7, 0, 9, 3] // invalid
+const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3] // valid
 
 // An array of all the arrays above
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5]
@@ -196,7 +196,7 @@ const makeCardValid = invalidCard => {
         console.log('validateCred says: array is invalid');
         for (let i = invalidCard.length - 2; i >= 0; i = i - 2) {
             n = invalidCard[i] * 2;
-            console.log('n: ',n);
+            console.log('doubled:',n);
             if (n > 9) {
                 n -= 9;
             }
@@ -205,23 +205,19 @@ const makeCardValid = invalidCard => {
         for (let i = invalidCard.length - 1; i >= 0; i = i - 2) {
             n = 0;
             n = invalidCard[i];
-            console.log('i: ',invalidCard[i]);
+            console.log('invalidCard[i]:',invalidCard[i]);
             sum += n;
         }
-        // check sum mod 10 = 0
-        result = sum % 10;
-        
-        // copy invalidCard array to newValidCard
-        let newValidCard = [...invalidCard];
-        // New check digit to push to newValidCard
-        let checkDigit = 10 - result;
+        result = sum % 10; // check sum mod 10 = 0
+        let newValidCard = [...invalidCard]; // copy invalidCard array to newValidCard
+        let checkDigit = 10 - result; // New check digit to push to newValidCard
 
-        console.log('invalidCard: ',invalidCard);
+        console.log('invalidCard:',invalidCard);
         // add result to newValidCard
-        newValidCard.push(0); // keep the parity of the length of cc
-        newValidCard.push(checkDigit);
-        console.log('result: ',result, 'sum: ',sum, 'checkDigit: ', checkDigit);
-        console.log('newValidCard: ',newValidCard);
+        newValidCard.push(0); // keep the parity of the length of cc (item value 0)
+        newValidCard.push(checkDigit); // push new check digit to end of array
+        console.log('sum:',sum,'result:',result,'checkDigit:',checkDigit);
+        console.log('newValidCard:',newValidCard);
 
     } else {
         console.log('validateCred says: array is valid');
