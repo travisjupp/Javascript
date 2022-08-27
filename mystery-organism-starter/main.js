@@ -40,14 +40,27 @@ const pAequorFactory = () => {
       let rrb = returnRandBase();
       // console.log('select random base:',this.dna[Math.floor(Math.random()*this.dna.length)]);
       
-      if (randBase !== rrb) {
-        console.log('bases not equal','randBase:',randBase);
-        this.dna[randNum] = 'R:'+rrb;
-      } else {
-        console.log('bases equal, try again');
+      // while randbase === rrb get new base
+      console.log('rrb at start',rrb);
+
+      while (randBase === rrb){
+        rrb = returnRandBase();
+        console.log('rrb in while loop', rrb);
       }
-      // randBase = 'R:'+returnRandBase();
-      // console.log(this.dna);
+
+      // console.log('rrb before if',rrb);
+      
+      // if (randBase !== rrb) {
+      //   console.log('bases not equal','randBase:',randBase);
+      //   this.dna[randNum] = 'R:'+rrb;
+      // } else {
+      //   console.log('bases equal, try again'); // while loop keeps this condition from happening
+      //   rrb = returnRandBase();
+
+      // }
+      // console.log('rrb after if',rrb);
+
+      this.dna[randNum] = 'R:'+rrb;
       return this.dna;
     }
   }
