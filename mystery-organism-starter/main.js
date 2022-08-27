@@ -48,18 +48,6 @@ const pAequorFactory = () => {
         console.log('rrb in while loop', rrb);
       }
 
-      // console.log('rrb before if',rrb);
-      
-      // if (randBase !== rrb) {
-      //   console.log('bases not equal','randBase:',randBase);
-      //   this.dna[randNum] = 'R:'+rrb;
-      // } else {
-      //   console.log('bases equal, try again'); // while loop keeps this condition from happening
-      //   rrb = returnRandBase();
-
-      // }
-      // console.log('rrb after if',rrb);
-
       this.dna[randNum] = 'R:'+rrb;
       return this.dna;
     }
@@ -68,9 +56,11 @@ const pAequorFactory = () => {
 
 // console.log(pAequorFactory());
 // console.log(pAequorFactory());
-// console.log(pAequorFactory());
+
+console.log(pAequorFactory());
+console.log(specObj.dna); // running the factory: pAequorFactory() then running pAequorFactory().mutate() does not mutate the first dna but generates a new strand it then mutates. Probably because dna prop-value is not a variable but runs mockUpStrand() directly.
+
 console.log('pAequorFactory().mutate():\n',pAequorFactory().mutate());
-// console.log(specObj);
 // console.log(JSON.stringify(specObj));
 // console.log('specObj.mutate():\n',specObj.mutate());
 
