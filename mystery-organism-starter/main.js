@@ -24,21 +24,22 @@ function counter () {
   return num++;
 };
 
+let newMock = mockUpStrand(); // so user can mutate strand in two steps
 const pAequorFactory = () => {
   return specObj = {
     specimenNum: counter(),
-    dna: mockUpStrand(),
+    dna: newMock,
     // Your team wants you to simulate P. aequor‘s high rate of mutation (change in its DNA).
     // To simulate a mutation, in pAequorFactory()‘s returned object, add the method .mutate().
     // .mutate() is responsible for randomly selecting a base in the object’s dna property and changing the current base to a different base. Then .mutate() will return the object’s dna.
     // For example, if the randomly selected base is the 1st base and it is 'A', the base must be changed to 'T', 'C', or 'G'. But it cannot be 'A' again.
     mutate() {
-      console.log('==mutate()==');
+      console.group('==mutate()==');
       console.log(this.dna);
+      let origStrand = [...this.dna];
       let randNum = Math.floor(Math.random()*this.dna.length);
       let randBase = this.dna[randNum];
       let rrb = returnRandBase();
-      // console.log('select random base:',this.dna[Math.floor(Math.random()*this.dna.length)]);
       
       // while randbase === rrb get new base
       console.log('rrb at start',rrb);
@@ -49,6 +50,8 @@ const pAequorFactory = () => {
       }
 
       this.dna[randNum] = 'R:'+rrb;
+      console.log(`${origStrand} original \n${this.dna} mutant`);
+      console.groupEnd();
       return this.dna;
     }
   }
