@@ -15,7 +15,7 @@ const robotFactory = (model, mobile) => {
 // Call Factory Func assigned to var tinCan (becomes obj name)
 const tinCan = robotFactory('P-500', true);
 
-console.log('==== Ex 1 ====')
+console.log('==== Ex 1: robotFactory ====')
 // Call .beep() on tinCan
 tinCan.beep(); // Beep Boop logged to console, object created
 console.log(tinCan); // logs: {model: 'P-500', mobile: true, beep: ƒ}
@@ -71,7 +71,7 @@ const dogFactory = (name, breed, weight) => {
 
 
 
-console.log('==== Ex 2 ====')
+console.log('==== Ex 2: dogFactory ====')
 
 console.table(dogFactory('Rover', 'BassetHound', 13))
 console.log(dogFactory('Rover', 'BassetHound', 13))
@@ -82,3 +82,46 @@ console.log(dogFactory(5, 5, 'string')) // this should error but doesen't
 console.log(dogObj.name = 4) // must be a string
 console.log(dogObj.breed = 3) // must be a string
 console.log(dogObj.name)
+
+// Ex 3
+const personFactory = name => {
+  return {
+      _name: name,
+      set setName(newName){
+          if(typeof newName === 'string'){
+              return this._name = newName;
+          } else {
+              return 'name not string';
+          }
+      },
+      get getName(){
+          return this._name;
+      }
+  }
+}
+
+console.log('==== Ex 3: personFactory ====')
+const personObj = personFactory('Rob')
+console.log(personObj.getName)
+personObj.setName = 'bill'
+console.log(personObj.getName)
+console.log(personObj.setName = 9);
+console.log(personObj.getName)
+
+// Ex 4
+
+const musicFactory = () => {
+  return music = {
+      type: 'freestyle',
+      genre: 'hiphop'
+  }
+}
+
+// const factory = musicFactory();
+musicFactory();
+
+let painting = music;
+console.log('==== Ex 4: musicFactory ====')
+// console.log(music);
+console.log(painting);
+console.log(music);
