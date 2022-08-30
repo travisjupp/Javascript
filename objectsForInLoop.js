@@ -60,3 +60,50 @@ console.log(mobile.model[0]) // G
 console.log(Object.keys(mobile)); // ['brand', 'model']
 
 console.log([mobile][0]) // {brand: 'Samsung', model: 'Galaxy Note 9'}
+
+////////////////////////////////////////////
+// Ex 3
+
+let creature = {
+  dnaStrand: ["G","C","G","G","T","C","G","A","G","C","T","T","T","G","A"],
+  dnaBase: ["Adenine", "Cytosine", "Thymine", "Guanine"]
+}
+
+// testing iterator variable use in nested for...loop
+// using "i" variable for both for...loops
+
+// absent "let" keyword
+// for (let i in creature.dnaStrand){
+//   console.log(i,creature.dnaStrand[i]); // count (0 - 14)
+//   for (i in creature.dnaBase){ // the absence of the inner "let" keyword
+//     console.log('-',i,creature.dnaBase[i]); // count (0 - 3)
+//   }
+//   console.log(i); // index sides with inner for...loop (3)
+// }
+
+
+// for (let i in creature.dnaStrand){
+//   console.log(i,creature.dnaStrand[i]); // count (0 - 14)
+//   for (let i in creature.dnaBase){ // "let" keyword exists
+//     console.log('-',i,creature.dnaBase[i]); // count (0 - 3)
+//   }
+//   console.log(i); // index sides with outer for...loop
+// }
+
+for (i in creature.dnaStrand){ // absent outer "let"
+  console.log(i,creature.dnaStrand[i]); // count (0 - 14)
+  for (let i in creature.dnaBase){ // inner "let" keyword exists
+    console.log('-',i,creature.dnaBase[i]); // count (0 - 3)
+  }
+  console.log(i); // index sides with outer for...loop
+}
+
+
+// using "i" then "j" variables
+// for (i in creature.dnaStrand){
+//   console.log(i,creature.dnaStrand[i]); // should count 15
+//   for (j in creature.dnaBase){
+//     console.log(i,'-',j,creature.dnaBase[j]); // should count 4
+//   }
+//   console.log(j);
+// }
