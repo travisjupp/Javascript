@@ -68,15 +68,25 @@ const pAequorFactory = () => {
       console.group('==compareDNA==');
       console.log('currentDNA:',JSON.stringify(this.dna)); // current object
       console.log('inputDNA:',JSON.stringify(passedDNA.dna)); // input object
+      let identicalBases = 0; // 
       // compare passed object with current using a nested for...loop
-      for (base in this.dna){
-        console.log(this.dna[base]);
-        for (base in passedDNA.dna){
-          console.log('-',passedDNA.dna[base]);
+    
+      for (i in this.dna){
+        // console.log(this.dna[i]);
+        for (j in passedDNA.dna){
+          // console.log('-',passedDNA.dna[j]);
+          // compare bases when indexes are the same
+          if (i === j){
+            if(this.dna[i] === passedDNA.dna[j]){
+              console.log('@index:',i,'bases',this.dna[i],'-',passedDNA.dna[j],'equal');
+              identicalBases += 1;
+            }
+          }
         }
       }
+      console.log('identicalBases =',identicalBases);
     }
-  }
+  } // object end
 };
 
 // console.log('pAequorFactory()',pAequorFactory());
