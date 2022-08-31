@@ -53,7 +53,7 @@ const pAequorFactory = () => {
       console.groupEnd();
       console.log(`${origStrand} original \n${this.dna} mutant`); // log strands for comparison
       return this.dna; // return mutated dna strand
-    },
+    }, // mutate() end
     // Your research team wants to be able to compare the DNA sequences of different P. aequor. You’ll have to add a new method (.compareDNA()) to the returned object of the factory function.
     
     // .compareDNA() has one parameter, another pAequor object.
@@ -71,9 +71,9 @@ const pAequorFactory = () => {
       let identicalBases = 0; // 
       // compare passed object with current using a nested for...loop
     
-      for (i in this.dna){
+      for (const i in this.dna){
         // console.log(this.dna[i]);
-        for (j in passedDNA.dna){
+        for (const j in passedDNA.dna){
           // console.log('-',passedDNA.dna[j]);
           // compare bases when indexes are the same
           if (i === j){
@@ -85,7 +85,10 @@ const pAequorFactory = () => {
         }
       }
       console.log('identicalBases =',identicalBases);
-    }
+      // return percentage of DNA in common: indenticalBases / total bases (15)
+      return console.log(`currentDNA Specimen #${this.specimenNum} and passedDNA specimen #${passedDNA.specimenNum} have ${(identicalBases / this.dna.length).toFixed(2)*(100)}% DNA in common.`);
+
+    } // compareDNA() end
   } // object end
 };
 
