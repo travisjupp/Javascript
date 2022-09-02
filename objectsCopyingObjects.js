@@ -93,13 +93,41 @@ const objectShallowCopy = {
     ...object
 }
 
-objectShallowCopy.array[0] = 'ref val'// reference value
+objectShallowCopy.array[0] = 'ref val'// connected
 console.log(JSON.stringify(object));
 console.log(JSON.stringify(objectShallowCopy));
 
-objectShallowCopy.array = 'prim val' // primitive value
+objectShallowCopy.array = 'prim val' // disconnected
 
 console.log(JSON.stringify(object));
-console.log(JSON.stringify(objectShallowCopy));
+console.log(JSON.stringify(objectShallowCopy),'\n');
 
+// Nested objects are the same
 
+const tree = {
+    branch: {
+        nest: 'egg'
+    }
+}
+
+const treeCopy = {
+    ...tree
+}
+
+console.log(JSON.stringify(tree));
+treeCopy.branch.nest = 'ref val'; // connected
+
+console.log(JSON.stringify(tree));
+console.log(JSON.stringify(treeCopy));
+treeCopy.branch = 'prim val'; // disconnected
+console.log(JSON.stringify(tree));
+console.log(JSON.stringify(treeCopy));
+
+const treeCopy2 = Object.assign({}, tree);
+treeCopy2.branch.nest = 'back to egg'; // connected
+console.log('\n');
+console.log(JSON.stringify(tree));
+console.log(JSON.stringify(treeCopy2));
+treeCopy2.branch = 'prim val'; // disconnected
+console.log(JSON.stringify(tree));
+console.log(JSON.stringify(treeCopy2));
