@@ -31,10 +31,6 @@ const pAequorFactory = () => {
     specimenNum: counter(),
     dna: mockUpStrand(),
     mutate() {
-      // Your team wants you to simulate P. aequor‘s high rate of mutation (change in its DNA).
-      // To simulate a mutation, in pAequorFactory()‘s returned object, add the method .mutate().
-      // .mutate() is responsible for randomly selecting a base in the object’s dna property and changing the current base to a different base. Then .mutate() will return the object’s dna.
-      // For example, if the randomly selected base is the 1st base and it is 'A', the base must be changed to 'T', 'C', or 'G'. But it cannot be 'A' again.
       console.group('mutate()');
       let origStrand = [...this.dna]; // copy original object dna value
       
@@ -56,22 +52,11 @@ const pAequorFactory = () => {
       return this.dna; // return mutated dna strand
     }, // mutate() end
     compareDNA(passedDNA) {
-      // Your research team wants to be able to compare the DNA sequences of different P. aequor. You’ll have to add a new method (.compareDNA()) to the returned object of the factory function.
-      
-      // .compareDNA() has one parameter, another pAequor object.
-      
-      // The behavior of .compareDNA() is to compare the current pAequor‘s .dna with the passed in pAequor‘s .dna and compute how many bases are identical and in the same locations. .compareDNA() does not return anything, but prints a message that states the percentage of DNA the two objects have in common — use the .specimenNum to identify which pAequor objects are being compared.
-      
-      // For example:
-      // ex1 = ['A', 'C', 'T', 'G']
-      // ex2 = ['C', 'A', 'T', 'T']
-      // ex1 and ex2 only have the 3rd element in common ('T') and therefore, have 25% (1/4) of their DNA in common. The resulting message would read something along the lines of: specimen #1 and specimen #2 have 25% DNA in common.
       console.group('compareDNA()');
       console.log(`Spec# ${passedDNA.specimenNum} (input DNA)\n${passedDNA.dna}\n`)
       console.log(`Spec# ${this.specimenNum} (current DNA)\n${this.dna}\n`)
       let identicalBases = 0; // 
       // compare passed object with current using a nested for...loop
-    
       for (const i in this.dna){
         // console.log(this.dna[i]);
         for (const j in passedDNA.dna){
@@ -90,14 +75,56 @@ const pAequorFactory = () => {
       console.log(`\nSpecimen #${passedDNA.specimenNum} and specimen #${this.specimenNum} have ${(identicalBases / this.dna.length).toFixed(2)*(100)}% DNA in common.\n`);
       console.groupEnd();
     }, // compareDNA() end
-    // .willLikelySurvive() returns true if the object’s .dna array contains at least 60% 'C' or 'G' bases. Otherwise, .willLikelySurvive() returns false.
+
     willLikelySurvive() {
       console.group('willLikelySurvive()');
       let cBases = 0;
       let gBases = 0;
-      for (const base in this.dna) {
-        console.log(this.specimenNum,this.dna[base]);
-      }
+      let instances = 0; // count number of loops
+      let survivors = [];
+      
+      do {
+        // zero out bases
+        cBases = 0;
+        gBases = 0;
+        instances += 1;
+        
+        // create new strand
+        this.dna = mockUpStrand();
+        // console.log(`${this.dna}`);
+
+        // check strand (get number of bases)
+        for (const base in this.dna) {
+          if (this.dna[base] === 'C') {
+            cBases += 1;
+            // console.log(cBases,base,this.dna[base]);
+          } else if (this.dna[base] === 'G') {
+            gBases += 1;
+            // console.log(gBases,base,this.dna[base]);
+          }
+        }
+        
+        // if > 60 push to survivors array
+        if ((cBases+gBases) / 15 * 100 >= 60) {
+          console.log(`Survivor:${this.dna}`);
+          survivors.push({
+            specimenNum: counter(),
+            dna: this.dna});
+        } else {
+          console.log(`Victim:${this.dna}`)
+        }
+      } while (survivors.length < 30); // do until array is full
+
+        console.log(`${this.dna}`);
+        console.log('survivors:',JSON.stringify(survivors));
+        // console.log('cBases>60:',cBases / 15 * 100 > 60);
+        // console.log('gBases>60:',gBases / 15 * 100 > 60);
+        console.log('Bases>60%:',(gBases+cBases) / 15 * 100 >= 60); // merging bases for higher probability
+        console.log('Bases:',(gBases+cBases) / 15 * 100, '%'); // merging bases for higher probability
+      
+      
+
+      console.log('cBases:',cBases,'gBases:',gBases,'instances:',instances);
       console.groupEnd();
     } // willLikelySurvive() end
   } // object end
@@ -109,13 +136,31 @@ const pAequorFactory = () => {
 // console.log(specObj.dna);
 
 // ------------mutate() calls--------------
-// running the factory: pAequorFactory() then running pAequorFactory().mutate() mutates the first dna strand generated. When dna prop-value is moved to a variable instead of running mockUpStrand() directly as it did before. NOTE: This only works if => dna: mockUpStrand() is changed to => dna: newMock
+// Your team wants you to simulate P. aequor‘s high rate of mutation (change in its DNA).
+// To simulate a mutation, in pAequorFactory()‘s returned object, add the method .mutate().
+// .mutate() is responsible for randomly selecting a base in the object’s dna property and changing the current base to a different base. Then .mutate() will return the object’s dna.
+// For example, if the randomly selected base is the 1st base and it is 'A', the base must be changed to 'T', 'C', or 'G'. But it cannot be 'A' again.
+
 pAequorFactory().mutate()
 // console.log('pAequorFactory().mutate():\n',pAequorFactory().mutate());
 
 // ----------conpareDNA() calls------------
+// Your research team wants to be able to compare the DNA sequences of different P. aequor. You’ll have to add a new method (.compareDNA()) to the returned object of the factory function.
+
+// .compareDNA() has one parameter, another pAequor object.
+
+// The behavior of .compareDNA() is to compare the current pAequor‘s .dna with the passed in pAequor‘s .dna and compute how many bases are identical and in the same locations. .compareDNA() does not return anything, but prints a message that states the percentage of DNA the two objects have in common — use the .specimenNum to identify which pAequor objects are being compared.
+
+// For example:
+// ex1 = ['A', 'C', 'T', 'G']
+// ex2 = ['C', 'A', 'T', 'T']
+// ex1 and ex2 only have the 3rd element in common ('T') and therefore, have 25% (1/4) of their DNA in common. The resulting message would read something along the lines of: specimen #1 and specimen #2 have 25% DNA in common.
+
 const inputDNA = pAequorFactory(); // creates new object: inputDNA
 pAequorFactory().compareDNA(inputDNA);
 
 // -------willLikelySurvive() calls--------
+// .willLikelySurvive() returns true if the object’s .dna array contains at least 60% 'C' or 'G' bases. Otherwise, .willLikelySurvive() returns false.
+
+// your team requests that you create 30 instances of pAequor that can survive in their natural environment. Store these instances in an array for your team to study later.
 pAequorFactory().willLikelySurvive();
