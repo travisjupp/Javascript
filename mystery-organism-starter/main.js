@@ -83,15 +83,11 @@ const pAequorFactory = () => {
       let instances = 0; // count number of loops
       let survivors = [];
       
-      do {
+      while (survivors.length < 30) { // fill arr to 30
         // zero out bases
         cBases = 0;
         gBases = 0;
         instances += 1;
-        
-        // create new strand
-        this.dna = mockUpStrand();
-        // console.log(`${this.dna}`);
 
         // check strand (get number of bases)
         for (const base in this.dna) {
@@ -104,51 +100,50 @@ const pAequorFactory = () => {
           }
         }
         
-        // if > 60 push to survivors array
+        // if > 60 push to arr
         if ((cBases+gBases) / 15 * 100 >= 60) {
-          console.log(`Survivor:${this.dna}`);
+          console.log(`Survivor: ${this.dna} Spec#${this.specimenNum}`);
           survivors.push({
-            specimenNum: counter(),
+            specimenNum: this.specimenNum,
             dna: this.dna});
         } else {
-          console.log(`Victim:${this.dna}`)
+          console.log(`Victim: ${this.dna} Spec#${this.specimenNum}`)
         }
-      } while (survivors.length < 30); // do until array is full
-
-        console.log(`${this.dna}`);
-        console.log('survivors:',JSON.stringify(survivors));
-        // console.log('cBases>60:',cBases / 15 * 100 > 60);
-        // console.log('gBases>60:',gBases / 15 * 100 > 60);
-        console.log('Bases>60%:',(gBases+cBases) / 15 * 100 >= 60); // merging bases for higher probability
-        console.log('Bases:',(gBases+cBases) / 15 * 100, '%'); // merging bases for higher probability
-      
-      
-
-      console.log('cBases:',cBases,'gBases:',gBases,'instances:',instances);
+        
+        this.dna = mockUpStrand();// create new strand
+        this.specimenNum = counter();// create new specimenNum
+      }
+      // show survivors array
+      console.log(`\nSurvivors DNA:\n`);
+      for (const el of survivors) {
+        console.log(`${el.dna} spec#${el.specimenNum}\n`);
+      }
+      // console.log(`${this.dna}`);
+      // console.log('C+G Bases>60%:',(gBases+cBases) / 15 * 100 >= 60); 
+      // console.log('C+G Bases:',(gBases+cBases) / 15 * 100, '%');
+      // console.log('cBases:',cBases,'gBases:',gBases,'instances:',instances);
+      console.log('processed: ',instances);
       console.groupEnd();
-    } // willLikelySurvive() end
+    }, // willLikelySurvive() end
+    complementStrand() {
+      console.group('complimentStrand()');
+      console.groupEnd();
+    } // complimentStrand end
   } // object end
 };
-
-// console.log('pAequorFactory()',pAequorFactory());
-// console.log(specObj.dna);
-// console.log('pAequorFactory()',pAequorFactory());
-// console.log(specObj.dna);
 
 // ------------mutate() calls--------------
 // Your team wants you to simulate P. aequor‘s high rate of mutation (change in its DNA).
 // To simulate a mutation, in pAequorFactory()‘s returned object, add the method .mutate().
 // .mutate() is responsible for randomly selecting a base in the object’s dna property and changing the current base to a different base. Then .mutate() will return the object’s dna.
 // For example, if the randomly selected base is the 1st base and it is 'A', the base must be changed to 'T', 'C', or 'G'. But it cannot be 'A' again.
-
-pAequorFactory().mutate()
 // console.log('pAequorFactory().mutate():\n',pAequorFactory().mutate());
+pAequorFactory().mutate()
 
 // ----------conpareDNA() calls------------
 // Your research team wants to be able to compare the DNA sequences of different P. aequor. You’ll have to add a new method (.compareDNA()) to the returned object of the factory function.
 
 // .compareDNA() has one parameter, another pAequor object.
-
 // The behavior of .compareDNA() is to compare the current pAequor‘s .dna with the passed in pAequor‘s .dna and compute how many bases are identical and in the same locations. .compareDNA() does not return anything, but prints a message that states the percentage of DNA the two objects have in common — use the .specimenNum to identify which pAequor objects are being compared.
 
 // For example:
@@ -164,3 +159,8 @@ pAequorFactory().compareDNA(inputDNA);
 
 // your team requests that you create 30 instances of pAequor that can survive in their natural environment. Store these instances in an array for your team to study later.
 pAequorFactory().willLikelySurvive();
+
+// --------complimentStrand() calls--------
+// .complementStrand() method to the factory function’s object that returns the complementary DNA strand.
+// If the strand1’s first base is an 'A', then the strand2’s opposing base is a 'T'. If the second spot of strand1 is a 'C', then strand2’s opposing base is a 'G'.
+pAequorFactory().complementStrand();
