@@ -114,19 +114,32 @@ const pAequorFactory = () => {
         this.specimenNum = counter();// create new specimenNum
       }
       // show survivors array
-      console.log(`\nSurvivors DNA:\n`);
-      for (const el of survivors) {
-        console.log(`${el.dna} spec#${el.specimenNum}\n`);
-      }
-      // console.log(`${this.dna}`);
-      // console.log('C+G Bases>60%:',(gBases+cBases) / 15 * 100 >= 60); 
-      // console.log('C+G Bases:',(gBases+cBases) / 15 * 100, '%');
-      // console.log('cBases:',cBases,'gBases:',gBases,'instances:',instances);
+      // console.log(`\nSurvivors DNA:\n`);
+      // for (const el of survivors) {
+      //   console.log(`${el.dna} spec#${el.specimenNum}\n`);
+      // }
+      
       console.log('processed: ',instances);
       console.groupEnd();
     }, // willLikelySurvive() end
     complementStrand() {
       console.group('complimentStrand()');
+      let complimentDNA = [];
+      // 
+      for (const base of this.dna){
+        // console.log('base:',base);
+        if (base === 'A') {
+          complimentDNA.push('T');
+        } else if (base === 'T') {
+          complimentDNA.push('A');
+        } else if (base === 'C') {
+          complimentDNA.push('G');
+        } else if (base === 'G') {
+          complimentDNA.push('C');
+        }
+      }
+      console.log(`spec#${this.specimenNum}: \n${this.dna}`);
+      console.log(`compliment: \n${complimentDNA}`);
       console.groupEnd();
     } // complimentStrand end
   } // object end
@@ -138,7 +151,7 @@ const pAequorFactory = () => {
 // .mutate() is responsible for randomly selecting a base in the object’s dna property and changing the current base to a different base. Then .mutate() will return the object’s dna.
 // For example, if the randomly selected base is the 1st base and it is 'A', the base must be changed to 'T', 'C', or 'G'. But it cannot be 'A' again.
 // console.log('pAequorFactory().mutate():\n',pAequorFactory().mutate());
-pAequorFactory().mutate()
+// pAequorFactory().mutate();
 
 // ----------conpareDNA() calls------------
 // Your research team wants to be able to compare the DNA sequences of different P. aequor. You’ll have to add a new method (.compareDNA()) to the returned object of the factory function.
@@ -151,14 +164,14 @@ pAequorFactory().mutate()
 // ex2 = ['C', 'A', 'T', 'T']
 // ex1 and ex2 only have the 3rd element in common ('T') and therefore, have 25% (1/4) of their DNA in common. The resulting message would read something along the lines of: specimen #1 and specimen #2 have 25% DNA in common.
 
-const inputDNA = pAequorFactory(); // creates new object: inputDNA
-pAequorFactory().compareDNA(inputDNA);
+// const inputDNA = pAequorFactory(); // creates new object: inputDNA
+// pAequorFactory().compareDNA(inputDNA);
 
 // -------willLikelySurvive() calls--------
 // .willLikelySurvive() returns true if the object’s .dna array contains at least 60% 'C' or 'G' bases. Otherwise, .willLikelySurvive() returns false.
 
 // your team requests that you create 30 instances of pAequor that can survive in their natural environment. Store these instances in an array for your team to study later.
-pAequorFactory().willLikelySurvive();
+// pAequorFactory().willLikelySurvive();
 
 // --------complimentStrand() calls--------
 // .complementStrand() method to the factory function’s object that returns the complementary DNA strand.
