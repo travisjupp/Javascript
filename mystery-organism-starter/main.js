@@ -24,9 +24,7 @@ function counter () {
   return num++;
 };
 
-let newMock = mockUpStrand(); // mutate strand in two steps (dna: newMock)
 const pAequorFactory = () => {
-
   return specObj = {
     specimenNum: counter(),
     dna: mockUpStrand(),
@@ -47,24 +45,22 @@ const pAequorFactory = () => {
       this.dna[randNum] = rrb; // randomly place new generated base in dna strand
       console.log(specObj.specimenNum,specObj.dna);
 
-      console.log(`Spec# ${this.specimenNum}\n${origStrand} original DNA \n${this.dna} mutated DNA`); // log strands for comparison
+      console.log(`Spec# ${this.specimenNum}:\n${origStrand} original DNA \n${this.dna} mutated DNA`); // log strands for comparison
       console.groupEnd();
       return this.dna; // return mutated dna strand
     }, // mutate() end
-    compareDNA(passedDNA) {
+    compareDNA(object) {
       console.group('compareDNA()');
-      console.log(`Spec# ${passedDNA.specimenNum} (input DNA)\n${passedDNA.dna}\n`)
+      console.log(`Spec# ${object.specimenNum} (input DNA)\n${object.dna}\n`)
       console.log(`Spec# ${this.specimenNum} (current DNA)\n${this.dna}\n`)
-      let identicalBases = 0; // 
+      let identicalBases = 0;
       // compare passed object with current using a nested for...loop
       for (const i in this.dna){
-        // console.log(this.dna[i]);
-        for (const j in passedDNA.dna){
-          // console.log('-',passedDNA.dna[j]);
+        for (const j in object.dna){
           // compare bases when indexes are the same
           if (i === j){
-            if(this.dna[i] === passedDNA.dna[j]){
-              console.log('equal bases =>',this.dna[i],'=',passedDNA.dna[j],'@index:',i);
+            if(this.dna[i] === object.dna[j]){
+              // console.log('equal bases =>',this.dna[i],'=',object.dna[j],'@index:',i);
               identicalBases += 1;
             }
           }
@@ -72,10 +68,9 @@ const pAequorFactory = () => {
       }
       console.log('\nidenticalBases =',identicalBases);
       // return percentage of DNA in common: indenticalBases / total bases (15)
-      console.log(`\nSpecimen #${passedDNA.specimenNum} and specimen #${this.specimenNum} have ${(identicalBases / this.dna.length).toFixed(2)*(100)}% DNA in common.\n`);
+      console.log(`\nSpecimen #${object.specimenNum} and specimen #${this.specimenNum} have ${(identicalBases / this.dna.length).toFixed(2)*(100)}% DNA in common.\n`);
       console.groupEnd();
     }, // compareDNA() end
-
     willLikelySurvive() {
       console.group('willLikelySurvive()');
       let cBases = 0;
@@ -83,7 +78,7 @@ const pAequorFactory = () => {
       let instances = 0; // count number of loops
       let survivors = [];
       
-      while (survivors.length < 30) { // fill arr to 30
+      do {
         // zero out bases
         cBases = 0;
         gBases = 0;
@@ -102,22 +97,17 @@ const pAequorFactory = () => {
         
         // if > 60 push to arr
         if ((cBases+gBases) / 15 * 100 >= 60) {
-          console.log(`Survivor: ${this.dna} Spec#${this.specimenNum}`);
+          console.log(`Survivor: ${this.dna} Spec# ${this.specimenNum}`);
           survivors.push({
             specimenNum: this.specimenNum,
             dna: this.dna});
-        } else {
-          console.log(`Victim: ${this.dna} Spec#${this.specimenNum}`)
-        }
-        
-        this.dna = mockUpStrand();// create new strand
-        this.specimenNum = counter();// create new specimenNum
-      }
-      // show survivors array
-      // console.log(`\nSurvivors DNA:\n`);
-      // for (const el of survivors) {
-      //   console.log(`${el.dna} spec#${el.specimenNum}\n`);
-      // }
+          } else {
+            console.log(`Victim: ${this.dna} Spec# ${this.specimenNum}`)
+          }
+          
+          this.dna = mockUpStrand();// create new strand
+          this.specimenNum = counter();// create new specimenNum
+      } while (survivors.length < 30);
       
       console.log('processed: ',instances);
       console.groupEnd();
@@ -125,23 +115,51 @@ const pAequorFactory = () => {
     complementStrand() {
       console.group('complimentStrand()');
       let complimentDNA = [];
-      // 
+      // build strand from current strand
       for (const base of this.dna){
-        // console.log('base:',base);
-        if (base === 'A') {
-          complimentDNA.push('T');
-        } else if (base === 'T') {
-          complimentDNA.push('A');
-        } else if (base === 'C') {
-          complimentDNA.push('G');
-        } else if (base === 'G') {
-          complimentDNA.push('C');
+        switch (base) {
+          case 'A':
+            complimentDNA.push('T');
+          case 'T':
+            complimentDNA.push('A');
+          case 'C':
+            complimentDNA.push('G');
+          case 'G':
+            complimentDNA.push('C');
         }
       }
-      console.log(`spec#${this.specimenNum}: \n${this.dna}`);
-      console.log(`compliment: \n${complimentDNA}`);
+      console.log(`Spec# ${this.specimenNum}: \n${this.dna}`);
+      console.log(`Compliment: \n${complimentDNA}`);
+      
+      specObj.complimentDNA = complimentDNA; // add to object
+      // console.log(specObj.complimentDNA);
+
       console.groupEnd();
-    } // complimentStrand end
+    }, // complimentStrand() end
+    mostRelated() {
+      // generate DNA objects, save to samples array
+      let samples = [];
+      while (samples.length < 3) {
+          samples.push({specimenNum: counter(),dna: mockUpStrand()});
+      }
+      console.table(samples);
+      // run compareDNA() on samples, save to results array
+      let results = [];
+      for (let i = 0; i < samples.length; i++) {
+        console.log('i',i,samples[i].dna);
+        for (let j = 0; j < samples.length; j++) {
+          if (j !== i){
+            console.log(i,j);
+          }
+          console.log('j',j,samples[j].dna);
+        }
+      }
+      console.log(samples[0].dna);
+
+      // sort results array by comparison percentages
+
+
+    } // mostRelated() end
   } // object end
 };
 
@@ -150,7 +168,6 @@ const pAequorFactory = () => {
 // To simulate a mutation, in pAequorFactory()‘s returned object, add the method .mutate().
 // .mutate() is responsible for randomly selecting a base in the object’s dna property and changing the current base to a different base. Then .mutate() will return the object’s dna.
 // For example, if the randomly selected base is the 1st base and it is 'A', the base must be changed to 'T', 'C', or 'G'. But it cannot be 'A' again.
-// console.log('pAequorFactory().mutate():\n',pAequorFactory().mutate());
 // pAequorFactory().mutate();
 
 // ----------conpareDNA() calls------------
@@ -176,4 +193,8 @@ const pAequorFactory = () => {
 // --------complimentStrand() calls--------
 // .complementStrand() method to the factory function’s object that returns the complementary DNA strand.
 // If the strand1’s first base is an 'A', then the strand2’s opposing base is a 'T'. If the second spot of strand1 is a 'C', then strand2’s opposing base is a 'G'.
-pAequorFactory().complementStrand();
+// pAequorFactory().complementStrand();
+
+// ----------mostRelated() calls-----------
+// Use the .compareDNA() to find the two most related instances of pAequor
+pAequorFactory().mostRelated();
