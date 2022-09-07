@@ -7,7 +7,7 @@
 
 const randomNumbers = [375, 200, 3.14, 7, 13, 852];
 
-// Call .filter() on randomNumbers below
+// Call .filter() on randomNumbers
 const smallNumbers = randomNumbers.filter(num => {
   return num < 250;
 });
@@ -15,10 +15,10 @@ const smallNumbers = randomNumbers.filter(num => {
 // Ex 1b
 const favoriteWords = ['nostalgia', 'hyperbole', 'fervent', 'esoteric', 'serene'];
 
-// Call .filter() on favoriteWords below
+// Call .filter() on favoriteWords
 const longFavoriteWords = favoriteWords.filter(word => word.length > 7);
 
-console.log('======= Ex 1a 1b =======')
+console.log('randomNumbers, favoriteWords')
 console.log(smallNumbers) // [200, 3.14, 7, 13]
 console.log(longFavoriteWords) // ['nostalgia', 'hyperbole', 'esoteric']
 
@@ -42,7 +42,37 @@ const coolStuff = ['gameboys', 'skateboards', 'backwards hats', 'fruit-by-the-fo
 
 const myStuff = [ 'rules', 'fruit-by-the-foot', 'wedgies', 'sweaters', 'skateboards', 'family-night', 'my room', 'braces', 'the information superhighway']; 
 
-console.log('======= Ex 2 =======')
+console.log('justCoolStuff')
 console.log(justCoolStuff(myStuff, coolStuff))
 
 // Should print [ 'fruit-by-the-foot', 'skateboards', 'my room' ]
+
+//////////////////////////////////////////////////
+// Ex 3
+// isPrime() finds all prime numbers in an array using .filter()
+
+const array = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+function isPrime(num) {
+  for (let i = 2; num > i; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return num > 1;
+}
+
+console.log('isPrime')
+console.log(array.filter(isPrime)); // [2, 3, 5, 7, 11, 13]
+
+/*
+-3, -2, -1, 0, 1 
+loop condition false: num > i 
+return condition false: num > 1
+
+2 also gets rejected by the for loop condition but passes return num > 1
+
+3 loop condition true and doesn't get eliminated by passing the if condition
+
+4 and all other non-primes are accepted by the loop and eliminated by the if
+*/
