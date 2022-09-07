@@ -69,6 +69,9 @@ const pAequorFactory = () => {
       console.log('\nidenticalBases =',identicalBases);
       // return percentage of DNA in common: indenticalBases / total bases (15)
       console.log(`\nSpecimen #${object.specimenNum} and specimen #${this.specimenNum} have ${(identicalBases / this.dna.length).toFixed(2)*(100)}% DNA in common.\n`);
+
+      return (identicalBases / this.dna.length).toFixed(2)*(100);
+
       console.groupEnd();
     }, // compareDNA() end
     willLikelySurvive() {
@@ -137,7 +140,8 @@ const pAequorFactory = () => {
       console.groupEnd();
     }, // complimentStrand() end
     mostRelated() {
-      // generate DNA objects, save to samples array
+      console.group('mostRelated()');
+      // generate DNA, save to samples array
       let samples = [];
       while (samples.length < 3) {
           samples.push({specimenNum: counter(),dna: mockUpStrand()});
@@ -145,20 +149,35 @@ const pAequorFactory = () => {
       console.table(samples);
       // run compareDNA() on samples, save to results array
       let results = [];
-      for (let i = 0; i < samples.length; i++) {
-        console.log('i',i,samples[i].dna);
-        for (let j = 0; j < samples.length; j++) {
-          if (j !== i){
-            console.log(i,j);
-          }
-          console.log('j',j,samples[j].dna);
-        }
+      for (let el of samples) {
+        // console.log(this.compareDNA(el));
+        
+        results.push({
+          compareResult: this.compareDNA(el),
+          specInput: el.specimenNum,
+          specCurrent: this.specimenNum
+
+        })
       }
-      console.log(samples[0].dna);
+      console.table(results);
+
+
+
+      // for (let i = 0; i < samples.length; i++) {
+      //   console.log('i',i,samples[i].dna);
+      //   for (let j = i + 1; j < samples.length; j++) {
+      //     if (j !== i){
+      //       console.log(i,j);
+      //       this.compareDNA(samples[i]);
+      //     }
+      //     console.log('j',j,samples[j].dna);
+      //   }
+      // }
+      // console.log(samples[0].dna);
 
       // sort results array by comparison percentages
 
-
+      console.groupEnd();
     } // mostRelated() end
   } // object end
 };
