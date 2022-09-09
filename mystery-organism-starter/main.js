@@ -161,16 +161,40 @@ const pAequorFactory = () => {
         })
       };
 
-      // // compare samples against each other
+      // compare samples against each other
+      let identicalBases2 = 0;
+      for (let i = 0; i < samples.length; i++) {
+        for (let j = i + 1; j < samples.length; j++) {
+          if (j !== i){
+            // console.log(i,j);
+            console.log(samples[i],samples[j]);
+            console.log(samples[i].dna);
+            console.log(samples[j].dna);
+            // would use compareDNA() here
+              for (let k = 0; k < 15; k++){
+                console.log(samples[i].dna[k],'-',samples[j].dna[k]);
+                if (samples[i].dna[k] === samples[j].dna[k]) {
+                  identicalBases2 += 1;
+                  console.log('^identicalBases2 in loop',identicalBases2);
+                }
+              }
+              console.log('identicalBases2 out loop',identicalBases2);
+              console.log((identicalBases2 / 15).toFixed(2) * 100);
+              console.log(samples[i].specimenNum, samples[j].specimenNum);
 
-      // for (let i = 0; i < samples.length; i++) {
-      //   for (let j = i + 1; j < samples.length; j++) {
-      //     if (j !== i){
-      //       console.log(i,j);
-      //     }
-      //   }
-      // }
-      
+              results.push({
+                compareResult: (identicalBases2 / 15).toFixed(2) * 100,
+                specInput: samples[i].specimenNum,
+                specCurrent: samples[j].specimenNum
+              });
+
+              identicalBases2 = 0; // clear var
+
+            
+            }
+          }
+        }
+      console.log('identicalBases2',identicalBases2);
       // sort results array by comparison percentages
       results.sort((a, b) => a.compareResult - b.compareResult);
       let mostInCommon = results.pop();
@@ -206,7 +230,7 @@ console.log(specObj.dna);
 
 const inputDNA = pAequorFactory();
 // pAequorFactory().compareDNA(inputDNA);
-sampleStrand.compareDNA(inputDNA);
+// sampleStrand.compareDNA(inputDNA);
 
 // -------willLikelySurvive() calls--------
 // .willLikelySurvive() returns true if the object’s .dna array contains at least 60% 'C' or 'G' bases. Otherwise, .willLikelySurvive() returns false.
@@ -217,8 +241,8 @@ sampleStrand.compareDNA(inputDNA);
 // --------complementStrand() calls--------
 // .complementStrand() method to the factory function’s object that returns the complementary DNA strand.
 // If the strand1’s first base is an 'A', then the strand2’s opposing base is a 'T'. If the second spot of strand1 is a 'C', then strand2’s opposing base is a 'G'.
-pAequorFactory().complementStrand();
+// pAequorFactory().complementStrand();
 
 // ----------mostRelated() calls-----------
 // Use the .compareDNA() to find the two most related instances of pAequor
-// pAequorFactory().mostRelated(3);
+pAequorFactory().mostRelated(3);
