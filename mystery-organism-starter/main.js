@@ -150,7 +150,6 @@ const pAequorFactory = () => {
       while (samples.length < numberToCompare) {
         samples.push({ specimenNum: counter(), dna: mockUpStrand() });
       };
-
       // run compareDNA() on samples, save to results array
       let results = [];
       for (let el of samples) {
@@ -160,7 +159,6 @@ const pAequorFactory = () => {
           specCurrent: this.specimenNum
         })
       };
-
       // compare samples against each other
       let identicalBases2 = 0;
       for (let i = 0; i < samples.length; i++) {
@@ -171,27 +169,73 @@ const pAequorFactory = () => {
             console.log(samples[i].dna);
             console.log(samples[j].dna);
             // would use compareDNA() here
-              for (let k = 0; k < 15; k++){
-                console.log(samples[i].dna[k],'-',samples[j].dna[k]);
-                if (samples[i].dna[k] === samples[j].dna[k]) {
-                  identicalBases2 += 1;
-                  console.log('^identicalBases2 in loop',identicalBases2);
-                }
-              }
-              console.log('identicalBases2 out loop',identicalBases2);
-              console.log((identicalBases2 / 15).toFixed(2) * 100);
-              console.log(samples[i].specimenNum, samples[j].specimenNum);
-
-              results.push({
-                compareResult: (identicalBases2 / 15).toFixed(2) * 100,
-                specInput: samples[i].specimenNum,
-                specCurrent: samples[j].specimenNum
-              });
-
-              identicalBases2 = 0; // clear var
-
             
+            
+            let c = this.compareDNA;
+            // console.log('c',c); // shows method
+            let si = samples[i];
+            let sj = samples[j];
+            
+            // console.log('compareDNA(samples[i]).bind(specObj)',compareDNA(samples[i]).bind(specObj)); // compareDNA not defined
+            
+            // console.log('this.compareDNA(samples[i]).bind(specObj)',this.compareDNA(samples[i]).bind(specObj)); // not a function
+            
+            // console.log('compareDNA(samples[i]).bind(this)',compareDNA(samples[i]).bind(this)); // compareDNA not defined
+            
+            // console.log('this.compareDNA(samples[i])', this.compareDNA(samples[i])); // works!
+
+            // console.log('samples[i].this.compareDNA',samples[i].this.compareDNA); // TypeError: Cannot read property 'compareDNA' of undefined
+            
+            // console.log('this.compareDNA',this.compareDNA); // displays method
+            
+            // console.log('samples[i].pAequorFactory().compareDNA',samples[i].pAequorFactory().compareDNA); // not a function
+            
+            // console.log('samples[i].pAequorFactory().compareDNA(samples[j])',samples[i].pAequorFactory().compareDNA(samples[j])); // not a function
+            
+            // console.log('samples[i].compareDNA(samples[j])',samples[i].compareDNA(samples[j])); // not a function
+            
+            // console.log('this.samples[i]',this.samples[i]); // undefined
+            
+            
+            // console.log('pAequorFactory().compareDNA',pAequorFactory().compareDNA); // displays method
+            
+            // console.log('pAequorFactory.compareDNA',pAequorFactory.compareDNA); // undefined
+            
+            // console.log('samples[i].c',samples[i].c); // undefined
+            
+            // console.log('samples[i].c()',samples[i].c()); // not a function
+            // console.log('si.c()',si.c()); // not a function
+
+            // console.log('si.c(samples[j])',si.c(samples[j])); // not a function
+
+            // console.log('si.c(sj)',si.c(sj)); // not a function
+
+
+
+
+
+
+            for (let k = 0; k < 15; k++){
+              console.log(samples[i].dna[k],'-',samples[j].dna[k]);
+              if (samples[i].dna[k] === samples[j].dna[k]) {
+                identicalBases2 += 1;
+                console.log('^identicalBases2 in loop',identicalBases2);
+              }
             }
+            console.log('identicalBases2 out loop',identicalBases2);
+            console.log((identicalBases2 / 15).toFixed(2) * 100);
+            console.log(samples[i].specimenNum, samples[j].specimenNum);
+            
+            results.push({
+              compareResult: (identicalBases2 / 15).toFixed(2) * 100,
+              specInput: samples[i].specimenNum,
+              specCurrent: samples[j].specimenNum
+            });
+            
+            identicalBases2 = 0; // clear var
+            
+            
+          }
           }
         }
       console.log('identicalBases2',identicalBases2);
@@ -212,9 +256,9 @@ const pAequorFactory = () => {
 // pAequorFactory().mutate();
 
 let sampleStrand = pAequorFactory();
-console.log(sampleStrand);
-sampleStrand.mutate();
-console.log(specObj.dna);
+// console.log(sampleStrand);
+// sampleStrand.mutate();
+// console.log(specObj.dna);
 
 
 // ----------conpareDNA() calls------------
@@ -228,9 +272,11 @@ console.log(specObj.dna);
 // ex2 = ['C', 'A', 'T', 'T']
 // ex1 and ex2 only have the 3rd element in common ('T') and therefore, have 25% (1/4) of their DNA in common. The resulting message would read something along the lines of: specimen #1 and specimen #2 have 25% DNA in common.
 
-const inputDNA = pAequorFactory();
+// const inputDNA = pAequorFactory();
 // pAequorFactory().compareDNA(inputDNA);
 // sampleStrand.compareDNA(inputDNA);
+// console.log('sampleStrand.compareDNA(inputDNA)',sampleStrand.compareDNA(inputDNA)); // (works! shows result)
+
 
 // -------willLikelySurvive() calls--------
 // .willLikelySurvive() returns true if the object’s .dna array contains at least 60% 'C' or 'G' bases. Otherwise, .willLikelySurvive() returns false.
