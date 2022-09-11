@@ -148,7 +148,8 @@ const pAequorFactory = () => {
       // generate DNA, save to samples array
       let samples = [];
       while (samples.length < numberToCompare) {
-        samples.push({ specimenNum: counter(), dna: mockUpStrand() });
+        // samples.push({ specimenNum: counter(), dna: mockUpStrand() });
+        samples.push(pAequorFactory()); // does same as above
       };
       // run compareDNA() on samples, save to results array
       let results = [];
@@ -170,11 +171,7 @@ const pAequorFactory = () => {
             console.log(samples[j].dna);
             // would use compareDNA() here
             
-            
-            let c = this.compareDNA;
-            // console.log('c',c); // shows method
-            let si = samples[i];
-            let sj = samples[j];
+            console.log('samples[i].compareDNA(samples[j]', samples[i].compareDNA(samples[j])); // FUCKING WORKS! HAD TO CALL PA FACTORY WHEN FILLING SAMPLES ARRAY
             
             // console.log('compareDNA(samples[i]).bind(specObj)',compareDNA(samples[i]).bind(specObj)); // compareDNA not defined
             
@@ -183,7 +180,7 @@ const pAequorFactory = () => {
             // console.log('compareDNA(samples[i]).bind(this)',compareDNA(samples[i]).bind(this)); // compareDNA not defined
             
             // console.log('this.compareDNA(samples[i])', this.compareDNA(samples[i])); // works!
-
+            
             // console.log('samples[i].this.compareDNA',samples[i].this.compareDNA); // TypeError: Cannot read property 'compareDNA' of undefined
             
             // console.log('this.compareDNA',this.compareDNA); // displays method
@@ -196,22 +193,26 @@ const pAequorFactory = () => {
             
             // console.log('this.samples[i]',this.samples[i]); // undefined
             
-            
             // console.log('pAequorFactory().compareDNA',pAequorFactory().compareDNA); // displays method
-            
             // console.log('pAequorFactory.compareDNA',pAequorFactory.compareDNA); // undefined
             
+            // let c = this.compareDNA;
+            // // console.log('c',c); // shows method
+            // let si = samples[i];
+            // let sj = samples[j];
             // console.log('samples[i].c',samples[i].c); // undefined
-            
             // console.log('samples[i].c()',samples[i].c()); // not a function
             // console.log('si.c()',si.c()); // not a function
-
             // console.log('si.c(samples[j])',si.c(samples[j])); // not a function
-
             // console.log('si.c(sj)',si.c(sj)); // not a function
 
+            // console.log('specObj.compareDNA(samples[i])',specObj.compareDNA(samples[i])); // works!
+            
+            // console.log('samples[i].specObj.compareDNA(samples[i])',samples[i].specObj.compareDNA(samples[j])); // TypeError: Cannot read property 'compareDNA' of undefined
 
-
+            // console.log('this:',this); // shows specObj
+            // console.log('specObj',specObj); // shows specObj
+            // console.log('typeof samples[i]',typeof samples[i]); // object
 
 
 
@@ -224,7 +225,6 @@ const pAequorFactory = () => {
             }
             console.log('identicalBases2 out loop',identicalBases2);
             console.log((identicalBases2 / 15).toFixed(2) * 100);
-            console.log(samples[i].specimenNum, samples[j].specimenNum);
             
             results.push({
               compareResult: (identicalBases2 / 15).toFixed(2) * 100,
@@ -272,10 +272,16 @@ let sampleStrand = pAequorFactory();
 // ex2 = ['C', 'A', 'T', 'T']
 // ex1 and ex2 only have the 3rd element in common ('T') and therefore, have 25% (1/4) of their DNA in common. The resulting message would read something along the lines of: specimen #1 and specimen #2 have 25% DNA in common.
 
-// const inputDNA = pAequorFactory();
+const inputDNA = pAequorFactory();
 // pAequorFactory().compareDNA(inputDNA);
 // sampleStrand.compareDNA(inputDNA);
+// console.log('specObj.compareDNA(inputDNA)',specObj.compareDNA(compareDNA)); // works!
 // console.log('sampleStrand.compareDNA(inputDNA)',sampleStrand.compareDNA(inputDNA)); // (works! shows result)
+
+// bypass calling pA to create an object then compareDNA
+// const bypassOb = { specimenNum: counter(), dna: mockUpStrand() };
+// console.log('bypassOb',bypassOb); // shows object
+// console.log('bypassOb.compareDNA(inputDNA)',bypassOb.compareDNA(inputDNA)); // not a function
 
 
 // -------willLikelySurvive() calls--------
