@@ -23,11 +23,23 @@ let count = 0;
 function counter() {
   return count++;
 };
+let numberSaver = [];
+
 
 const pAequorFactory = (number, array) => {
+    if (numberSaver.indexOf(number) === -1) {
+    numberSaver.push(number);
+  } else {
+    while (numberSaver.indexOf(number) !== -1) {
+      number = +(number+.1).toFixed(1);
+      // Number.parseFloat(number).toFixed(1);
+    }
+      numberSaver.push(number);
+  }
+  console.log(numberSaver);
   return specObj = {
-    specimenNum: counter() || number,
-    dna: mockUpStrand() || array,
+    specimenNum: number || counter(),
+    dna: array || mockUpStrand(),
     mutate() {
       console.group('mutate()');
       let origStrand = [...this.dna]; // copy original object dna value
@@ -69,7 +81,7 @@ const pAequorFactory = (number, array) => {
       console.groupEnd();
 
       return (identicalBases / this.dna.length).toFixed(2) * (100);
-
+      
     }, // compareDNA() end
     willLikelySurvive() {
       console.group('willLikelySurvive()');
@@ -184,9 +196,16 @@ const pAequorFactory = (number, array) => {
 // To simulate a mutation, in pAequorFactory()‘s returned object, add the method .mutate().
 // .mutate() is responsible for randomly selecting a base in the object’s dna property and changing the current base to a different base. Then .mutate() will return the object’s dna.
 // For example, if the randomly selected base is the 1st base and it is 'A', the base must be changed to 'T', 'C', or 'G'. But it cannot be 'A' again.
-pAequorFactory(0,mockUpStrand()).mutate();
-pAequorFactory(0,mockUpStrand()).mutate();
-pAequorFactory(0,mockUpStrand()).mutate(); // changes to 1 (numbers cannot be the same)
+// pAequorFactory(9).mutate();
+// pAequorFactory(9).mutate();
+// pAequorFactory().mutate();
+// pAequorFactory(7,mockUpStrand()).mutate();
+// pAequorFactory(7,mockUpStrand()).mutate();
+// pAequorFactory(7,mockUpStrand()).mutate();
+// pAequorFactory(7,['A', 'G', 'T', 'C', 'C', 'A', 'G', 'T', 'A', 'C', 'G', 'A', 'A', 'T', 'T']).mutate();
+// pAequorFactory(7,['A', 'G', 'T', 'C', 'C', 'A', 'G', 'T', 'A', 'C', 'G', 'A', 'A', 'T', 'T']).mutate();
+
+// pAequorFactory();
 
 // ----------conpareDNA() calls------------
 // Your research team wants to be able to compare the DNA sequences of different P. aequor. You’ll have to add a new method (.compareDNA()) to the returned object of the factory function.
@@ -198,19 +217,19 @@ pAequorFactory(0,mockUpStrand()).mutate(); // changes to 1 (numbers cannot be th
 // ex1 = ['A', 'C', 'T', 'G']
 // ex2 = ['C', 'A', 'T', 'T']
 // ex1 and ex2 only have the 3rd element in common ('T') and therefore, have 25% (1/4) of their DNA in common. The resulting message would read something along the lines of: specimen #1 and specimen #2 have 25% DNA in common.
-const inputDNA = pAequorFactory();
-pAequorFactory().compareDNA(inputDNA);
+// const inputDNA = pAequorFactory();
+// pAequorFactory().compareDNA(inputDNA);
 
 // -------willLikelySurvive() calls--------
 // .willLikelySurvive() returns true if the object’s .dna array contains at least 60% 'C' or 'G' bases. Otherwise, .willLikelySurvive() returns false.
 
 // your team requests that you create 30 instances of pAequor that can survive in their natural environment. Store these instances in an array for your team to study later.
-pAequorFactory().willLikelySurvive();
+// pAequorFactory().willLikelySurvive();
 
 // --------complementStrand() calls--------
 // .complementStrand() method to the factory function’s object that returns the complementary DNA strand.
 // If the strand1’s first base is an 'A', then the strand2’s opposing base is a 'T'. If the second spot of strand1 is a 'C', then strand2’s opposing base is a 'G'.
-pAequorFactory().complementStrand();
+// pAequorFactory().complementStrand();
 
 // ----------mostRelated() calls-----------
 // Use the .compareDNA() to find the two most related instances of pAequor
