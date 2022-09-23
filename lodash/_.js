@@ -82,28 +82,49 @@ const _ = {
         }
         // Find the amount of padding to add to the start of the string by finding the difference between the target length and the string length, dividing by two, and rounding down the resulting number. We round down so that any uneven padding gets added to the end of the string, not the beginning, as specified in the instructions.
         let paddingStart = Math.floor((length - string.length)/2);
-        console.log('paddingStart:',paddingStart);
+        // console.log('paddingStart:',paddingStart);
         
         // Find the amount of padding to add to the end of the string by subtracting the string length and the starting padding length (calculated above) from the target length.
         let paddingEnd = length - (string.length + paddingStart);
-        console.log('paddingEnd:',paddingEnd);
+        // console.log('paddingEnd:',paddingEnd);
         
         // Generate the padded string by adding the amount of starting padding and ending padding calculated above to each side of the current string.
         let paddedString = ' '.repeat(paddingStart) + string + ' '.repeat(paddingEnd);
-        console.log('paddedString:',paddedString);
+        // console.log('paddedString:',paddedString);
 
         console.groupEnd();
         return paddedString;
+    },
+    has(object, key) {
+        console.group(`has(${object},${key})`);
+        // .has() takes two arguments: an object and a key.
+        // .has() checks to see if the provided object contains a value at the specified key.
+        // .has() will return true if the object contains a value at the key and will return false if not.
+        // Your method does not need to accept the additional path parameter; we will only check for unnested values.
+
+        console.groupEnd();
+        const hasValue = object[key] !== undefined; // boolean expression
+
+        // boolean expression is more elegant than using this mess below
+        // if (object[key] !== undefined) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        return hasValue;
     },
 };
 // run test suite to check lodash object initialized correctly run: node _.js
 // To run the test suite for this task, type node test/lodash.js in your terminal and then press enter
 
-console.log(_.pad('cat', 25));
-// console.log(_.words("hi there"));
+const ob = {cat: 'black'};
+console.log(_.has(ob,'cat'));
 
-// console.log(_.inRange(1, 2)) // => true
-// console.log(_.inRange(3, 4, 2)) // => true
+console.log(_.pad('cat', 25)); // =>           cat           
+console.log(_.words("hi there")); // => ['hi', 'there']
+
+// console.log(_.inRange(1, 2)); // => true
+// console.log(_.inRange(3, 4, 2)); // => true
 // console.log(_.inRange(3, 2, 4)); // => true
 // console.log(_.inRange(4, 8)); // => true
 // console.log(_.inRange(4, 2)); // => false
