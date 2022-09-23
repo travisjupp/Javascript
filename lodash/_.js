@@ -35,29 +35,72 @@ const _ = {
         // end (number): The end of the range.
         // Returns
         // (boolean): Returns true if number is in the range, else false.
-        
+
         // If no end value is provided to the method, the start value will be 0 and the end value will be the provided start value.
         if (end === undefined) {
             end = start;
             start = 0;
         };
-        
+
         // If the provided start value is larger than the provided end value, the two values should be swapped.
         if (start > end) {
-            // Note that we will need to use a temporary variable to do this. To understand why, imagine if we tried to swap values without one. We might start by setting the end value equal to the start value. When we then go to set the start value equal to the end value, the end value will have already been overwritten and the swap can’t be completed. To solve this, we create a variable that will temporarily store the end value to access when we need to set the new start value and complete the swap.
+            ////// Note that we will need to use a temporary variable to do this. To understand why, imagine if we tried to swap values without one. We might start by setting the end value equal to the start value. When we then go to set the start value equal to the end value, the end value will have already been overwritten and the swap can’t be completed. To solve this, we create a variable that will temporarily store the end value to access when we need to set the new start value and complete the swap.
+            ////// let a = 1;
+            ////// let b = 2;
+            ////// let temp;
+            ////// temp = a;
+            ////// a = b;
+            ////// b = temp;
+            ////// a; // => 2
+            ////// b; // => 1
             let temp = end;
             end = start;
             start = temp;
         };
-        
+
         // create a variable called isInRange and set it equal to a boolean expression that checks if start is smaller than or equal to number and if number is smaller than end
         const isInRange = start <= number && number < end;
         console.groupEnd();
         return isInRange;
     },
+    words(string) {
+        console.group(`words(${string})`);
+        // .words() takes one argument: a string.
+        // .words() splits the string into an array of words.
+        // A word is defined by a space-separated string of characters, so each space character, ' ', indicates the end of one word and the start of the next.
+        console.groupEnd();
+        return array = string.split(' ');
+    },
+    pad(string, length) {
+        console.group(`pad(${string}, ${length})`);
+        // .pad() adds spaces evenly to both sides of the string to make it reach the desired length.
+        // Extra padding is added to the end of the string if an odd amount of padding is required to reach the specified length
+        
+        // check target length is longer than string length, if not return unpadded version of string
+        if (length <= string.length) {
+            return string;
+        }
+        // Find the amount of padding to add to the start of the string by finding the difference between the target length and the string length, dividing by two, and rounding down the resulting number. We round down so that any uneven padding gets added to the end of the string, not the beginning, as specified in the instructions.
+        let paddingStart = Math.floor((length - string.length)/2);
+        console.log('paddingStart:',paddingStart);
+        
+        // Find the amount of padding to add to the end of the string by subtracting the string length and the starting padding length (calculated above) from the target length.
+        let paddingEnd = length - (string.length + paddingStart);
+        console.log('paddingEnd:',paddingEnd);
+        
+        // Generate the padded string by adding the amount of starting padding and ending padding calculated above to each side of the current string.
+        let paddedString = ' '.repeat(paddingStart) + string + ' '.repeat(paddingEnd);
+        console.log('paddedString:',paddedString);
+
+        console.groupEnd();
+        return paddedString;
+    },
 };
 // run test suite to check lodash object initialized correctly run: node _.js
 // To run the test suite for this task, type node test/lodash.js in your terminal and then press enter
+
+console.log(_.pad('cat', 25));
+// console.log(_.words("hi there"));
 
 // console.log(_.inRange(1, 2)) // => true
 // console.log(_.inRange(3, 4, 2)) // => true
