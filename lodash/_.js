@@ -113,15 +113,45 @@ const _ = {
         // }
         return hasValue;
     },
+    invert(object) {
+        console.group(`invert(${object})`);
+        // .invert() takes one argument, and object
+        // .invert() iterates through each key / value pair and swaps the key and value
+        for (let prop in object) {
+            let temp = prop;
+            prop = object[prop];
+            object[prop] = temp;
+            console.log('prop:',prop); // key
+            console.log('object[prop]:',object[prop]); // value
+        }
+        console.table(object);
+        // In the case of duplicate values in the object, subsequent values will overwrite property assignments of previous values.
+
+        let key, value;
+        key = 
+
+        console.groupEnd();
+    },
 };
 // run test suite to check lodash object initialized correctly run: node _.js
 // To run the test suite for this task, type node test/lodash.js in your terminal and then press enter
 
-const ob = {cat: 'black'};
-console.log(_.has(ob,'cat'));
 
-console.log(_.pad('cat', 25)); // =>           cat           
-console.log(_.words("hi there")); // => ['hi', 'there']
+const ob = {
+    cat: 'black',
+    mouse: 'white'
+};
+
+
+console.log(ob['cat']);
+_.invert(ob);
+console.log(ob['black']);
+
+
+// console.log(_.has(ob,'cat'));
+
+// console.log(_.pad('cat', 25)); // =>           cat           
+// console.log(_.words("hi there")); // => ['hi', 'there']
 
 // console.log(_.inRange(1, 2)); // => true
 // console.log(_.inRange(3, 4, 2)); // => true
