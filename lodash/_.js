@@ -117,18 +117,39 @@ const _ = {
         console.group(`invert(${object})`);
         // .invert() takes one argument, and object
         // .invert() iterates through each key / value pair and swaps the key and value
-        for (let prop in object) {
-            let temp = prop;
-            prop = object[prop];
-            object[prop] = temp;
-            console.log('prop:',prop); // key
-            console.log('object[prop]:',object[prop]); // value
+        let invertedObject = {};
+        // for (const key in object) {
+        //     // Within the loop, create a variable called originalValue and set it equal to the value at the current key in object.
+        //     let originalValue = object[key];
+        //     console.log('key:',key,'originalValue:',originalValue);
+        //     console.log(invertedObject);
+        //     // Still within the loop, set the value at originalValue on invertedObject to be the current key.
+        //     invertedObject[originalValue] = key;
+        // }
+        // console.log(invertedObject);
+        // return invertedObject;
+
+        // my version (passes)
+        for (let key in object) {
+            
+            let temp = key; // save key to temp
+            
+            console.log('value:',object[key],'key:',key); // value defined
+            key = object[key]; // key equals value
+            console.log('value:',object[key],'key:',key); // value undefined
+            
+            console.log(invertedObject[key] = temp) // set inverted property (value: key)
+            
+            console.log('end iteration. origObject:',object,'\n','invertedObject:',invertedObject);
+
+            
         }
+        console.log(invertedObject);
+        return invertedObject;
+
         console.table(object);
         // In the case of duplicate values in the object, subsequent values will overwrite property assignments of previous values.
 
-        let key, value;
-        key = 
 
         console.groupEnd();
     },
@@ -143,9 +164,9 @@ const ob = {
 };
 
 
-console.log(ob['cat']);
+// console.log(ob['cat']);
 _.invert(ob);
-console.log(ob['black']);
+// console.log(ob['black']);
 
 
 // console.log(_.has(ob,'cat'));
