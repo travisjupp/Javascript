@@ -117,41 +117,32 @@ const _ = {
         console.group(`invert(${object})`);
         // .invert() takes one argument, and object
         // .invert() iterates through each key / value pair and swaps the key and value
+
+        // Codecademy solution:
         let invertedObject = {};
         // for (const key in object) {
         //     // Within the loop, create a variable called originalValue and set it equal to the value at the current key in object.
         //     let originalValue = object[key];
-        //     console.log('key:',key,'originalValue:',originalValue);
-        //     console.log(invertedObject);
+        //     // console.log('key:',key,'originalValue:',originalValue);
         //     // Still within the loop, set the value at originalValue on invertedObject to be the current key.
         //     invertedObject[originalValue] = key;
+
         // }
         // console.log(invertedObject);
         // return invertedObject;
 
-        // my version (passes)
+        // My solution:
         for (let key in object) {
-            
             let temp = key; // save key to temp
-            
             console.log('value:',object[key],'key:',key); // value defined
-            key = object[key]; // key equals value
-            console.log('value:',object[key],'key:',key); // value undefined
-            
-            console.log(invertedObject[key] = temp) // set inverted property (value: key)
-            
-            console.log('end iteration. origObject:',object,'\n','invertedObject:',invertedObject);
-
-            
+            key = object[key]; // key assigned to value
+            console.log('value:',object[key],'key:',key); // value undefined since key gets reassigned to object[key] and object[key] becomes object[object[key]]
+            invertedObject[key] = temp // set inverted property (value: key)
         }
+        console.groupEnd();
         console.log(invertedObject);
         return invertedObject;
-
-        console.table(object);
         // In the case of duplicate values in the object, subsequent values will overwrite property assignments of previous values.
-
-
-        console.groupEnd();
     },
 };
 // run test suite to check lodash object initialized correctly run: node _.js
@@ -163,17 +154,10 @@ const ob = {
     mouse: 'white'
 };
 
-
-// console.log(ob['cat']);
 _.invert(ob);
-// console.log(ob['black']);
-
-
 // console.log(_.has(ob,'cat'));
-
 // console.log(_.pad('cat', 25)); // =>           cat           
 // console.log(_.words("hi there")); // => ['hi', 'there']
-
 // console.log(_.inRange(1, 2)); // => true
 // console.log(_.inRange(3, 4, 2)); // => true
 // console.log(_.inRange(3, 2, 4)); // => true
@@ -183,7 +167,6 @@ _.invert(ob);
 // console.log(_.inRange(1.2, 2)); // => true
 // console.log(_.inRange(5.2, 4)); // => false
 // console.log(_.inRange(-3, -2, -6)); // => true
-
 // console.log(_.clamp(-10, -5, 5)) // => -5
 // console.log(_.clamp(10, -5, 5)) // => 5
 
