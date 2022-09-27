@@ -75,19 +75,19 @@ const _ = {
         console.group(`pad(${string}, ${length})`);
         // .pad() adds spaces evenly to both sides of the string to make it reach the desired length.
         // Extra padding is added to the end of the string if an odd amount of padding is required to reach the specified length
-        
+
         // check target length is longer than string length, if not return unpadded version of string
         if (length <= string.length) {
             return string;
         }
         // Find the amount of padding to add to the start of the string by finding the difference between the target length and the string length, dividing by two, and rounding down the resulting number. We round down so that any uneven padding gets added to the end of the string, not the beginning, as specified in the instructions.
-        let paddingStart = Math.floor((length - string.length)/2);
+        let paddingStart = Math.floor((length - string.length) / 2);
         // console.log('paddingStart:',paddingStart);
-        
+
         // Find the amount of padding to add to the end of the string by subtracting the string length and the starting padding length (calculated above) from the target length.
         let paddingEnd = length - (string.length + paddingStart);
         // console.log('paddingEnd:',paddingEnd);
-        
+
         // Generate the padded string by adding the amount of starting padding and ending padding calculated above to each side of the current string.
         let paddedString = ' '.repeat(paddingStart) + string + ' '.repeat(paddingEnd);
         // console.log('paddedString:',paddedString);
@@ -128,34 +128,65 @@ const _ = {
         //     invertedObject[originalValue] = key;
 
         // }
-        // console.log(invertedObject);
         // return invertedObject;
 
         // My solution:
         for (let key in object) {
             let temp = key; // save key to temp
-            console.log('value:',object[key],'key:',key); // value defined
+            let value = object[key];
+            console.log('value:', object[key], 'key:', key); // value defined
             key = object[key]; // key assigned to value
-            console.log('value:',object[key],'key:',key); // value undefined since key gets reassigned to object[key] and object[key] becomes object[object[key]]
+            console.log('value:', object[key], 'key:', key); // value undefined since key gets reassigned to object[key] and object[key] becomes object[object[key]]
             invertedObject[key] = temp // set inverted property (value: key)
         }
         console.groupEnd();
-        console.log(invertedObject);
         return invertedObject;
         // In the case of duplicate values in the object, subsequent values will overwrite property assignments of previous values.
+    },
+    findKey(object, predicate) {
+        console.group(`findKey(${object},${predicate})`);
+        // .findKey() takes two arguments: an object and a predicate function — a function that returns a boolean value.
+        // .findKey() iterates through each key / value pair in the provided object and calls the predicate function with the value.
+        // .findKey() returns the first key that has a value that returns a truthy value from the predicate function.
+        // .findKey() returns undefined if no values return truthy values from the predicate function.
+
+        // iterate each key
+        for (const key in object) {
+            let value = object[key];
+            let predicateReturnValue = predicate(value);
+            // if the predicate condition on the object value is true return the key
+            if (predicateReturnValue) {
+                return key;
+            }
+        }
+        console.groupEnd();
+        return undefined;
+    },
+    drop(array, number) {
+        console.group(`drop(${array},${number})`);
+        // .drop() takes two arguments: an array and a number representing the number of items to drop from the beginning of the array.
+        // .drop() returns a new array which contains the elements from the original array, excluding the specified number of elements from the beginning of the array.
+        // If the number of elements to drop is unspecified, your method should drop one element.
+        console.groupEnd();
+        return array.slice(number);
+
+
     },
 };
 // run test suite to check lodash object initialized correctly run: node _.js
 // To run the test suite for this task, type node test/lodash.js in your terminal and then press enter
 
+console.log(['a', 'b', 'c'].slice(-2, 2)) // => [2]
 
-const ob = {
-    cat: 'black',
-    mouse: 'white'
-};
+console.log(['a', 'b', 'c'].slice(1, -1)) // => [2]
+console.log(_.drop(['a', 'b', 'c'], 1, -1)); // => [2, 3] slice end not responsive/included in drop()
 
-_.invert(ob);
-// console.log(_.has(ob,'cat'));
+console.log(_.drop(['a', 'b', 'c'], 1)); // => [2, 3]
+console.log(_.drop(['a', 'b', 'c'], -2)); // => [2, 3]
+console.log(_.drop(['a', 'b', 'c'], 2)); // => [3]
+// console.log(_.findKey({cat:'black',mouse:'white'},function(val){return val === 'black'})); // => cat
+// console.log(_.invert({cat:'black',mouse:'white'})); // => {black: 'cat', white: 'mouse'}
+// console.log(_.has({cat:'black',mouse:'white'},'cat')); // => true
 // console.log(_.pad('cat', 25)); // =>           cat           
 // console.log(_.words("hi there")); // => ['hi', 'there']
 // console.log(_.inRange(1, 2)); // => true
