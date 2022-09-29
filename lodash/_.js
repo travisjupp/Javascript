@@ -130,7 +130,7 @@ const _ = {
         // }
         // return invertedObject;
 
-        // My solution:
+        // My solution (not as concise):
         for (let key in object) {
             let temp = key; // save key to temp
             let value = object[key];
@@ -167,23 +167,32 @@ const _ = {
         // .drop() takes two arguments: an array and a number representing the number of items to drop from the beginning of the array.
         // .drop() returns a new array which contains the elements from the original array, excluding the specified number of elements from the beginning of the array.
         // If the number of elements to drop is unspecified, your method should drop one element.
+        if (number === undefined) {
+            number = 1;
+        }
         console.groupEnd();
         return array.slice(number);
-
-
+    },
+    dropWhile(array, predicate) {
+        // .dropWhile() takes two arguments: an array and a predicate function.
+        // The supplied predicate function takes three arguments: the current element, the current element index, and the whole array.
+        // .dropWhile() creates a new copy of the supplied array, dropping elements from the beginning of the array until an element causes the predicate function to return a falsy value.
+        return array.findIndex(predicate);
+        
+       
     },
 };
 // run test suite to check lodash object initialized correctly run: node _.js
 // To run the test suite for this task, type node test/lodash.js in your terminal and then press enter
 
-console.log(['a', 'b', 'c'].slice(-2, 2)) // => [2]
+const arr = [1, 2, 3, 4, 5];
+let predicateFunc = (element, index, array) => {return element < 3};
+console.log(_.dropWhile(arr, predicateFunc));  // => 
 
-console.log(['a', 'b', 'c'].slice(1, -1)) // => [2]
-console.log(_.drop(['a', 'b', 'c'], 1, -1)); // => [2, 3] slice end not responsive/included in drop()
 
-console.log(_.drop(['a', 'b', 'c'], 1)); // => [2, 3]
-console.log(_.drop(['a', 'b', 'c'], -2)); // => [2, 3]
-console.log(_.drop(['a', 'b', 'c'], 2)); // => [3]
+// console.log(_.drop(['a', 'b', 'c'], 2)); // => ['c']
+// console.log(_.drop(['a', 'b', 'c'], 4)); // => []
+// console.log(_.drop(['a', 'b', 'c'])); // => ['b', 'c']
 // console.log(_.findKey({cat:'black',mouse:'white'},function(val){return val === 'black'})); // => cat
 // console.log(_.invert({cat:'black',mouse:'white'})); // => {black: 'cat', white: 'mouse'}
 // console.log(_.has({cat:'black',mouse:'white'},'cat')); // => true
