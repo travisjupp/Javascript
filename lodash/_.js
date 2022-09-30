@@ -133,7 +133,6 @@ const _ = {
         // My solution (not as concise):
         for (let key in object) {
             let temp = key; // save key to temp
-            let value = object[key];
             console.log('value:', object[key], 'key:', key); // value defined
             key = object[key]; // key assigned to value
             console.log('value:', object[key], 'key:', key); // value undefined since key gets reassigned to object[key] and object[key] becomes object[object[key]]
@@ -152,8 +151,8 @@ const _ = {
 
         // iterate each key
         for (const key in object) {
-            let value = object[key];
-            let predicateReturnValue = predicate(value);
+            const value = object[key];
+            const predicateReturnValue = predicate(value);
             // if the predicate condition on the object value is true return the key
             if (predicateReturnValue) {
                 return key;
@@ -174,22 +173,85 @@ const _ = {
         return array.slice(number);
     },
     dropWhile(array, predicate) {
+        console.group(`dropWhile(${array},${predicate})`);
         // .dropWhile() takes two arguments: an array and a predicate function.
         // The supplied predicate function takes three arguments: the current element, the current element index, and the whole array.
         // .dropWhile() creates a new copy of the supplied array, dropping elements from the beginning of the array until an element causes the predicate function to return a falsy value.
-        return array.findIndex(predicate);
-        
+        const dropNumber = array.findIndex(function (element, index) { return !predicate(element, index, array) });
+        console.log('dropNumber:', dropNumber);
+        const droppedArray = this.drop(array, dropNumber);
+        console.log('droppedArray:', droppedArray);
+        console.groupEnd();
+        return droppedArray;
+    },
+    chunk(array, size) {
+        console.group(`chunk(${array},${size})`);
+        // .chunk() takes two arguments: an array and a size.
+        // .chunk() breaks up the supplied array into arrays of the specified size.
+        // .chunk() returns an array containing all of the previously-created array chunks in the order of the original array.
+        // If the array can’t be broken up evenly, the last chunk will be smaller than the specified size.
+        // If no size is supplied to the method, the size is set to 1.
+
+        /*
+        _.chunk(['a', 'b', 'c', 'd'], 2); // => [['a', 'b'], ['c', 'd']]
+        _.chunk(['a', 'b', 'c', 'd'], 3); // => [['a', 'b', 'c'], ['d']]
+
+        ideation:
+        divide array length by size: 4/3 = 1.3
+        quotient is number of chunks: 1.3
+        slice array in multiples of quotient: slice(0,3) => a,b,c slice(3,6) => d
+        push slices to new empty array
+        */
        
+        if (size === undefined) {
+            size = 1;
+        }
+
+        // Codecademy solution:
+        // let arrayChunks = [];
+
+        // for (let i = 0; i < array.length; i+=size) {
+        //     const arrayChunk = array.slice(i, i+size);
+        //     console.log('i:', i,' i+size:',i+size);
+        //     arrayChunks.push(arrayChunk);
+        // }
+        // console.log(JSON.stringify(arrayChunks));
+        // return arrayChunks;
+        
+        // My solution: (passes test)
+        let chunked = [];
+        let counter = 0;
+        let temp = size;
+        for (let i = 0; i < array.length; i++) {
+            let chunk = array.slice(counter,size);
+            console.log(chunk);
+            console.log(counter,size);
+            
+            if (chunk.length === 0) {
+                break;
+            }
+            chunked.push(chunk);
+
+            counter += temp;
+            size += temp;
+        }
+        console.log(JSON.stringify(chunked));
+        return chunked;
+
+
+
+
+        console.groupEnd();
     },
 };
 // run test suite to check lodash object initialized correctly run: node _.js
 // To run the test suite for this task, type node test/lodash.js in your terminal and then press enter
 
-const arr = [1, 2, 3, 4, 5];
-let predicateFunc = (element, index, array) => {return element < 3};
-console.log(_.dropWhile(arr, predicateFunc));  // => 
-
-
+console.log(_.chunk([1,2,3,4,5],2));
+// console.log(_.chunk(['a', 'b', 'c', 'd'],3));
+// const arr = [1, 2, 3, 4, 5];
+// let predicateFunc = (element) => { return element !== 3 };
+// console.log(_.dropWhile(arr, predicateFunc));  // => [3, 4, 5]
 // console.log(_.drop(['a', 'b', 'c'], 2)); // => ['c']
 // console.log(_.drop(['a', 'b', 'c'], 4)); // => []
 // console.log(_.drop(['a', 'b', 'c'])); // => ['b', 'c']
