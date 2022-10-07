@@ -6,38 +6,40 @@
 // (even when the object is assigned to a const variable).
 
 const spaceship = {
-  homePlanet : 'Earth',
-  color : 'silver'
+  homePlanet: 'Earth',
+  color: 'silver'
 };
- 
+
 let paintIt = obj => {
-  obj.color = 'glorious gold'
+  obj.color = 'glorious gold';
 };
- 
+
 paintIt(spaceship);
- 
+
 spaceship.color // Returns 'glorious gold'
- 
+console.log(spaceship); // {homePlanet: 'Earth', color: 'glorious gold'}
+
 // Our function paintIt() permanently changed the color of our spaceship object. 
 // However, reassignment of the spaceship variable wouldn’t work in the same way:
 
 let spaceship2 = {
-  homePlanet : 'Earth',
-  color : 'red'
+  homePlanet: 'Earth',
+  color: 'red'
 };
+
 let tryReassignment = obj => {
   obj = {
-    identified : false, 
-    'transport type' : 'flying'
+    identified: false,
+    'transport type': 'flying'
   }
-  console.log(obj) // Prints {'identified': false, 'transport type': 'flying'}
- 
+  console.log(obj); // Prints {'identified': false, 'transport type': 'flying'}
 };
-tryReassignment(spaceship2) // The attempt at reassignment does not work.
-spaceship2 // Still returns {homePlanet : 'Earth', color : 'red'};
- 
+
+tryReassignment(spaceship2); // The attempt at reassignment does not work.
+console.log(spaceship2); // Still returns {homePlanet : 'Earth', color : 'red'};
+
 spaceship2 = {
-  identified : false, 
+  identified: false,
   'transport type': 'flying'
 }; // Regular reassignment still works.
 // Let’s look at what happened in the code example:
@@ -56,23 +58,36 @@ spaceship2 = {
 // while the spaceship variable was completely unchanged from its earlier value.
 
 
-let spaceship3 = {
-    'Fuel Type' : 'Turbo Fuel',
-    homePlanet : 'Earth'
-  };
-  
-  // Func setting objects 'Fuel Type' to 'avocado oil'
-  // using concise form arrow functions
-  let greenEnergy = obj =>
-    obj['Fuel Type'] = 'avocado oil'
-  
-  // Func setting objects disabled property to true
-  let remotelyDisable = obj =>
-    obj.disabled = true
-  
-  // call and log spaceship object
-  greenEnergy(spaceship3);
-  remotelyDisable(spaceship3);
-  
-  console.log(spaceship3);
-  
+const spaceship3 = {
+  'Fuel Type': 'Turbo Fuel',
+  homePlanet: 'Earth'
+};
+
+// Func setting objects 'Fuel Type' to 'avocado oil'
+// using concise form arrow functions
+let greenEnergy = obj =>
+  obj['Fuel Type'] = 'avocado oil'
+
+// Func setting objects disabled property to true
+let remotelyDisable = obj =>
+  obj.disabled = true
+
+// call and log spaceship object
+greenEnergy(spaceship3);
+remotelyDisable(spaceship3);
+
+spaceship3.homePlanet = 'Mars';
+// spaceship3 = {}; // TypeError: Assignment to const variable
+// had spaceship3 been defined using let reassignment would work
+console.log(spaceship3);
+
+
+// JS objects are mutable even when declared with const, it is the reference to the object, bound to the variable, that cannot be changed.
+
+const cat = { hair: 'long', cold: false }
+
+cat.hair = 'short';
+cat.cold = true;
+
+// cat = { } // TypeError: Assignment to constant variable
+console.log(cat); // { hair: 'short', cold: true }
