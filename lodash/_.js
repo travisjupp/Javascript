@@ -102,15 +102,16 @@ const _ = {
         // .has() will return true if the object contains a value at the key and will return false if not.
         // Your method does not need to accept the additional path parameter; we will only check for unnested values.
 
-        console.groupEnd();
         const hasValue = object[key] !== undefined; // boolean expression
-
+        
         // boolean expression is more elegant than using this mess below
         // if (object[key] !== undefined) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
+            //     return true;
+            // } else {
+                //     return false;
+                // }
+                
+        console.groupEnd();
         return hasValue;
     },
     invert(object) {
@@ -202,7 +203,7 @@ const _ = {
         slice array in multiples of quotient: slice(0,3) => a,b,c slice(3,6) => d
         push slices to new empty array
         */
-       
+
         if (size === undefined) {
             size = 1;
         }
@@ -247,7 +248,7 @@ const _ = {
 // run test suite to check lodash object initialized correctly run: node _.js
 // To run the test suite for this task, type node test/lodash.js in your terminal and then press enter
 
-console.log(_.chunk([1,2,3,4,5],2));
+// console.log(_.chunk([1,2,3,4,5],2));
 // console.log(_.chunk(['a', 'b', 'c', 'd'],3));
 // const arr = [1, 2, 3, 4, 5];
 // let predicateFunc = (element) => { return element !== 3 };
