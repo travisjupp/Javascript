@@ -20,7 +20,7 @@ class Media {
             (current, accumulator) => current + accumulator,
             0
         );
-        return sumOfRatings / numberOfRatings;
+        return (sumOfRatings / numberOfRatings).toFixed(1);
     }
     set isCheckedOut(bool) {
         this._isCheckedOut = bool;
@@ -85,7 +85,8 @@ console.log(qtMovie.title); // Kill Bill
 console.log(qtMovie.director); // Terantino
 qtMovie.addRating(5);
 qtMovie.addRating(5);
-console.log(qtMovie.getAverageRating()); // 5
+qtMovie.addRating(4);
+console.log(qtMovie.getAverageRating()); // 4.7
 
 class CD extends Media {
     constructor(title, artist, songs) {
