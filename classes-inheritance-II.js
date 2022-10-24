@@ -32,7 +32,7 @@ class Media {
         if (rating > 0 && rating <= 5) {
             this._ratings.push(rating);
         } else {
-            return console.log('Rating must be between 1 - 5');
+            console.log('Rating must be between 1 - 5');
         }
     }
 }
@@ -116,7 +116,7 @@ class CD extends Media {
                 shuffledPlaylist.push(randomSong);
             }
         }
-        return console.log(shuffledPlaylist);
+        console.log(shuffledPlaylist);
     }
 };
 
@@ -145,7 +145,6 @@ console.log(slAlbum.getAverageRating()); // 4.5
 
 class Catalog {
     constructor(media) {
-        // push media to an array of objects
         this._stack = media;
     }
     get stack() {
