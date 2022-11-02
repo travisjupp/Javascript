@@ -46,5 +46,20 @@ const acceptEverything = arr => {
   });
 };
 
-acceptEverything(veggies)
-declineEverything(veggies)
+acceptEverything(veggies);
+declineEverything(veggies);
+
+// capAllElements
+
+function capAllElements(arr){
+  try {
+    arr.forEach((el, index, array) => {
+    array[index] = el.toUpperCase();
+    console.log(el, index, array);
+  });
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+capAllElements(['Incorrect argument', 'another']);
