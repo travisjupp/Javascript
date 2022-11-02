@@ -49,7 +49,23 @@ const greetAliens = (arr) => {
     }
 }
 
-// When you're ready to test your code, uncomment the below and run:
 const aliens = ["Blorgous", "Glamyx", "Wegord", "SpaceKing"];
 
 greetAliens(aliens);
+
+// Primes
+
+const array = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+function isPrime(num) {
+    for (let i = 2; num > i; i++) {
+        console.log(`i:${i} num:${num} num%i:${num % i}`);
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    console.log(`${num}>1:${num > 1}`);
+    return num > 1;
+}
+
+console.log(array.filter(isPrime)); // [2, 3, 5, 7, 11, 13]
