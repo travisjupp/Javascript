@@ -12,3 +12,15 @@ let alienShip = {
 // Calling methods
 alienShip.retreat();
 alienShip.takeOff();
+
+// Global javascript objects
+
+console.log(console);
+console.log(Object.keys(console));
+// console.log(console.Console);
+for (let key in console) {
+  // console.log(key);
+  // console.log(console[key]);
+}
+
+console.log(Math);
