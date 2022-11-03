@@ -62,4 +62,4 @@ function capAllElements(arr){
   }
 }
 
-capAllElements(['Incorrect argument', 'another']);
+capAllElements('Incorrect argument');
