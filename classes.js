@@ -26,3 +26,20 @@ console.log(surgeonRomero.name);
 surgeonRomero.takeVacationDays(3);
 console.log(surgeonRomero.remainingVacationDays);
 
+// Add a method movieTime() to the Network class that returns true if there is enough data available to watch a movie, false if there isn’t.
+
+class Network {
+    constructor(data, users) {
+      this.data = data;
+      this.users = users;
+    }
+    // Insert code below
+    movieTime() {
+    const bandwidth = this.data - this.users * 5 >= 10;
+    return bandwidth;
+    }
+  }
+  
+  const library = new Network(50, 9);
+  console.log(library.movieTime());
+
