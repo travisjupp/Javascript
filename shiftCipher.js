@@ -60,23 +60,52 @@ class ShiftCipher {
             // console.log(`${char}:${str.charCodeAt(str.indexOf(char))}`); // returns charCode of each char
         }
         console.log(result);
-        
-
-
-        
     }
-    decrypt() {
+    decrypt(str) {
         // decrypt: takes an encrypted message and returns a lower case string with each letter shifted back in the alphabet based on the set shift value.
-        
+        const re = /[A-Za-z]/;
+        str = str.toLowerCase();
+        let result = '';
+        for (let char of str) {
+            const charCode = str.charCodeAt(str.indexOf(char)); // get charCode
+            if (re.test(char)) { // process only alpha chars
+                // shift a=>z
+                // 97(a) 122(z) 122 - shift leftover from charCode - 97
+                // 97(a) + shift(2) = 99 - 97 = 2 122 - 2 =  120(x) offset by +1 = 121(y)
+                // 98(b) + shift(2) = 100 - 97 = 3 122 - 3 = 119(w) offset by +1 = 120(x)
+                // 99(c) + shift(3) = 102 - 97 = 5 122 - 5 = 117(u) offset by +1 = 118(v)
+                
+                // subtract shift?
+                // shift a=>y
+                // 97(a) - shift(2) = 95 - 97 = -2 + 122 = 120(x) offset by +1 = 121(y)
+                // shift c=>z
+                // 99(c) - shift(3) = 96 - 97 = -1 + 122 = 121(y) offset by +1 = 122(z)
+                // shift d=>y
+                // 100(d) - shift(5) = 95 - 97 = -2 + 122 = 120(x) offset by +1 = 121(y) 
+                console.log(`${char}:${charCode}`);
+                if (charCode - this._shift < 97) {
+
+                    console.log(`=>${String.fromCharCode(charCode - this._shift - 97 + 122 + 1)}`)
+                } else {
+                    console.log(`==>${String.fromCharCode(charCode - this._shift)}`)
+                }
+
+                
+
+                
+            } else {
+                console.log('y:',char);
+            }
+        }
     }
 }
 
 const cipher = new ShiftCipher(2);
-cipher.encrypt('I love to code!'); // returns 'K NQXG VQ EQFG!'
+// cipher.encrypt('I love to code!'); // returns 'K NQXG VQ EQFG!'
 cipher.decrypt('K <3 OA RWRRA'); // returns 'i <3 my puppy'
 
 const cipher2 = new ShiftCipher(6)
-cipher2.encrypt('vWb?'); // returns 'BCH?'
+// cipher2.encrypt('vWb?!'); // returns 'BCH?!'
 
 
 // Feel free to reference the Unicode Table as well as the JavaScript String methods including: toUpperCase(), toLowerCase(), charCodeAt() and fromCharCode()
