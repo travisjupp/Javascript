@@ -1,5 +1,5 @@
 const prompt = require("prompt-sync")({ sigint: true });
-// play game using terminal: node main.js
+
 const hat = "^";
 const hole = "O";
 const fieldCharacter = "░";
@@ -11,13 +11,9 @@ class Field {
     this.direction = "";
   }
   print() {
-    console.log(
-      this.field[0].join("") +
-        "\n" +
-        this.field[1].join("") +
-        "\n" +
-        this.field[2].join("")
-    );
+    this.field.forEach((el) => {
+      console.log(el.join(""));
+    });
   }
   move() {
     this.direction = prompt("Your Move: Up, Down, Left, Right? ");
@@ -53,8 +49,7 @@ class Field {
       }
     };
 
-    let game = "on";
-    while (game === "on") {
+    while (true) {
       if (this.direction.toLowerCase() === "up") {
         y--;
         checkBounds();
@@ -85,6 +80,9 @@ class Field {
     console.log("static move");
     this.direction = prompt("Your Move: Up, Down, Left, Right? ");
     console.log("static move this.direction:", this.direction);
+    // move repository saves moves to moveRepo array
+    
+
   }
   static generateField(height, width, percentage) {
     // write func that generate subArray full of fieldCharacters using width as param
@@ -178,8 +176,7 @@ class Field {
         }
       };
 
-      let game = "on";
-      while (game === "on") {
+      while (true) {
         if (this.direction.toLowerCase() === "up") {
           y--;
           checkBounds();
@@ -205,7 +202,7 @@ class Field {
   }
 }
 
-Field.generateField(5, 6, 20); // => arr.length 6 // 15 fieldHoles
+Field.generateField(5, 6, 20);
 
 // const myField = new Field([
 //   [pathCharacter, fieldCharacter, hole],
