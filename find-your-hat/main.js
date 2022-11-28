@@ -9,6 +9,8 @@ class Field {
   constructor(arr) {
     this.field = arr;
     this.direction = "";
+    this.gameMode = "normal";
+    this.moveRepo;
   }
   print() {
     this.field.forEach((el) => {
@@ -81,10 +83,19 @@ class Field {
     this.direction = prompt("Your Move: Up, Down, Left, Right? ");
     console.log("static move this.direction:", this.direction);
     // move repository saves moves to moveRepo array
-    
+    if (this.gameMode === 'hard') {
+      this.moveRepo.push(this.direction);
+      console.log('moveRepo:', this.moveRepo);
+    }
 
   }
   static generateField(height, width, percentage) {
+    this.gameMode = prompt("Game mode: normal/hard?"); // set game mode
+    if (this.gameMode !== "hard") {
+      this.gameMode = "normal";
+    }
+    console.log('Game mode:', this.gameMode);
+    this.moveRepo = []; // initialize moveRepo
     // write func that generate subArray full of fieldCharacters using width as param
     let subArr = [];
     let w = width;
@@ -101,7 +112,7 @@ class Field {
     }
     // randomly assign fieldHoles
     let numFieldHoles = parseInt(
-      ((height * width * percentage) / 100).toFixed()
+      (height * width * percentage / 100).toFixed()
     );
     let yFieldHolesRand = 0;
     let xFieldHolesRand = 0;
@@ -109,6 +120,7 @@ class Field {
       yFieldHolesRand = Math.floor(Math.random() * height);
       xFieldHolesRand = Math.floor(Math.random() * width);
     }
+
     while (numFieldHoles > 0) {
       getFieldHolesRand();
       // ensure holes overwrite fieldCharacters only
@@ -118,6 +130,8 @@ class Field {
       this.field[yFieldHolesRand][xFieldHolesRand] = hole;
       numFieldHoles--;
     }
+
+
     // randomly assign a pathCharacter
     let yPathRand = 0;
     let xPathRand = 0;
@@ -171,6 +185,17 @@ class Field {
         } else if (this.field[y][x] === hat) {
           console.log(`WINNER! You found your hat!`);
           return process.exit();
+        } else if (this.moveRepo.join('').includes('downdown')) {
+          console.log('downdown triggered adding %5 field holes');
+          // add 5% holes
+          numFieldHoles = parseInt((height * width * 5 / 100).toFixed());
+          while (numFieldHoles > 0) {
+            while (this.field[yFieldHolesRand][xFieldHolesRand] !== fieldCharacter) {
+              getFieldHolesRand();
+            }
+            this.field[yFieldHolesRand][xFieldHolesRand] = hole;
+            numFieldHoles--;
+          }
         } else {
           console.log("y:", y, "x:", x);
         }
@@ -193,6 +218,8 @@ class Field {
           x++;
           checkBounds();
           this.field[y][x] = pathCharacter;
+        } else {
+          console.log('invalid move input');
         }
         this.print();
         this.move();
