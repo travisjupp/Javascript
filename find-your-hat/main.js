@@ -1,3 +1,5 @@
+// Find Your Hat: Interactive terminal game
+// To play => node main.js
 const prompt = require("prompt-sync")({ sigint: true });
 
 const hat = "^";
@@ -18,7 +20,7 @@ class Field {
     });
   }
   move() {
-    this.direction = prompt("Your Move: Up, Down, Left, Right? ");
+    this.direction = prompt("Your Move: Up, Down, Left, Right? ").toLowerCase();
     console.log(this.direction);
   }
   play() {
@@ -52,19 +54,19 @@ class Field {
     };
 
     while (true) {
-      if (this.direction.toLowerCase() === "up") {
+      if (this.direction === "up") {
         y--;
         checkBounds();
         this.field[y][x] = pathCharacter;
-      } else if (this.direction.toLowerCase() === "down") {
+      } else if (this.direction === "down") {
         y++;
         checkBounds();
         this.field[y][x] = pathCharacter;
-      } else if (this.direction.toLowerCase() === "left") {
+      } else if (this.direction === "left") {
         x--;
         checkBounds();
         this.field[y][x] = pathCharacter;
-      } else if (this.direction.toLowerCase() === "right") {
+      } else if (this.direction === "right") {
         x++;
         checkBounds();
         this.field[y][x] = pathCharacter;
@@ -80,17 +82,16 @@ class Field {
   }
   static move() {
     console.log("static move");
-    this.direction = prompt("Your Move: Up, Down, Left, Right? ");
-    console.log("static move this.direction:", this.direction);
+    this.direction = prompt("Your Move: Up, Down, Left, Right? ").toLowerCase();
     // move repository saves moves to moveRepo array
-    if (this.gameMode === 'hard') {
+    if (this.gameMode === 'hard' && this.direction === 'up' || this.direction === 'down' || this.direction === 'left' || this.direction === 'right') {
       this.moveRepo.push(this.direction);
       console.log('moveRepo:', this.moveRepo);
     }
 
   }
   static generateField(height, width, percentage) {
-    this.gameMode = prompt("Game mode: normal/hard?"); // set game mode
+    this.gameMode = prompt("Game mode: normal/hard? "); // set game mode
     if (this.gameMode !== "hard") {
       this.gameMode = "normal";
     }
@@ -120,7 +121,6 @@ class Field {
       yFieldHolesRand = Math.floor(Math.random() * height);
       xFieldHolesRand = Math.floor(Math.random() * width);
     }
-
     while (numFieldHoles > 0) {
       getFieldHolesRand();
       // ensure holes overwrite fieldCharacters only
@@ -130,8 +130,6 @@ class Field {
       this.field[yFieldHolesRand][xFieldHolesRand] = hole;
       numFieldHoles--;
     }
-
-
     // randomly assign a pathCharacter
     let yPathRand = 0;
     let xPathRand = 0;
@@ -163,7 +161,6 @@ class Field {
       let y = yPathRand;
       let x = xPathRand;
       this.print();
-      console.log("y:", y, "x:", x, "height:", height, "width:", width);
       this.move();
 
       const checkBounds = () => {
@@ -186,7 +183,8 @@ class Field {
           console.log(`WINNER! You found your hat!`);
           return process.exit();
         } else if (this.moveRepo.join('').includes('downdown')) {
-          console.log('downdown triggered adding %5 field holes');
+          console.log('downdown triggered => adding 5% field holes');
+          this.moveRepo = []; // clear moveRepo
           // add 5% holes
           numFieldHoles = parseInt((height * width * 5 / 100).toFixed());
           while (numFieldHoles > 0) {
@@ -202,19 +200,19 @@ class Field {
       };
 
       while (true) {
-        if (this.direction.toLowerCase() === "up") {
+        if (this.direction === "up") {
           y--;
           checkBounds();
           this.field[y][x] = pathCharacter;
-        } else if (this.direction.toLowerCase() === "down") {
+        } else if (this.direction === "down") {
           y++;
           checkBounds();
           this.field[y][x] = pathCharacter;
-        } else if (this.direction.toLowerCase() === "left") {
+        } else if (this.direction === "left") {
           x--;
           checkBounds();
           this.field[y][x] = pathCharacter;
-        } else if (this.direction.toLowerCase() === "right") {
+        } else if (this.direction === "right") {
           x++;
           checkBounds();
           this.field[y][x] = pathCharacter;
@@ -237,3 +235,4 @@ Field.generateField(5, 6, 20);
 //   [fieldCharacter, hat, fieldCharacter],
 // ]);
 // myField.play();
+
