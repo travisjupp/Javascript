@@ -43,13 +43,11 @@ class Field {
       this.xPathRand = Math.floor(Math.random() * (this.field[0].length -1));
     }
     getPathRand();
-    console.log('this.yPathRand',this.yPathRand, 'this.xPathRand', this.xPathRand);
     // ensure pathCharacter overwrites fieldCharacters only
     while (this.field[this.yPathRand][this.xPathRand] !== fieldCharacter) {
       getPathRand();
     }
     this.field[this.yPathRand][this.xPathRand] = pathCharacter;
-    console.log('this.yPathRand',this.yPathRand, 'this.xPathRand', this.xPathRand);
 
     let y = this.yPathRand;
     let x = this.xPathRand;
@@ -78,6 +76,25 @@ class Field {
       } else if (this.field[y][x] === hat) {
         console.log(`WINNER! You found your hat!`);
         return process.exit();
+      } else if (this.moveRepo.join('').includes('downdown')) {
+        console.log('downdown triggered => add 5% field holes!');
+        this.moveRepo = []; // clear moveRepo
+          // add 5% holes
+          let yFieldHolesRand = 0;
+          let xFieldHolesRand = 0;
+          const getFieldHolesRand = () => {
+            yFieldHolesRand = Math.floor(Math.random() * (this.field.length - 1));
+            xFieldHolesRand = Math.floor(Math.random() * (this.field[0].length - 1));
+          };
+
+          let numFieldHoles = parseInt(((this.field.length - 1) * (this.field[0].length - 1) * 5 / 100).toFixed());
+          while (numFieldHoles > 0) {
+            while (this.field[yFieldHolesRand][xFieldHolesRand] !== fieldCharacter) {
+              getFieldHolesRand();
+            }
+            this.field[yFieldHolesRand][xFieldHolesRand] = hole;
+            numFieldHoles--;
+          }
       } else {
         console.log("y:", y, "x:", x);
       }
