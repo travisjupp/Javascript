@@ -16,12 +16,14 @@ class Field {
     this.yPathRand = 0;
     this.xPathRand = 0;
   }
+
   print() {
     console.log('mode:', this.gameMode);
     this.field.forEach((el) => {
       console.log(el.join(""));
     });
   }
+
   move() {
     this.direction = prompt("Your Move: Up, Down, Left, Right? ").toLowerCase();
     console.log(this.direction);
@@ -31,8 +33,8 @@ class Field {
       console.log('moveRepo:', this.moveRepo);
     }
   }
+
   play() {
-    console.log('play()');
     this.gameMode = prompt("Game mode: normal/hard? "); // set game mode
     if (this.gameMode !== "hard") {
       this.gameMode = "normal";
@@ -42,11 +44,11 @@ class Field {
       this.yPathRand = Math.floor(Math.random() * (this.field.length - 1));
       this.xPathRand = Math.floor(Math.random() * (this.field[0].length -1));
     }
-    getPathRand();
-    // ensure pathCharacter overwrites fieldCharacters only
-    while (this.field[this.yPathRand][this.xPathRand] !== fieldCharacter) {
+    // pathCharacter overwrites fieldCharacters only
+    do {
       getPathRand();
-    }
+    } while (this.field[this.yPathRand][this.xPathRand] !== fieldCharacter);
+
     this.field[this.yPathRand][this.xPathRand] = pathCharacter;
 
     let y = this.yPathRand;
@@ -124,6 +126,7 @@ class Field {
       this.move();
     }
   }
+
   static generateField(height, width, percentage) {
     // generate subArray full of fieldCharacters using width param
     let subArr = [];
@@ -150,11 +153,11 @@ class Field {
       xFieldHolesRand = Math.floor(Math.random() * width);
     }
     while (numFieldHoles > 0) {
-      getFieldHolesRand();
-      // ensure holes overwrite fieldCharacters only
-      while (field[yFieldHolesRand][xFieldHolesRand] !== fieldCharacter) {
+      // holes overwrite fieldCharacters only
+      do {
         getFieldHolesRand();
-      }
+      } while (field[yFieldHolesRand][xFieldHolesRand] !== fieldCharacter);
+
       field[yFieldHolesRand][xFieldHolesRand] = hole;
       numFieldHoles--;
     }
@@ -165,96 +168,17 @@ class Field {
       yHatRand = Math.floor(Math.random() * height);
       xHatRand = Math.floor(Math.random() * width);
     }
-    getHatRand();
-    // ensure hat only overwrites fieldCharacters only
-    while (field[yHatRand][xHatRand] !== fieldCharacter) {
+    // hat overwrites fieldCharacters only
+    do {
       getHatRand();
-    }
+    } while (field[yHatRand][xHatRand] !== fieldCharacter);
+
     field[yHatRand][xHatRand] = hat;
-    // Play
-    // const play = () => {
-    //   let y = this.yPathRand;
-    //   let x = this.xPathRand;
-    //   this.print();
-    //   this.move();
-
-    //   const checkBounds = () => {
-    //     if (x < 0) {
-    //       console.log(`GAME OVER: Outta Bounds x<0:${x}`);
-    //       return process.exit();
-    //     } else if (x > this.field[0].length - 1) {
-    //       console.log(`GAME OVER: Outta Bounds x>width-1:${x}`);
-    //       return process.exit();
-    //     } else if (y < 0) {
-    //       console.log(`GAME OVER: Outta Bounds y<0:${y}`);
-    //       return process.exit();
-    //     } else if (y > this.field.length - 1) {
-    //       console.log(`GAME OVER: Outta Bounds y>height-1:${y}`);
-    //       return process.exit();
-    //     } else if (this.field[y][x] === hole) {
-    //       console.log(`GAME OVER: You fell into a hole!`);
-    //       return process.exit();
-    //     } else if (this.field[y][x] === hat) {
-    //       console.log(`WINNER! You found your hat!`);
-    //       return process.exit();
-    //     } else if (this.moveRepo.join('').includes('downdown')) {
-    //       console.log('downdown triggered => adding 5% field holes');
-    //       this.moveRepo = []; // clear moveRepo
-    //       // add 5% holes
-    //       numFieldHoles = parseInt((height * width * 5 / 100).toFixed());
-    //       while (numFieldHoles > 0) {
-    //         while (this.field[yFieldHolesRand][xFieldHolesRand] !== fieldCharacter) {
-    //           getFieldHolesRand();
-    //         }
-    //         this.field[yFieldHolesRand][xFieldHolesRand] = hole;
-    //         numFieldHoles--;
-    //       }
-    //     } else {
-    //       console.log("y:", y, "x:", x);
-    //     }
-    //   };
-
-    //   while (true) {
-    //     if (this.direction === "up") {
-    //       y--;
-    //       checkBounds();
-    //       this.field[y][x] = pathCharacter;
-    //     } else if (this.direction === "down") {
-    //       y++;
-    //       checkBounds();
-    //       this.field[y][x] = pathCharacter;
-    //     } else if (this.direction === "left") {
-    //       x--;
-    //       checkBounds();
-    //       this.field[y][x] = pathCharacter;
-    //     } else if (this.direction === "right") {
-    //       x++;
-    //       checkBounds();
-    //       this.field[y][x] = pathCharacter;
-    //     } else {
-    //       console.log('invalid move input');
-    //     }
-    //     this.print();
-    //     this.move();
-    //   }
-    // };
-
-
-    // play();
-
   return field;
   }
 }
 
-// Field.generateField(5, 6, 20);
-
-// const myField = new Field([
-//   [pathCharacter, fieldCharacter, hole],
-//   [fieldCharacter, hole, fieldCharacter],
-//   [fieldCharacter, hat, fieldCharacter],
-// ]);
-
-const myField = new Field(Field.generateField(5, 6, 20));
+const myField = new Field(Field.generateField(7, 9, 20));
 myField.play();
 
 
