@@ -30,12 +30,12 @@ class Field {
     // move repository saves moves to moveRepo array
     if (this.gameMode === 'hard' && (this.direction === 'up' || this.direction === 'down' || this.direction === 'left' || this.direction === 'right')) {
       this.moveRepo.push(this.direction);
-      console.log('moveRepo:', this.moveRepo);
+      console.log('Moves:', this.moveRepo);
     }
   }
 
   play() {
-    this.gameMode = prompt("Game mode: normal/hard? "); // set game mode
+    this.gameMode = prompt("Game mode: normal/hard? ");
     if (this.gameMode !== "hard") {
       this.gameMode = "normal";
     }
@@ -54,8 +54,6 @@ class Field {
     let y = this.yPathRand;
     let x = this.xPathRand;
     
-    console.log('play() this.yPathRand',this.yPathRand, 'this.xPathRand', this.xPathRand);
-
     this.print();
     this.move();
 
