@@ -3,5 +3,8 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"mocha.subdirectory": "mocha-testing"
+	}
 }
