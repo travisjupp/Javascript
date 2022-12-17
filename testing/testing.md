@@ -13,7 +13,7 @@
 
 **Manual testing:** testing done by a human interacting with a system.
 
-**Regression:** When adding a new feature to your product, it’s possible that something will break. If that break occurs within a feature developed earlier, it is called regression. When functionality previously developed and tested stops working, you may say the functionality regressed.
+**Regression:** When adding a new feature to your product, it’s possible that something will break. If that break occurs within a feature developed earlier, it is called regression. When functionality previously developed and tested stops working, you may say the *functionality regressed*.
 
 **Regression test selection:** Unlike running the entire test suite, with this technique we set, and conditionally, execute different groups of test cases rather than automatically executing each group.
 
@@ -29,10 +29,12 @@
 
 **The MC-FIRE acronym** (Maintainable, Complete, Fast, Isolated, Reliable, and Expressive) are the characteristics of an effective test suite.
 
-**Code Coverage:** (metric) % of application code tested.
+## Code coverage
+
+**Code Coverage:** (metric) % of application code tested.[^CodeCoverage]
 * Function Coverage: Has each function been called?
 * Statement Coverage: Has each statement been executed?
-* Path Coverage: Has every edge in the control-flow graph been executed?
+* Path Coverage: Has every edge in the control-flow graph[^Control-flow-graph] been executed?
 * Condition Coverage: Has each boolean sub-expression evaluated to be both true and false?
 
 **Test Coverage:** (metric) % of features/specs tested.
@@ -64,7 +66,7 @@ specific strategies for testing all of the pieces of your software to make sure 
 > Since software errors can cost businesses money and customer trust, testing is an integral part of the development process and used in some flavor by every software company.
 
 ## npm test
-The behavior of npm test is specified in the package.json file that is part of all of our applications.
+The behavior of npm test is specified in the package.json file that is part of all of our applications.  
 
 ```json
 "scripts": {
@@ -74,6 +76,7 @@ The behavior of npm test is specified in the package.json file that is part of a
 ```
 
 >We can set up our own tests in our environment by specifying a `"test" : "file/path"` key/value pair in "scripts" once we have a `package.json` file for our project.  
+>Running `npm init` will create a `package.json` [^npminit]
 
 
 ## Automate and organize tests
@@ -118,10 +121,8 @@ describe('.pop', () => {
 });
 ```
 
-
-
 ## Test frameworks
-### Mocha JS Hooks
+### Mocha JS Hooks [^Mocha.js]
 ```js
 // groups tests
 describe('description', () => {/* Write it functions here */});
@@ -143,7 +144,7 @@ afterEach(() => {path = './message.txt';});
 
 
 ```
-### Node.js Assert library
+### Node.js Assert library [^Node.js-Assert]
 
 ```js
 // import assert
@@ -152,9 +153,10 @@ const assert = require('assert');
 assert.ok(a + b === c); // eval boolean expression
 assert.equal(a, b); // verify loose equality
 assert.strictEqual(a, b); // verify strict equality 
-assert.deepEqual(a, b); // compare vals within two objects
+assert.deepEqual(a, b); // compare vals within two objects 
 ```
-### Chai.js Assertion library
+
+### Chai.js Assertion library [^Chai.js]
 BDD / TDD assertion library for node and the browser. Pair with any JS testing framework.
 ```js
 var assert = require('chai').assert
@@ -182,8 +184,11 @@ expect(beverages).to.have.property('tea').with.lengthOf(3);
 ---
 ## References & Links
 
-[Mocha.js](https://mochajs.org/ "JS Testing Framework")  
-[Chai.js](https://www.chaijs.com/guide/ "Chai Assertion Library")  
 [Characteristics of a good test](https://www.codecademy.com/article/tdd-u1-good-test)  
-[Node.js Assert](https://nodejs.org/api/assert.html#assert)  
-[Node.js Assert deepEqual](https://nodejs.org/api/assert.html#assertdeepequalactual-expected-message)
+
+[^CodeCoverage]: https://en.wikipedia.org/wiki/Code_coverage#Parameter_value_coverage "Code coverage"  
+[^npminit]: https://docs.npmjs.com/cli/v9/commands/npm-init "npm init"  
+[^Mocha.js]: https://mochajs.org/ "Mocha JS Testing Framework"  
+[^Node.js-Assert]: https://nodejs.org/api/assert.html#assert "Node.js Assert"  
+[^Chai.js]: https://www.chaijs.com/guide/ "Chai.js Assertion Library"  
+[^Control-flow-graph]: https://en.wikipedia.org/wiki/Control-flow_graph "Control-flow graph"  
