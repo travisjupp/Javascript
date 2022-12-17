@@ -39,4 +39,4 @@ const factorial4 = n => {
     }
     return result;
   }
-//   console.log(factorial4(6))
+  console.log(factorial4(0))

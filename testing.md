@@ -19,7 +19,15 @@
 
 **Test case prioritization:** Here, we prioritize test cases so as to increase the test suite’s rate of fault detection. Test case prioritization techniques schedule test cases so that the test cases that are higher in priority are executed before the test cases that have a lower priority.
 
-**The MC-FIRE acronym** (Maintainable, Complete, Fast, Isolated, Reliable, and Expressive) are the characteristics of an effective test suite
+**Edge Case:** Problem that occurs at an extreme operating parameter.
+
+**Red—Green—Refactor cycle** (TDD development process)
+* write test
+* fail test 
+* pass test 
+* refactor
+
+**The MC-FIRE acronym** (Maintainable, Complete, Fast, Isolated, Reliable, and Expressive) are the characteristics of an effective test suite.
 
 ## Software testing methods
 
@@ -32,7 +40,7 @@
 ## Testing methodologies
 specific strategies for testing all of the pieces of your software to make sure it behaves as expected.
 
-  * **Test Driven Development (TDD):** Tests are written before the functioning code is written. Tests concerned with code *components* eg. functions/classes
+  * **Test-Driven Development (TDD):** Tests are written before the functioning code is written. Tests concerned with code *components* eg. functions/classes
 
   * **Behavior-driven Development (BDD):** Test-first approach. Changes are feature-related, the unit of tests is called a “feature.” Language of test-cases are simplified. Tests concerned with product *behavior*
 
@@ -103,8 +111,8 @@ describe('.pop', () => {
 
 
 
-## Mocha JS test framework
-### Hooks
+## Test frameworks
+### Mocha JS Hooks
 ```js
 // groups tests
 describe('description', () => {/* Write it functions here */});
@@ -137,11 +145,36 @@ assert.equal(a, b); // verify loose equality
 assert.strictEqual(a, b); // verify strict equality 
 assert.deepEqual(a, b); // compare vals within two objects
 ```
+### Chai.js Assertion library
+BDD / TDD assertion library for node and the browser. Pair with any JS testing framework.
+```js
+var assert = require('chai').assert
+  , foo = 'bar'
+  , beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
+
+assert.typeOf(foo, 'string'); // without optional message
+assert.typeOf(foo, 'string', 'foo is a string'); // with optional message
+assert.equal(foo, 'bar', 'foo equal `bar`');
+assert.lengthOf(foo, 3, 'foo`s value has a length of 3');
+assert.lengthOf(beverages.tea, 3, 'beverages has 3 types of tea');
+```
+#### BDD Style: `expect` / `should`
+```js
+var expect = require('chai').expect
+  , foo = 'bar'
+  , beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
+
+expect(foo).to.be.a('string');
+expect(foo).to.equal('bar');
+expect(foo).to.have.lengthOf(3);
+expect(beverages).to.have.property('tea').with.lengthOf(3);
+```
 
 ---
 ## References & Links
 
-[Mocha.js](https://mochajs.org/)  
+[Mocha.js](https://mochajs.org/ "JS Testing Framework")  
+[Chai.js](https://www.chaijs.com/guide/ "Chai Assertion Library")  
 [Characteristics of a good test](https://www.codecademy.com/article/tdd-u1-good-test)  
 [Node.js Assert](https://nodejs.org/api/assert.html#assert)  
 [Node.js Assert deepEqual](https://nodejs.org/api/assert.html#assertdeepequalactual-expected-message)
