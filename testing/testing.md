@@ -29,6 +29,14 @@
 
 **The MC-FIRE acronym** (Maintainable, Complete, Fast, Isolated, Reliable, and Expressive) are the characteristics of an effective test suite.
 
+**Mocking** is the process of creating a fake version of an external service for testing purposes, particularly in unit tests and integration tests.  
+
+>While it’s helpful to use mocks in unit tests, we should avoid using mocks in integration tests to better simulate interactions between internal services (though external services should remain mocked)
+
+**Spy:** In testing, a spy is a function that observes and records information about another function’s calls including arguments, return value, the this value, and exceptions thrown (if any).
+
+> Sinon.js is a JavaScript library that includes standalone fakes, spies, and mocks that can be used in any unit testing framework. [^Sinon.js]
+
 ## Code coverage
 
 **Code Coverage:** (metric) % of application code tested.[^CodeCoverage]
@@ -121,9 +129,11 @@ describe('.pop', () => {
 });
 ```
 
-## Test frameworks
-### Mocha JS Hooks [^Mocha.js]
+## Testing frameworks
+### Mocha JS [^Mocha.js]
 ```js
+// Hooks:
+
 // groups tests
 describe('description', () => {/* Write it functions here */});
 
@@ -185,7 +195,10 @@ expect(beverages).to.have.property('tea').with.lengthOf(3);
 ## References & Links
 
 [Characteristics of a good test](https://www.codecademy.com/article/tdd-u1-good-test)  
+[Hackernoon’s Introduction to Test Driven Development](https://hackernoon.com/introduction-to-test-driven-development-tdd-61a13bc92d92)  
 
+
+[^Sinon.js]: https://sinonjs.org/releases/latest/spies/ "Sinon.js"
 [^CodeCoverage]: https://en.wikipedia.org/wiki/Code_coverage#Parameter_value_coverage "Code coverage"  
 [^npminit]: https://docs.npmjs.com/cli/v9/commands/npm-init "npm init"  
 [^Mocha.js]: https://mochajs.org/ "Mocha JS Testing Framework"  
