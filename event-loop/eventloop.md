@@ -1,6 +1,8 @@
 # The Javascript Event Loop
 A system for managing code execution
 
+
+
 ![JS Engine Diagram](JavaScript-Engine-Diagram.png)
 
 * The **Heap** stores current variables and objects[^heap]
@@ -24,13 +26,47 @@ for (let idx=0; idx < 999999999; idx++) {}
 console.log("the Event Loop");
 ```
 
-
 ```js
 // Non-Blocking:
 console.log("I’m learning about");
 setTimeout(() => { console.log("Event Loop");}, 2000);
 console.log("the");
 ```
+## Promises
+Promises are objects that represent the eventual outcome of an asynchronous operation. A Promise object can be in one of three states:
+
+* Pending: The initial state— the operation has not completed yet.
+
+* Fulfilled: The operation has completed successfully and the promise now has a ***resolved value***
+
+* Rejected: The operation has failed and the promise has a reason for the failure.
+
+A Promise that is no longer pending is ***settled***
+
+```js
+const inventory = {
+  sunglasses: 0,
+  pants: 1088,
+  bags: 1344
+};
+
+const myExecutor = (resolve, reject) => {
+  if(inventory.sunglasses > 0) {
+    resolve('Sunglasses order processed.');
+  } else {
+    reject('That item is sold out.');
+  }
+}
+
+const orderSunglasses = () => {
+  return new Promise(myExecutor);
+}
+
+const orderPromise = orderSunglasses();
+
+console.log(orderPromise);
+```
+
 
 Describing Event Loop with code:
 ```js
@@ -56,19 +92,20 @@ getBeans();
 console.log("Describe what happens with this `console.log()` statement as well.");
 ```
 
-
-When the function getBeans() is called, getBeans() is added to the stack. The first console.log() statement is added to the stack, executes, and is popped off the stack. Next, the async function shopForBeans() is called and the return value is assigned to the variable value.
+`getBeans()` is called and added to the stack. The first `console.log()` statement is added to the stack, executes, and is popped off the stack. Next, the async function `shopForBeans()` is called and the return value is assigned to the variable value.
 
 The response will be handled by the event queue and event loop and pushed back into the stack when it is cleared. The final log statement will then be added to the stack, log the argument, and pop off the stack.
 
-The stack will be clear afterward, so the response event in the event queue will get added back to the stack and executed. The final two console.log() statements will then be added to the stack and popped off after logging their arguments.  
-
-
+The stack will be clear afterward, so the response event in the event queue will get added back to the stack and executed. The final two `console.log()` statements will then be added to the stack and popped off after logging their arguments.  
 
 ---
 
 ## References & Links
+[Asynchronous JS (local)](../asynchrony/asynchrony.md)  
+
 [MDN: Event Loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
+
+[Digital Ocean: Understanding the Event Loop](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript)
 
 [latentflip.com loupe](http://latentflip.com/loupe/ "Loupe is a little visualisation to help you understand how JavaScript's call stack/event loop/callback queue interact with each other.")  | [Philip Roberts](http://twitter.com/philip_roberts) :bird:
 
@@ -86,3 +123,5 @@ When you invoke a function, a frame is added to the stack. Frames connect that f
 
 [^API]: Application Programming Interface for the Web.  
 Examples: YouTube API - Allows you to display videos on a web site. Twitter API - Allows you to display Tweets on a web site. Facebook API - Allows you to display Facebook info on a web site  
+
+[Codecademy: Asynchronous Javascript](https://www.codecademy.com/paths/front-end-engineer-career-path/tracks/fecp-22-async-javascript-and-http-requests/modules/wdcp-22-basics-of-asynchronous-javascript/articles/javascript-concurrency-model-and-event-loop)
