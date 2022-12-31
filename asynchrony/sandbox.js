@@ -39,32 +39,33 @@
 // buildCat();
 
 /* ----------------------- */
-let res = '';
-function dogStep3(value) {
-  setTimeout(() => {
-      res += value;
-  }, 6000);
-}
-function dogStep2(value) {
-  setTimeout(() => {
-      res += value;
-  }, 3000);
-}
-function dogStep1(value) {
-  setTimeout(() => {
-      res += value;
-  }, 0);
-}
-function buildDog() {
-  dogStep3('G');
-  dogStep2('O');
-  dogStep1('D');
-}
-buildDog();
+// let res = '';
+// function dogStep3(value) {
+//   setTimeout(() => {
+//       res += value;
+//   }, 6000);
+// }
+// function dogStep2(value) {
+//   setTimeout(() => {
+//       res += value;
+//   }, 3000);
+// }
+// function dogStep1(value) {
+//   setTimeout(() => {
+//       res += value;
+//   }, 0);
+// }
+// function buildDog() {
+//   dogStep3('G');
+//   dogStep2('O');
+//   dogStep1('D');
+// }
+// buildDog();
 
-setTimeout(() => {
-  console.log(res);
-}, 7000)
+// setTimeout(() => {
+//   console.log(res);
+// }, 7000)
+/* ----------------------- */
 
 // let result = '';
 // function step3() {
@@ -95,6 +96,7 @@ setTimeout(() => {
 // }
 
 // buildDog().then(handleSuccess).catch((err) => {console.log(err)});
+/* ----------------------- */
 
 
 // function dogStep3(value) {setTimeout(() => {console.log(value)}, 9000)}
@@ -138,6 +140,7 @@ setTimeout(() => {
 // setTimeout(function ret(){
 //     console.log('outter result:',result);
 // },6000);
+/* ----------------------- */
 
 
 const withAsync = async num => num === 0 ? 'zero' : 'non-zero';
@@ -145,7 +148,7 @@ const withAsync = async num => num === 0 ? 'zero' : 'non-zero';
 withAsync(100)
   .then(resolveValue =>console.log(`promise: ${resolveValue}.`));
 
-//
+// //
 function withConstructor(num){
   return new Promise((resolve, reject) => {
     num === 0 ? resolve('zero') : resolve('non-zero');
@@ -154,3 +157,67 @@ function withConstructor(num){
 
 withConstructor(0)
   .then(resolveValue => console.log(`promise: ${resolveValue}.`));
+
+// await
+function numCheck(num){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      if(num === 0){
+        resolve('zero');
+      } else {
+        resolve('non-zero');
+      }
+    }, 1000);
+  });
+}
+
+async function withAwait(num){
+  let result = await numCheck(num);
+  console.log('result:', result);
+}
+
+withAwait(1);
+
+// can an await function return a resolved promise on its own
+
+/* ----------------------- */
+
+// function myPromise(){
+//   return new Promise((resolve, reject)=>{
+//     setTimeout(()=>{
+//       resolve('Yay, I resolved!');
+//     }, 1000);
+//   });
+// }
+
+// async function noAwait() {
+//   let value = myPromise();
+//   console.log(value);
+//  }
+  
+// async function yesAwait() {
+//   let value = await myPromise();
+//   console.log(value);
+//  }
+  
+//  noAwait(); // Prints: Promise { <pending> }
+//  yesAwait(); // Prints: Yay, I resolved!
+/* ----------------------- */
+
+const prom = () => new Promise(res => res('promResVal'));
+
+(async function asFunc(){console.log(await prom())})();
+
+const rejectProm = () => Promise.reject('promRejected');
+
+async function fn(){
+  try {
+      console.log(await rejectProm());
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+fn()
+
+// asFunc()

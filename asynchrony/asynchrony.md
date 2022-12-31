@@ -33,8 +33,6 @@ function buildDog() {
 buildDog();
 ```
 
-
-
 Single-thread vs. Multi-thread  
 The number of threads determine how many concurrent operations can run. JS is a single-threaded programming language, however, the Browser can implement threads.
 
@@ -134,8 +132,45 @@ withAsync(0)
   .then(resolveValue => console.log(`promise: ${resolveValue}.`));
 ```
 
+`await` operator used inside an `async` functions operand is a Promise. `await` pauses function execution until the Promise is resolved then returns its resolved value.
 
-`await` keyword used inside an `async` function runs once Promise is settled
+```js
+const prom = () => new Promise(res => res('promResVal'));
+
+(async function asFunc(){console.log(await prom())})();
+```
+
+`try/catch` error handling
+```js
+const rejectProm = () => Promise.reject('promRejected');
+
+async function fn(){
+  try {
+      console.log(await rejectProm());
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+fn(); // promRejected
+```
+Handling Independent Promises
+```js
+// halts execution (Promises dependent)
+async function waiting() {
+ const firstValue = await firstAsyncThing();
+ const secondValue = await secondAsyncThing();
+ console.log(firstValue, secondValue);
+}
+// avoids halting execution (Promises independent)
+async function concurrent() {
+ const firstPromise = firstAsyncThing();
+ const secondPromise = secondAsyncThing();
+console.log(await firstPromise, await secondPromise);
+}
+```  
+
+>Note: if we have multiple truly independent promises that we would like to execute fully in parallel, we must use individual `.then()` functions and avoid halting our execution with `await`.
 
 
 
