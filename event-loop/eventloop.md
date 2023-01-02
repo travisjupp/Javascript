@@ -121,7 +121,9 @@ When you invoke a function, a frame is added to the stack. Frames connect that f
 `2. It will add the first waiting message.`  
 `3. It will repeat steps 1 and 2 until the stack has cleared.`
 
-[^API]: Application Programming Interface for the Web.  
-Examples: YouTube API - Allows you to display videos on a web site. Twitter API - Allows you to display Tweets on a web site. Facebook API - Allows you to display Facebook info on a web site  
+[^API]: **API**: Software tool for interacting with another applications functionality.  
+**Web API**: API for the Web  
+**Third-party API**: YouTube API, Twitter API...  
+**Browser API**: Access information the browser can also access. eg. ***geolocation API***.  
 
 [Codecademy: Asynchronous Javascript](https://www.codecademy.com/paths/front-end-engineer-career-path/tracks/fecp-22-async-javascript-and-http-requests/modules/wdcp-22-basics-of-asynchronous-javascript/articles/javascript-concurrency-model-and-event-loop)

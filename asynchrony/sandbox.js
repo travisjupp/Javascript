@@ -146,7 +146,7 @@
 const withAsync = async num => num === 0 ? 'zero' : 'non-zero';
 
 withAsync(100)
-  .then(resolveValue =>console.log(`promise: ${resolveValue}.`));
+  .then(resolveValue =>console.log(`withAsync: ${resolveValue}.`));
 
 // //
 function withConstructor(num){
@@ -156,7 +156,7 @@ function withConstructor(num){
 }
 
 withConstructor(0)
-  .then(resolveValue => console.log(`promise: ${resolveValue}.`));
+  .then(resolveValue => console.log(`withConstructor: ${resolveValue}.`));
 
 // await
 function numCheck(num){
@@ -173,7 +173,7 @@ function numCheck(num){
 
 async function withAwait(num){
   let result = await numCheck(num);
-  console.log('result:', result);
+  console.log('withAwait:', result);
 }
 
 withAwait(1);
@@ -202,22 +202,60 @@ withAwait(1);
   
 //  noAwait(); // Prints: Promise { <pending> }
 //  yesAwait(); // Prints: Yay, I resolved!
+
 /* ----------------------- */
 
-const prom = () => new Promise(res => res('promResVal'));
+// await 
+const prom = () => new Promise(res => {
+  setTimeout(() => {
+    res('promResVal');
+  }, 1000);
+});
 
-(async function asFunc(){console.log(await prom())})();
+async function asFunc(){
+  console.log('asFunc:', await prom());
+}
 
-const rejectProm = () => Promise.reject('promRejected');
+asFunc();
+
+// error handling
+const falseProm = () => Promise.reject('promRejected');
 
 async function fn(){
   try {
-      console.log(await rejectProm());
+      console.log('fn:', await falseProm());
   } catch (error) {
-      console.log(error);
+      console.log('fn:',error);
   }
 }
 
-fn()
+fn();
 
-// asFunc()
+/* ---------------- */
+// Promise.all
+function prom1(){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('prom1Resolved');
+    },1000)
+  })
+}
+function prom2(){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('prom2Resolved');
+    },3000)
+  })
+}
+
+// Promise.all .then method
+Promise.all([prom1(),prom2()]).then(resolveValue => console.log(resolveValue));
+
+// Promise.all async/await method
+
+async function fulfillAll() {
+  const allProms = await Promise.all([prom1(), prom2()]);
+  console.log(allProms);
+}
+
+fulfillAll();

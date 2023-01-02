@@ -3,7 +3,7 @@
 Asynchronous vs. Synchronous
 
 ```js 
-// Synchronous
+// Synchronous: blocking sequentially-executed code
 function step1(value) {console.log('C')}
 function step2(value) {console.log('A')}
 function step3(value) {console.log('T')}
@@ -15,7 +15,7 @@ function buildCat() {
 }
 buildCat();
 
-// Asynchronous
+// Asynchronous: non-blocking, non-sequential
 function dogStep3(value) {
     setTimeout(() => {console.log(value)}, 9000)
     }
@@ -37,9 +37,7 @@ Single-thread vs. Multi-thread
 The number of threads determine how many concurrent operations can run. JS is a single-threaded programming language, however, the Browser can implement threads.
 
 Blocking vs. Non-Blocking  
-Blocking Code "blocks" a user from interacting until an operation is finished —Background code must finish executing before continuing. Non-Blocking operations *appear* to operate concurrently and do not "block" program flow.
-
-Callbacks
+Blocking Code "blocks" a user from interacting until an operation is finished —Background code must finish executing before continuing. Non-Blocking operations allow JS to operate concurrently (not parallel) and do not "block" program flow.
 
 ## Promises
 
@@ -100,7 +98,37 @@ checkInventory(order)
     });
 ```
 ### Promise concurrency
-`Promise.all(iterable)` takes an iterable of Promises and, if all fulfill, returns a single Promise —otherwise rejects *(failing fast)*. `Promise.all[prom1, prom2].then(fulfill).catch(err)`
+`Promise.all(iterable)` takes an iterable of Promises and, if **all** fulfill, returns a single Promise —otherwise rejects *(failing fast)*.
+
+```js
+function prom1(){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('prom1Resolved');
+    },1000);
+  });
+}
+
+function prom2(){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('prom2Resolved');
+    },3000);
+  });
+}
+
+// Promise.all .then method
+Promise.all([prom1(),prom2()])
+    .then(res => console.log(res)); // => ['prom1Resolved', 'prom2Resolved']
+
+// Promise.all async/await method
+async function fulfillAll() {
+    const allProms = await Promise.all([prom1(), prom2()]);
+  console.log(allProms);
+}
+
+fulfillAll(); // => ['prom1Resolved', 'prom2Resolved']
+```
 
 ## Async / Await
 Functions using the `async` keyword always return a Promise:  
@@ -130,9 +158,11 @@ const withAsync = async num => num === 0 ? 'zero' : 'non-zero';
 
 withAsync(0)
   .then(resolveValue => console.log(`promise: ${resolveValue}.`));
+
+// Note: async is `syntactic sugar`, adds NO functionality to Promises
 ```
 
-`await` operator used inside an `async` functions operand is a Promise. `await` pauses function execution until the Promise is resolved then returns its resolved value.
+Always used inside an `async` function, `await` pauses function execution until it returns the resolved value of the awaited Promise.
 
 ```js
 const prom = () => new Promise(res => res('promResVal'));
@@ -142,11 +172,11 @@ const prom = () => new Promise(res => res('promResVal'));
 
 `try/catch` error handling
 ```js
-const rejectProm = () => Promise.reject('promRejected');
+const falseProm = () => Promise.reject('promRejected');
 
 async function fn(){
   try {
-      console.log(await rejectProm());
+      console.log(await falseProm());
   } catch (error) {
       console.log(error);
   }
