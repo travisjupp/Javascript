@@ -138,7 +138,7 @@ async function fn(){} // async function declaration format
 const fn = async () => {} // async arrow function format  
 const fn = async function(){} // async function expression format  
 
-async function fn(){/* no return */} // returns a Promise resolved to value: 'undefined'  
+async function fn(){/* no return */} // returns a Promise resolved to value: 'unasync-await-getined'  
 async function fn(){return 'foo'} // returns a Promise resolved to value: 'foo'  
 async function fn(){return new Promise()} // returns the new Promise instance  
 ```  
@@ -199,8 +199,62 @@ async function concurrent() {
 console.log(await firstPromise, await secondPromise);
 }
 ```  
-
 >Note: if we have multiple truly independent promises that we would like to execute fully in parallel, we must use individual `.then()` functions and avoid halting our execution with `await`.
+
+## HTTP Requests
+
+HTTP Requests with Fetch API
+
+**JSON**: Javascript Object Notation is a popular, language-independent, standard format for storing and exchanging data.
+
+`JSON.stringify()` converts a JS value to a JSON string  
+
+`JSON.parse()` converts JSON to JS  
+
+`fetch(resource, options)` [^fetch] fetches resources from a network, returns Promise which resolves to the `Response` [^Response] object  
+
+`.json()` The json() method of the Request interface reads the request body and returns it as a promise that resolves with the result of parsing the body text as JSON.  
+
+Note that despite the method being named json(), the result is not JSON but is instead the result of taking JSON as input and parsing it to produce a JavaScript object.
+
+Asynchronous GET Request
+
+![async await GET][async-await-get]  
+
+```js
+// GET Request with Fetch API (async)
+// information to reach API
+const apiKey = '<Your API Key>';
+const rebrandlyEndpoint = 'https://api.rebrandly.com/v1/links';
+
+// Asynchronous functions
+const shortenUrl = async () => {
+  const urlToShorten = 'https://sinonjs.org/releases/latest/spies';
+  const data = JSON.stringify({destination: urlToShorten});
+  try {
+    // send request
+    const response = await fetch(rebrandlyEndpoint, {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-type': 'application/json',
+        'apikey': apiKey
+      }
+    });
+    // handle successful response
+    if(response.ok){
+      const jsonResponse = await response.json();
+      renderByteResponse(jsonResponse); // code to execute with jsonResponse
+    }
+  } catch (error) { // handle unsuccessful response
+    console.log(error);
+  }
+}
+
+shortenUrl();
+
+```
+
 
 
 
@@ -211,3 +265,13 @@ console.log(await firstPromise, await secondPromise);
 [Digital Ocean: Understanding the Event Loop](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript)
 
 [latentflip.com loupe](http://latentflip.com/loupe/ "Loupe is a little visualisation to help you understand how JavaScript's call stack/event loop/callback queue interact with each other.")  | [Philip Roberts](http://twitter.com/philip_roberts) :bird:
+
+
+[^fetch]: The promise resolves to the Response object representing the response to your request.  
+A `fetch()` promise only rejects when a network error is encountered (which is usually when there's a permissions issue or similar). A `fetch()` promise does not reject on HTTP errors (404, etc.). Instead, a `then()` handler must check the `Response.ok` and/or `Response.status` properties. [MDN: fetch](https://developer.mozilla.org/en-US/docs/Web/API/fetch)
+
+[^Response]: The Response interface of the Fetch API represents the response to a request.  
+You can create a new Response object using the `Response()` constructor, but you are more likely to encounter a Response object being returned as the result of another API operation—for example, a service worker `FetchEvent.respondWith`, or a simple `fetch()`.
+ [MDN: Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)
+
+[async-await-get]: async-get-request.svg
