@@ -1,18 +1,6 @@
 // Memoization: caching computated results, an optimization technique
 const lookupTable = []; // the cache
 
-// function searchLookupTable(q) {
-//     for (let ob of lookupTable) {
-//         for (let key in ob) {
-//             if (key == q) {
-//                 console.log(q, 'found');
-//                 return ob[key];
-//             }
-//         }
-//     }
-// }
-
-// refactored searchLookupTable
 function searchLookupTable(q) {
     let result = lookupTable.find(ob => Object.keys(ob) == q );
     return result ? (console.log(q, 'found'), result[q]) : undefined;
@@ -21,8 +9,8 @@ function searchLookupTable(q) {
 function factorial(n) {
     if (n === 0) {
         return 1;
-    } else if (searchLookupTable(n)) {
-        return searchLookupTable(n);
+    } else if (result = searchLookupTable(n)) {
+        return result;
     } else {
         console.log('recursive call');
         let x = factorial(n - 1) * n;
