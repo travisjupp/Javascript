@@ -1,3 +1,7 @@
+// Classes are templates for creating objects.
+// They contain methods for working on the data
+
+// Ex. 1
 class Surgeon {
     constructor(name, department) {
         this._name = name;
@@ -19,27 +23,34 @@ class Surgeon {
     }
 }
 
+// create a new instance of Surgeon
 const surgeonRomero = new Surgeon('Francisco Romero', 'Cardiovascular');
-const surgeonJackson = new Surgeon('Ruth Jackson', 'Orthopedics');
 
+// access some data
 console.log(surgeonRomero.name);
+
+// work on some data
 surgeonRomero.takeVacationDays(3);
 console.log(surgeonRomero.remainingVacationDays);
 
-// Add a method movieTime() to the Network class that returns true if there is enough data available to watch a movie, false if there isn’t.
-
+// Ex. 2
 class Network {
     constructor(data, users) {
-      this.data = data;
-      this.users = users;
+        this.data = data;
+        this.users = users;
     }
-    // Insert code below
+    // calculate if there's enough bandwidth to watch a movie
     movieTime() {
-    const bandwidth = this.data - this.users * 5 >= 10;
-    return bandwidth;
+        const bandwidth = (this.data - this.users) * 5 >= 10;
+        return bandwidth;
     }
-  }
-  
-  const library = new Network(50, 9);
-  console.log(library.movieTime());
+}
 
+// create a new instance of Network
+const library = new Network(50, 5);
+
+// view instance (object created)
+console.log(library);
+
+// calculate if there's enough bandwidth for movie-time
+console.log(library.movieTime());
