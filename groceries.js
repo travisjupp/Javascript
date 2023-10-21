@@ -42,28 +42,13 @@ function groceries(arr){
         let lastTwoItems = `${arr[arr.length - 2].item} and ${arr[arr.length - 1].item}`
         newArr.push(lastTwoItems);
         return newArr.toString();
-    } else if (arr.length = 1) {
+    } else if (arr.length === 1) {
         // section for arrays with one item
         newArr.push(arr[0].item);
         return newArr.toString();
     }
 }
 
-console.log(groceries(groceries3))
-
-
-// console.log(groceries.toString());
-// console.log(groceries.join(' - '));
-// console.log(groceries[0]); // {item: 'Carrots'}
-// console.log(groceries[0].item); // Carrots
-
-// console.log((groceries[0].item, groceries[2].item)) 
-// // Carrots
-// // Pesto
-// let items = (groceries[0].item + groceries[2].item);
-// console.log('items: ', items)
-
-
-
-
-// console.log(groceries[groceries.length -1]) // returns last object: {item: 'Pesto'}
+console.log(groceries(groceries1));
+console.log(groceries(groceries2));
+console.log(groceries(groceries3));
