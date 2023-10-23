@@ -1,3 +1,11 @@
+/* 
+* Classes are templates for objects. 
+* Javascript calls a `constructor` method when we create a new instance of a class.
+* `Inheritance` is when we create a parent class with properties and methods that we can extend to child classes. 
+* We use the `extends` keyword to create a subclass. 
+* The `super` keyword calls the `constructor()` of a parent class. 
+* Static methods are called on the class, but not on instances of the class.
+*/
 class School {
     constructor(name, level, numberOfStudents) {
         this._name = name;
@@ -32,7 +40,7 @@ class School {
 
 class PrimarySchool extends School {
     constructor(name, numberOfStudents, pickupPolicy) {
-        super(name, 'primary', numberOfStudents);
+        super(name, 'primary', numberOfStudents); // `super` must be called before `this`
         this._pickupPolicy = pickupPolicy;
     }
     get pickupPolicy() {
@@ -42,13 +50,13 @@ class PrimarySchool extends School {
 
 class MiddleSchool extends School {
     constructor(name, numberOfStudents) {
-        super(name, 'middle', numberOfStudents);
+        super(name, 'middle', numberOfStudents); // `super` must be called before `this`
     }
 }
 
 class HighSchool extends School {
     constructor(name, numberOfStudents, sportsTeams) {
-        super(name, 'high', numberOfStudents);
+        super(name, 'high', numberOfStudents); // `super` must be called before `this`
         this._sportsTeams = sportsTeams;
     }
     get sportsTeams() {
@@ -88,11 +96,7 @@ const alSmith = new HighSchool('Al E. Smith', 415, ['Baseball', 'Basketball', 'V
 alSmith.sportsTeams;
 
 // static method only works when called on `School`
-// Access granted:
 console.log(School.pickSubstituteTeacher(['Jamal Crawford', 'Lou Williams', 'J. R. Smith', 'James Harden', 'Jason Terry', 'Manu Ginobli'])); // => returns random teacher
-// Access denied:
-const newSchoolInstance = new School();
-// console.log(newSchoolInstance.pickSubstituteTeacher(['Jamal Crawford', 'Lou Williams', 'J. R. Smith', 'James Harden', 'Jason Terry', 'Manu Ginobli'])); // => TypeError: not a func
 
 const catalog = new SchoolCatalog([lorraineHansbury, rolandPark, alSmith]);
 

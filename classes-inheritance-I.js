@@ -6,6 +6,7 @@
 * The `super` keyword calls the `constructor()` of a parent class. 
 * Static methods are called on the class, but not on instances of the class.
 */
+
 class HospitalEmployee {
     constructor(name) {
         this._name = name;
@@ -24,10 +25,11 @@ class HospitalEmployee {
         return Math.floor(Math.random() * 10001);
     }
 };
-//   extend parent class HospitalEmployee to subclass Nurse
+
+// extend parent class HospitalEmployee to subclass Nurse
 class Nurse extends HospitalEmployee {
     constructor(name, certifications) {
-        super(name); // always call the super method before you can use the `this` keyword
+        super(name); // `super` must be called before `this`
         this._certifications = certifications;
     }
     get certifications() {
@@ -39,26 +41,31 @@ class Nurse extends HospitalEmployee {
 };
 
 const nurseOlynyk = new Nurse('Olynyk', ['Trauma', 'Pediatrics']);
+
 nurseOlynyk.takeVacationDays(5);
-console.log(nurseOlynyk.remainingVacationDays);
+console.log(nurseOlynyk.remainingVacationDays); // 15
+
 nurseOlynyk.addCertification('Genetics');
-console.log(nurseOlynyk.certifications);
+console.log(nurseOlynyk.certifications); // ['Trauma', 'Pediatrics', 'Genetics']
 
 // Note: The subclass inherits all of the parent’s getters, setters, and methods. You can also use the `super` keyword to set properties in the parent class.
 
 class Doctor extends HospitalEmployee {
     constructor(name, insurance) {
-        super(name);
+        super(name); // `super` must be called before `this`
         this._insurance = insurance;
     }
-
     get insurance() {
         return this._insurance;
     }
 };
 
 const doctorHeisen = new Doctor('Bill', false);
-console.log(doctorHeisen.name);
-console.log(doctorHeisen.insurance);
+
+console.log(doctorHeisen.name); // Bill
+console.log(doctorHeisen.insurance); // false
+
 doctorHeisen.takeVacationDays(20);
-console.log(doctorHeisen.remainingVacationDays);
+console.log(doctorHeisen.remainingVacationDays); // 0
+
+console.log(HospitalEmployee.generatePassword());
