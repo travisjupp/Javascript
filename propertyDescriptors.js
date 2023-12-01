@@ -1,9 +1,10 @@
 /* 
 A "Property Descriptor" is a configuration record for an object property
 There are two types: Data Descriptors and Accessor Descriptors
-Data Descriptor: {value:<value>,writable:<bool>,enumerable:<bool>,configurable:<bool>} 
+Data Descriptor: {value:<any>,writable:<bool>,enumerable:<bool>,configurable:<bool>} 
 Accessor Descriptor: {get(){},set(){},enumerable:<bool>,configurable:<bool>} 
 */
+
 
 const obj1 = {};
 
