@@ -1,6 +1,9 @@
 // Find Your Hat: Interactive terminal game
 // To play => node main.js
-const prompt = require("prompt-sync")({ sigint: true });
+
+const prompt = require("prompt-sync")({
+  sigint: true
+}); // enable ^C with sigint: true
 
 const hat = "^";
 const hole = "O";
@@ -17,7 +20,7 @@ class Field {
     this.xPathRand = 0;
   }
 
-  print() {
+  printBoard() {
     console.log('mode:', this.gameMode);
     this.field.forEach((el) => {
       console.log(el.join(""));
@@ -25,8 +28,10 @@ class Field {
   }
 
   move() {
+  
     this.direction = prompt("Your Move: Up, Down, Left, Right? ").toLowerCase();
     console.log(this.direction);
+
     // move repository saves moves to moveRepo array
     if (this.gameMode === 'hard' && (this.direction === 'up' || this.direction === 'down' || this.direction === 'left' || this.direction === 'right')) {
       this.moveRepo.push(this.direction);
@@ -42,7 +47,7 @@ class Field {
     // randomly assign a pathCharacter
     const getPathRand = () => {
       this.yPathRand = Math.floor(Math.random() * (this.field.length - 1));
-      this.xPathRand = Math.floor(Math.random() * (this.field[0].length -1));
+      this.xPathRand = Math.floor(Math.random() * (this.field[0].length - 1));
     }
     // pathCharacter overwrites fieldCharacters only
     do {
@@ -53,8 +58,8 @@ class Field {
 
     let y = this.yPathRand;
     let x = this.xPathRand;
-    
-    this.print();
+
+    this.printBoard();
     this.move();
 
     const checkBounds = () => {
@@ -79,26 +84,28 @@ class Field {
       } else if (this.moveRepo.join('').includes('downdown')) {
         console.log('downdown triggered => add 5% field holes!');
         this.moveRepo = []; // clear moveRepo
-          // add 5% holes
-          let yFieldHolesRand = 0;
-          let xFieldHolesRand = 0;
-          const getFieldHolesRand = () => {
-            yFieldHolesRand = Math.floor(Math.random() * (this.field.length - 1));
-            xFieldHolesRand = Math.floor(Math.random() * (this.field[0].length - 1));
-          };
+        // add 5% holes
+        let yFieldHolesRand = 0;
+        let xFieldHolesRand = 0;
+        const getFieldHolesRand = () => {
+          yFieldHolesRand = Math.floor(Math.random() * (this.field.length - 1));
+          xFieldHolesRand = Math.floor(Math.random() * (this.field[0].length - 1));
+        };
 
-          let numFieldHoles = parseInt(((this.field.length - 1) * (this.field[0].length - 1) * 5 / 100).toFixed());
-          while (numFieldHoles > 0) {
-            while (this.field[yFieldHolesRand][xFieldHolesRand] !== fieldCharacter) {
-              getFieldHolesRand();
-            }
-            this.field[yFieldHolesRand][xFieldHolesRand] = hole;
-            numFieldHoles--;
+        let numFieldHoles = parseInt(((this.field.length - 1) * (this.field[0].length - 1) * 5 / 100).toFixed());
+        while (numFieldHoles > 0) {
+          while (this.field[yFieldHolesRand][xFieldHolesRand] !== fieldCharacter) {
+            getFieldHolesRand();
           }
+          this.field[yFieldHolesRand][xFieldHolesRand] = hole;
+          numFieldHoles--;
+        }
       } else {
         console.log("y:", y, "x:", x);
       }
     };
+
+    
 
     while (true) {
       if (this.direction === "up") {
@@ -120,7 +127,7 @@ class Field {
       } else {
         console.log('Invalid move');
       }
-      this.print();
+      this.printBoard();
       this.move();
     }
   }
@@ -172,7 +179,7 @@ class Field {
     } while (field[yHatRand][xHatRand] !== fieldCharacter);
 
     field[yHatRand][xHatRand] = hat;
-  return field;
+    return field;
   }
 }
 
