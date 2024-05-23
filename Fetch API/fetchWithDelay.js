@@ -12,18 +12,13 @@ function fetchWithDelay(url, delay = 1000) { // delay must be at least a second 
     });
 }
 
-
-fetchWithDelay('https://www.reddit.com/user/lolifax/about.json', 5000)
+const t1 = performance.now();
+fetchWithDelay('http://192.168.0.5:8000/r/MapPorn', 1000)
     // then(data => data.json()
-    .then(data => data.text())
-    .then(text => console.log(text))
+    .then(data => data.json())
+    .then(json => console.log(json.id))
     .catch(e => console.error(e.message))
-
-
-
-// fetchWithDelay('http://192.168.0.5:8000/r/MapPorn', 3000);
 // fetchWithDelay('https://www.reddit.com/user/lolifax/about.json');
-
 
 // { url: 'https://www.reddit.com/user/Deep-Neighborhood587/about.json', delay: 1000 },
 // { url: 'https://www.reddit.com/user/RatsWithLongTails/about.json', delay: 1000 },
