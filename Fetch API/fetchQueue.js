@@ -21,7 +21,7 @@ function processQueue() {
                 if (response) {
                     // Process the response
                     const json = response.json();
-                    json.then(r => console.log(r));
+                    json.then(r => console.log(r.id));
                 } else {
                     // Handle timeout
                 }
@@ -41,6 +41,7 @@ function processQueue() {
 fetchQueue.push(
     { url: 'http://192.168.0.5:8000/user/405_notallowed', delay: 5000 },
     { url: 'http://192.168.0.5:8000/user/Adventurous_Ant7239', delay: 10000 },
+    { url: 'http://192.168.0.5:8000/r/MapPorn', delay: 5000 },
     // { url: 'https://www.reddit.com/user/lolifax/about.json', delay: 2000 },
     // { url: 'https://www.reddit.com/user/Deep-Neighborhood587/about.json', delay: 1000 },
     // { url: 'https://www.reddit.com/user/RatsWithLongTails/about.json', delay: 1000 },

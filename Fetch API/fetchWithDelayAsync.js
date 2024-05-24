@@ -8,7 +8,7 @@ const getDataSeries = async items => {
     await delay();
     const res = await fetch(items[index]);
     const json = await res.json();
-    console.log('json',json);
+    console.log('json.id =>',json.id);
     results.push(json.id);
   }
   return results;

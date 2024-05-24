@@ -1,3 +1,6 @@
+// Adding a delay to a fetch operation
+// Note: This only adds a delay to the Promise, fetch still happens immediately. See `fetchWithDelayAsync.js` for adding delay between requests, or `fetchQueue.js` on how to use a `isFetching` flag ensures that subsequent fetch requests are only made after the current one has finished.
+
 const t0 = performance.now();
 function fetchWithDelay(url, delay = 1000) { // delay must be at least a second or setTimeout will resolve before fetch is done
     return new Promise((resolve, reject) => {
