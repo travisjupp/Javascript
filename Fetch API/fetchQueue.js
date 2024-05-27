@@ -3,11 +3,10 @@ let isFetching = false;
 
 function fetchWithDelay(url, delay) {
     return new Promise((resolve, reject) => {
+        setTimeout(() => {
         fetch(url)
             .then(response => resolve(response))
             .catch(error => reject(error));
-        setTimeout(() => {
-            resolve(null); // Resolve after the delay even if fetch fails
         }, delay);
     });
 }
