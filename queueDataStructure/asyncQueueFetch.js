@@ -66,6 +66,16 @@ aQueue.enqueue(p3).then(({ url, data }) => console.log('%s DONE %fms', url, perf
 aQueue.enqueue(p4).then(({ url, data }) => console.log('%s DONE %fms', url, performance.now() - start)); // 140 + 30 = 170
 
 let fetchTest = (url) => () => fetch(url);
-aQueue.enqueue(fetchTest('http://192.168.0.5:8000/subreddits/1'))
+
+let fetchWithDelayTest = (url, delay) => () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            fetch(url).then(r => resolve(r));
+        }, delay)
+    })
+};
+
+aQueue.enqueue(fetchWithDelayTest('http://192.168.0.5:8000/subreddits/1', 3000))
     .then(response => response.json())
-    .then(json => console.log(json));
+    .then(json => console.log(performance.now() - start, json));
+
