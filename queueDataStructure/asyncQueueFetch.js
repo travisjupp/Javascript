@@ -79,3 +79,8 @@ aQueue.enqueue(fetchWithDelayTest('http://192.168.0.5:8000/subreddits/1', 3000))
     .then(response => response.json())
     .then(json => console.log(performance.now() - start, json));
 
+
+aQueue.enqueue(fetchWithDelayTest('http://192.168.0.5:8000/r/react', 3000))
+    .then(response => response.json())
+    .then(json => console.log(performance.now() - start, json));
+
