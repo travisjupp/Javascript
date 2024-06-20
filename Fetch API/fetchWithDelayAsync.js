@@ -15,4 +15,5 @@ const getDataSeries = async items => {
 };
 
 const items = ['http://192.168.0.5:8000/user/405_notallowed','http://192.168.0.5:8000/user/Adventurous_Ant7239'];
+
 getDataSeries(items).then((r)=>console.log(r));

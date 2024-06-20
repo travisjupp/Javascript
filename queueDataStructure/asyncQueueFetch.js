@@ -1,6 +1,7 @@
-// Queue Data Structure by Exodus 4D
+// Queue Data Structure by Exodus 4D https://github.com/exodus4d
 // https://codesandbox.io/p/sandbox/async-queue-ghpqm?file=%2Fsrc%2Findex.js
 // https://stackoverflow.com/questions/53540348/js-async-await-tasks-queue
+// https://gist.github.com/exodus4d/6f02ed518c5a5494808366291ff1e206
 
 class Queue {
     constructor() { this._items = []; }

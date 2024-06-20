@@ -20,7 +20,7 @@ function processQueue() {
                 if (response) {
                     // Process the response
                     const json = response.json();
-                    json.then(r => console.log(r.id));
+                    json.then(r => console.log('r.id', r.id));
                 } else {
                     // Handle timeout
                 }
@@ -44,7 +44,7 @@ function handleQueue(request) {
 handleQueue({ url: 'http://192.168.0.5:8000/user/405_notallowed', delay: 2000 });
 handleQueue({ url: 'http://192.168.0.5:8000/user/Adventurous_Ant7239', delay: 3000 });
 handleQueue({ url: 'http://192.168.0.5:8000/r/MapPorn', delay: 2000 });
-handleQueue({ url: 'https://www.reddit.com/user/lolifax/about.json', delay: 2000 });
+// handleQueue({ url: 'https://www.reddit.com/user/lolifax/about.json', delay: 2000 });
 // Usage example
 // fetchQueue.push(
     // { url: 'http://192.168.0.5:8000/user/405_notallowed', delay: 2000 },
@@ -60,4 +60,4 @@ handleQueue({ url: 'https://www.reddit.com/user/lolifax/about.json', delay: 2000
     // { url: 'https://www.reddit.com/user/[deleted]/about.json', delay: 15000 }
 // );
 // fetchQueue.push({ url: 'http://192.168.0.5:8000/r/MapPorn', delay: 5000 }); // Add fetch request to the queue
-processQueue(); // Start processing the queue
+// processQueue(); // Start processing the queue
