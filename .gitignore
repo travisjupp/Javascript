@@ -7,7 +7,7 @@ lodash.zip
 **.*.swp
 
 **/node_modules/
-
+**/*.log
 find-your-hat/find-your-hat-solution/
 find-your-hat/sandbox.js
 spotify/
