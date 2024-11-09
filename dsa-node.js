@@ -19,10 +19,6 @@ class Node {
 	}
 }
 
-// const firstNode = new Node('instance of Node!');
-// firstNode.setNextNode('not Node instance'); // check validation
-// firstNode.setNextNode(new Node('second Node'));
-
 // create nodes
 const strawberryNode = new Node('Berry Tasty');
 const coconutNode = new Node('Coconuts for Coconut');
