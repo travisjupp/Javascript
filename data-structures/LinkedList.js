@@ -26,12 +26,15 @@ class LinkedList {
 			tail.setNextNode(new Node(data)); // create new tail node
 		}
 	}
-}
 
-const list = new LinkedList();
-// list.addToHead('a');
-// list.addToHead('b');
-list.addToTail('td');
-console.log(list);
+	removeHead() {
+		const removedHead = this.head; // keep track of og head
+		if (!removedHead) { // if head was empty
+			return; // early return
+		}
+		this.head = removedHead.getNextNode(); // set head to next node
+		return removedHead.data;
+	}
+}
 
 module.exports = LinkedList;
