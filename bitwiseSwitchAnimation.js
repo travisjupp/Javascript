@@ -19,7 +19,8 @@ runAnimation();
 /**
 
 Understanding the `(animCount++ & 3)` logic:
-The bitwise AND (&) operator returns a number or BigInt whose binary representation has a 1 in each bit position for which the corresponding bits of both operands are 1.
+The bitwise AND (&) operator returns a number or BigInt whose binary representation 
+has a 1 in each bit position for which the corresponding bits of both operands are 1.
 
 zero & 3 returns 0
 000000
