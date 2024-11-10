@@ -15,7 +15,7 @@ class Node {
 	}
 
 	getNextNode() {
-			return this.next;
+		return this.next;
 	}
 }
 
@@ -33,7 +33,7 @@ let currentNode = vanillaNode;
 
 while (currentNode) {
 	console.log(currentNode.data);
-  currentNode = currentNode.getNextNode();
+	currentNode = currentNode.getNextNode();
 }
 
 module.exports = Node;
