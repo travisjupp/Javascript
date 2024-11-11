@@ -36,16 +36,69 @@ class LinkedList {
 		return removedHead.data;
 	}
 
-	printList() {
+	removeNodeWithData(data) {
+		// iterate nodes
 		let currentNode = this.head;
-		let output = '<head> ';
 		while (currentNode) {
-			output += currentNode.data + ' ';
+			// use current node get next node to find node with matching data
+			
+			// check next node while on current, when found, current nodes next value will point to current nodes next nodes next value
+			if (currentNode.getNextNode()?.data !== undefined && currentNode.getNextNode()?.data === data) {
+				console.log('data found for:', data,'\n', currentNode,'\n');
+				currentNode.setNextNode(new Node(currentNode.getNextNode()?.getNextNode()?.data));
+				return;
+
+
+			}
+
+			if (currentNode.data === data) {
+
+			}
+			// when match found, point current node to match node next
+			//
+			console.log('=>',currentNode.data);
+			console.log('=>=>',currentNode.getNextNode()?.data);
+			console.log('=>=>=>',currentNode.getNextNode()?.getNextNode()?.data);
 			currentNode = currentNode.getNextNode();
 		}
+	}
+
+	printList() {
+		let currentNode = this.head; // node references
+		let output = '<head> ';
+		while (currentNode) { // if node not null
+			output += currentNode.data + ' '; // append data
+			currentNode = currentNode.getNextNode(); // next node ref
+		}
 		output += '<tail> ';
-		console.log(output);
+		console.log('\x1b[1m%s\x1b[0m',output);
 	}
 }
 
+const colors = new LinkedList();
+colors.addToHead('red');
+colors.addToTail('green');
+colors.addToTail('violet');
+colors.addToTail('orange');
+// colors.printList();
+// colors.removeHead();
+colors.printList();
+colors.removeNodeWithData('violet');
+colors.printList();
+
+
+// const seasons = new LinkedList();
+// seasons.printList();
+// seasons.addToHead('summer');
+// seasons.addToHead('spring');
+// seasons.printList();
+// seasons.addToTail('fall');
+// seasons.addToTail('winter');
+// seasons.printList();
+// seasons.removeHead();
+// seasons.printList();
+// console.log('\x1b[36m%s\x1b[0m', seasons);
+
+// console.log('\x1b[36m%s\x1b[0m', colors);
 module.exports = LinkedList;
+

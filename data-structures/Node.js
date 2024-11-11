@@ -32,7 +32,7 @@ strawberryNode.setNextNode(coconutNode);
 let currentNode = vanillaNode;
 
 while (currentNode) {
-	console.log(currentNode.data);
+	// console.log(currentNode.data);
 	currentNode = currentNode.getNextNode();
 }
 
