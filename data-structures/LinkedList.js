@@ -35,6 +35,17 @@ class LinkedList {
 		this.head = removedHead.getNextNode(); // set head to next node
 		return removedHead.data;
 	}
+
+	printList() {
+		let currentNode = this.head;
+		let output = '<head> ';
+		while (currentNode) {
+			output += currentNode.data + ' ';
+			currentNode = currentNode.getNextNode();
+		}
+		output += '<tail> ';
+		console.log(output);
+	}
 }
 
 module.exports = LinkedList;
