@@ -28,7 +28,7 @@ class LinkedList {
 	}
 
 	removeHead() {
-		const removedHead = this.head; // keep track of og head
+		const removedHead = this.head; // keep track of original head
 		if (!removedHead) { // if head was empty
 			return; // early return
 		}
@@ -36,30 +36,45 @@ class LinkedList {
 		return removedHead.data;
 	}
 
-	removeNodeWithData(data) {
-		// iterate nodes
+	removeNode(data) {
 		let currentNode = this.head;
 		while (currentNode) {
-			// use current node get next node to find node with matching data
-			
-			// check next node while on current, when found, current nodes next value will point to current nodes next nodes next value
-			if (currentNode.getNextNode()?.data !== undefined && currentNode.getNextNode()?.data === data) {
-				console.log('data found for:', data,'\n', currentNode,'\n');
-				currentNode.setNextNode(new Node(currentNode.getNextNode()?.getNextNode()?.data));
-				return;
-
-
+			// if target-node is head, remove head
+			if (this.head.data === data) {
+				console.log('\n','\x1b[7m',
+					'found node is head, removing head: ', data, '\x1b[0m');
+				this.removeHead();
+				this.printList();
+				this.removeNode(data);
 			}
+			// target-node from current
+			const targetNode = currentNode.getNextNode()?.data !== undefined &&
+				currentNode.getNextNode()?.data === data;
 
-			if (currentNode.data === data) {
-
+			if (targetNode) {
+				// if target-node is neither head nor tail, remove link
+				if (currentNode.getNextNode() !== this.head &&
+					currentNode.getNextNode()?.next !== null) {
+					console.log('\n','\x1b[7m',
+						'found node not head or tail, removing link: ',
+						currentNode.next.data, '\x1b[0m');
+					// from current node, find/remove target-node
+					currentNode.setNextNode(currentNode.getNextNode()?.getNextNode());
+					this.printList();
+					this.removeNode(data);
+				}
+				// if target-node is tail, remove link
+				if (currentNode.getNextNode()?.next === null) {
+					console.log('\n','\x1b[7m',
+						'found node is tail, removing tail: ',
+						currentNode.next.data,'\x1b[0m');
+					currentNode.next = null;
+					this.printList();
+					this.removeNode(data);
+				}
+					return;
 			}
-			// when match found, point current node to match node next
-			//
-			console.log('=>',currentNode.data);
-			console.log('=>=>',currentNode.getNextNode()?.data);
-			console.log('=>=>=>',currentNode.getNextNode()?.getNextNode()?.data);
-			currentNode = currentNode.getNextNode();
+			currentNode = currentNode.getNextNode(); // iterator
 		}
 	}
 
@@ -77,15 +92,21 @@ class LinkedList {
 
 const colors = new LinkedList();
 colors.addToHead('red');
+colors.addToHead('red');
+colors.addToHead('brown');
+colors.addToHead('red');
 colors.addToTail('green');
 colors.addToTail('violet');
 colors.addToTail('orange');
+colors.addToTail('red');
 // colors.printList();
 // colors.removeHead();
+console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
 colors.printList();
-colors.removeNodeWithData('violet');
+colors.removeNode('red');
 colors.printList();
 
+console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
 
 // const seasons = new LinkedList();
 // seasons.printList();
@@ -99,6 +120,5 @@ colors.printList();
 // seasons.printList();
 // console.log('\x1b[36m%s\x1b[0m', seasons);
 
-// console.log('\x1b[36m%s\x1b[0m', colors);
 module.exports = LinkedList;
 
