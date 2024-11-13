@@ -1,5 +1,6 @@
 // Node data structures
 class Node {
+
 	constructor(data) {
 		this.data = data;
 		this.next = null;
@@ -37,3 +38,4 @@ while (currentNode) {
 }
 
 module.exports = Node;
+
