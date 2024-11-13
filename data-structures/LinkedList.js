@@ -37,45 +37,42 @@ class LinkedList {
 	}
 
 	removeNode(data) {
-		let currentNode = this.head;
-		while (currentNode) {
-			// if target-node is head, remove head
-			if (this.head.data === data) {
-				console.log('\n','\x1b[7m',
-					'found node is head, removing head: ', data, '\x1b[0m');
-				this.removeHead();
-				this.printList();
-				this.removeNode(data);
-			}
-			// target-node from current
-			const targetNode = currentNode.getNextNode()?.data !== undefined &&
-				currentNode.getNextNode()?.data === data;
+		let node = this.head;
+		let nodePrev = null;
 
-			if (targetNode) {
-				// if target-node is neither head nor tail, remove link
-				if (currentNode.getNextNode() !== this.head &&
-					currentNode.getNextNode()?.next !== null) {
-					console.log('\n','\x1b[7m',
-						'found node not head or tail, removing link: ',
-						currentNode.next.data, '\x1b[0m');
-					// from current node, find/remove target-node
-					currentNode.setNextNode(currentNode.getNextNode()?.getNextNode());
-					this.printList();
-					this.removeNode(data);
-				}
-				// if target-node is tail, remove link
-				if (currentNode.getNextNode()?.next === null) {
-					console.log('\n','\x1b[7m',
-						'found node is tail, removing tail: ',
-						currentNode.next.data,'\x1b[0m');
-					currentNode.next = null;
-					this.printList();
-					this.removeNode(data);
-				}
-					return;
+		// find matching node, save previous node
+		while (node !== null) {
+			if (node.data === data) {
+				break;
 			}
-			currentNode = currentNode.getNextNode(); // iterator
+			nodePrev = node;
+			node = node.getNextNode();
 		}
+
+		if (node === null) {
+			console.log('Node not found: ', data);
+			return;
+		}
+
+		// if target node is head, remove head
+		if (nodePrev === null) {
+			this.removeHead();
+			this.printList();
+			this.removeNode(data);
+		}
+
+		// if target node is not head nor tail, remove link
+		if (nodePrev !== null && node.getNextNode() !== null) {
+			nodePrev.setNextNode(node.getNextNode());
+			this.printList();
+			this.removeNode(data);
+		}
+
+		// if target node is tail, remove tail
+		if (node.getNextNode() === null) {
+			nodePrev.setNextNode(null);
+		}
+
 	}
 
 	printList() {
@@ -103,7 +100,7 @@ colors.addToTail('red');
 // colors.removeHead();
 console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
 colors.printList();
-colors.removeNode('red');
+colors.removeNode('green');
 colors.printList();
 
 console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
