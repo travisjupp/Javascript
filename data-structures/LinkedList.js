@@ -75,6 +75,25 @@ class LinkedList {
 
 	}
 
+	nthLastNode(n) {
+		let current = null;
+		let tailSeeker = this.head;
+		let count = 0;
+
+		while (tailSeeker) {
+			tailSeeker = tailSeeker.getNextNode();
+			if (count >= n) {
+				if (!current) {
+					current = this.head;
+				}
+				current = current.getNextNode();
+			}
+			count++;
+		}
+		console.log(`nthLastNode(${n}) =>`, current.data);
+		return current;
+	}
+
 	printList() {
 		let currentNode = this.head; // node references
 		let output = '<head> ';
@@ -104,7 +123,7 @@ colors.removeNode('green');
 colors.printList();
 
 console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
-
+colors.nthLastNode(6);
 // const seasons = new LinkedList();
 // seasons.printList();
 // seasons.addToHead('summer');
