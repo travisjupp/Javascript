@@ -39,7 +39,6 @@ class LinkedList {
 	removeNode(data) {
 		let node = this.head;
 		let nodePrev = null;
-
 		// find matching node, save previous node
 		while (node !== null) {
 			if (node.data === data) {
@@ -48,26 +47,22 @@ class LinkedList {
 			nodePrev = node;
 			node = node.getNextNode();
 		}
-
 		if (node === null) {
 			console.log('Node not found: ', data);
 			return;
 		}
-
 		// if target node is head, remove head
 		if (nodePrev === null) {
 			this.removeHead();
 			this.printList();
 			this.removeNode(data);
 		}
-
 		// if target node is not head nor tail, remove link
 		if (nodePrev !== null && node.getNextNode() !== null) {
 			nodePrev.setNextNode(node.getNextNode());
 			this.printList();
 			this.removeNode(data);
 		}
-
 		// if target node is tail, remove tail
 		if (node.getNextNode() === null) {
 			nodePrev.setNextNode(null);
@@ -79,7 +74,6 @@ class LinkedList {
 		let current = null;
 		let tailSeeker = this.head;
 		let count = 0;
-
 		while (tailSeeker) {
 			tailSeeker = tailSeeker.getNextNode();
 			if (count >= n) {
@@ -92,6 +86,22 @@ class LinkedList {
 		}
 		console.log(`nthLastNode(${n}) =>`, current.data);
 		return current;
+	}
+
+	findMiddle() {
+		let fast = this.head;
+		let slow = this.head;
+		let count = 0;	
+		while (fast) {
+			fast = fast.getNextNode();
+			if (fast) {
+				fast = fast.getNextNode();
+			  slow = slow.getNextNode();
+			}
+			count++;
+		}
+		console.log(slow);
+		return slow;
 	}
 
 	printList() {
@@ -120,10 +130,12 @@ colors.addToTail('red');
 console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
 colors.printList();
 colors.removeNode('green');
-colors.printList();
+colors.printList()
 
 console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
 colors.nthLastNode(6);
+colors.addToTail('bergundy');
+colors.findMiddle();
 // const seasons = new LinkedList();
 // seasons.printList();
 // seasons.addToHead('summer');
