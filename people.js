@@ -26,6 +26,5 @@ class propaganda {
 }
 
 let communique = new propaganda;
-if (communique instanceof propaganda) communique.people('UNITED');
-
+if (communique instanceof propaganda) communique.people('DIVIDED');
 
