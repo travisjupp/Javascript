@@ -116,37 +116,5 @@ class LinkedList {
 	}
 }
 
-const colors = new LinkedList();
-colors.addToHead('red');
-colors.addToHead('red');
-colors.addToHead('brown');
-colors.addToHead('red');
-colors.addToTail('green');
-colors.addToTail('violet');
-colors.addToTail('orange');
-colors.addToTail('red');
-// colors.printList();
-// colors.removeHead();
-console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
-colors.printList();
-colors.removeNode('green');
-colors.printList()
-
-console.log('\x1b[36m%s\x1b[0m', JSON.stringify(colors));
-colors.nthLastNode(6);
-colors.addToTail('bergundy');
-colors.findMiddle();
-// const seasons = new LinkedList();
-// seasons.printList();
-// seasons.addToHead('summer');
-// seasons.addToHead('spring');
-// seasons.printList();
-// seasons.addToTail('fall');
-// seasons.addToTail('winter');
-// seasons.printList();
-// seasons.removeHead();
-// seasons.printList();
-// console.log('\x1b[36m%s\x1b[0m', seasons);
-
 module.exports = LinkedList;
 

@@ -20,22 +20,5 @@ class Node {
 	}
 }
 
-// create nodes
-const strawberryNode = new Node('Berry Tasty');
-const coconutNode = new Node('Coconuts for Coconut');
-const vanillaNode = new Node('Vanilla');
-
-// set next nodes
-vanillaNode.setNextNode(strawberryNode);
-strawberryNode.setNextNode(coconutNode);
-
-// set current node
-let currentNode = vanillaNode;
-
-while (currentNode) {
-	// console.log(currentNode.data);
-	currentNode = currentNode.getNextNode();
-}
-
 module.exports = Node;
 
