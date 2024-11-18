@@ -1,15 +1,5 @@
 const LinkedList = require('./LinkedList');
 
-const list = new LinkedList();
-
-list.addToHead('D');
-list.addToHead('C');
-list.addToHead('B');
-list.addToHead('A');
-
-list.printList();
-
-
 const swapNodes = (list, data1, data2) => {
 	let node1 = list.head;
 	let node2 = list.head;
@@ -19,7 +9,7 @@ const swapNodes = (list, data1, data2) => {
 	// edge case: equal data
 	if (data1 === data2) {
 		console.log('Data is equal');
-		return;
+		return 'Data is equal';
 	}
 
 	// find matching and preceding nodes
@@ -39,10 +29,10 @@ const swapNodes = (list, data1, data2) => {
 		node2 = node2.getNextNode();
 	}
 
-	// Edge case: missing element(s)
+	// edge case: missing element(s)
 	if (node1 === null || node2 === null) {
 		console.log('Missing data: element(s) do not exist');
-		return;
+		return 'Missing data: element(s) do not exist';
 	}
 
 	// update preceding nodes' pointers
@@ -65,7 +55,15 @@ const swapNodes = (list, data1, data2) => {
 
 	list.printList();
 
+	// return result data as a string
+	let result = '';
+	let head = list.head;
+	while (head) {
+		result += head.data;
+		head = head.getNextNode();
+	}
+	return result;
 }
 
+module.exports = swapNodes;
 
-swapNodes(list, 'C', 'D');
