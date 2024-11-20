@@ -11,7 +11,7 @@ class Node {
 		if (node === null || node instanceof Node) {
 			this.next = node;
 		} else {
-			throw new Error('node not instance of node 💀');
+			throw new Error('Node not instance of node class 💀');
 		}
 	}
 
