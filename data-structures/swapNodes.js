@@ -43,9 +43,9 @@ const swapNodes = (list, data1, data2) => {
 	} else {
 		node1Prev.setNextNode(node2);
 	}
-	
+
 	if (node2Prev === null) {
-		list.head = node1;	
+		list.head = node1;
 	} else {
 		node2Prev.setNextNode(node1);
 	}
