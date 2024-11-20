@@ -1,4 +1,4 @@
-// Singly-Linked List
+// Singly Linked List
 
 const Node = require('./Node');
 
