@@ -1,3 +1,5 @@
+// Singly-Linked List
+
 const Node = require('./Node');
 
 class LinkedList {

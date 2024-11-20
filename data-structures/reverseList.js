@@ -1,4 +1,5 @@
-// Reverse a Singly-Linked List 
+// Reverse a Singly-Linked List
+
 const LinkedList = require('./LinkedList');
 
 const reverseList = (list) => {

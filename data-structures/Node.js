@@ -1,4 +1,5 @@
-// Node data structures
+// Node data structure
+
 class Node {
 
 	constructor(data) {
