@@ -113,7 +113,7 @@ class LinkedList {
 			output += currentNode.data + ' '; // append data
 			currentNode = currentNode.getNextNode(); // next node ref
 		}
-		output += '<tail> ';
+		output += '<tail>';
 		console.log('\x1b[1m%s\x1b[0m',output);
 	}
 }
