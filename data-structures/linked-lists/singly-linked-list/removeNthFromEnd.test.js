@@ -14,9 +14,39 @@ const createList = (arr = [1, 2, 3, 4]) => {
 
 // test removeNthFromEnd result
 describe('Remove head', () => {
-	it('should remove first item from list', () => {
-		const testRemoveFourthFromEnd = removeNthFromEnd(createList().head, 4);
-		assert.strictEqual(testRemoveFourthFromEnd, '234');
+
+	it('should remove head from one item list', () => {
+		const testRemoveHeadFromEnd = removeNthFromEnd(createList([1]).head, 1);
+		assert.strictEqual(testRemoveHeadFromEnd, '');
 	});
+
+	it('should remove head from two item list', () => {
+		const testRemoveHeadFromEnd = removeNthFromEnd(createList([1, 2]).head, 2);
+		assert.strictEqual(testRemoveHeadFromEnd, '2');
+	});
+
+	it('should remove head from four item list', () => {
+		const testRemoveHeadFromEnd = removeNthFromEnd(createList().head, 4);
+		assert.strictEqual(testRemoveHeadFromEnd, '234');
+	});
+
+});
+
+describe('Remove middle', () => {
+
+	it('should remove middle item from six item list', () => {
+		const testRemoveMiddleFromEnd = removeNthFromEnd(createList([1, 2, 3, 4, 5, 6]).head, 4);
+		assert.strictEqual(testRemoveMiddleFromEnd, '12456');
+	});
+
+});
+
+describe('Remove tail', () => {
+
+	it('should remove tail from two item list', () => {
+		const testRemoveTailFromEnd = removeNthFromEnd(createList([1, 2]).head, 1);
+		assert.strictEqual(testRemoveTailFromEnd, '1');
+	});
+
 });
 
