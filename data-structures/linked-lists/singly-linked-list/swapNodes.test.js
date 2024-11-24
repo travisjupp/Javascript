@@ -12,32 +12,44 @@ const createList = (arr = ['A', 'B', 'C', 'D']) => {
 	return list;
 }
 
+// return list node data as a string
+const ltos = (list) => {
+	let result = '';
+	let item = list.head;
+	while (item) {
+		result += item.data;
+		item = item.next;
+	}
+	if (!result) return list;
+	return result;
+}
+
 // test swapNodes result
 describe('Swap first with last', () => {
 	it('should swap first node with last node of list', () => {
 		const testSwapFirstLast = swapNodes(createList(), 'A', 'D');
-		assert.strictEqual(testSwapFirstLast, 'DBCA');
+		assert.strictEqual(ltos(testSwapFirstLast), 'DBCA');
 	});
 });
 
 describe('Swap first with second', () => {
 	it('should swap first node with second of list', () => {
 		const testSwapFirstSecond = swapNodes(createList(), 'A', 'B');
-		assert.strictEqual(testSwapFirstSecond, 'BACD');
+		assert.strictEqual(ltos(testSwapFirstSecond), 'BACD');
 	});
 });
 
 describe('Swap data equal', () => {
 	it('should return "Data is equal"', () => {
 		const testSwapDataEqual = swapNodes(createList(), 'A', 'A');
-		assert.strictEqual(testSwapDataEqual, 'Data is equal');
+		assert.strictEqual(ltos(testSwapDataEqual), 'Data is equal');
 	});
 });
 
 describe('Swap node missing', () => {
 	it('should return "Missing data: element(s) do not exist"', () => {
 		const testSwapNodeMissing = swapNodes(createList(), 'A', 'X');
-		assert.strictEqual(testSwapNodeMissing, 'Missing data: element(s) do not exist');
+		assert.strictEqual(ltos(testSwapNodeMissing), 'Missing data: element(s) do not exist');
 	});
 });
 
