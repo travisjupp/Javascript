@@ -55,16 +55,7 @@ const swapNodes = (list, data1, data2) => {
 	node1.setNextNode(node2.getNextNode());
 	node2.setNextNode(temp);
 
-	list.printList();
-
-	// return result data as a string
-	let result = '';
-	let head = list.head;
-	while (head) {
-		result += head.data;
-		head = head.getNextNode();
-	}
-	return result;
+	return list;
 }
 
 module.exports = swapNodes;
