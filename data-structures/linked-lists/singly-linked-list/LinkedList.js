@@ -97,7 +97,7 @@ class LinkedList {
 			fast = fast.getNextNode();
 			if (fast) {
 				fast = fast.getNextNode();
-			  slow = slow.getNextNode();
+				slow = slow.getNextNode();
 			}
 		}
 		return slow;

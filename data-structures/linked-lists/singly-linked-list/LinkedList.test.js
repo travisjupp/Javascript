@@ -9,7 +9,7 @@ const createList = (arr = ['A', 'B', 'C', 'D']) => {
 		list.addToTail(el);
 	}
 	return list;
-} 
+}
 
 // test findMiddle result
 describe.only('Find middle', () => {
@@ -35,3 +35,4 @@ describe.only('Find middle', () => {
 	});
 
 });
+
