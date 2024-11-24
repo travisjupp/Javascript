@@ -93,16 +93,13 @@ class LinkedList {
 	findMiddle() {
 		let fast = this.head;
 		let slow = this.head;
-		let count = 0;	
 		while (fast) {
 			fast = fast.getNextNode();
 			if (fast) {
 				fast = fast.getNextNode();
 			  slow = slow.getNextNode();
 			}
-			count++;
 		}
-		console.log(slow);
 		return slow;
 	}
 
