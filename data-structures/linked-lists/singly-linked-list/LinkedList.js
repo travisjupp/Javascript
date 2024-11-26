@@ -3,7 +3,6 @@
 const Node = require('./Node');
 
 class LinkedList {
-
 	constructor() {
 		this.head = null;
 	}
@@ -69,7 +68,6 @@ class LinkedList {
 		if (node.getNextNode() === null) {
 			nodePrev.setNextNode(null);
 		}
-
 	}
 
 	nthLastNode(n) {

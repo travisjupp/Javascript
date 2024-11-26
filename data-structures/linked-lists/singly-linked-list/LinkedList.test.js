@@ -12,9 +12,9 @@ const createList = (arr = ['A', 'B', 'C', 'D']) => {
 }
 
 // test findMiddle result
-describe.only('Find middle', () => {
+describe('Find middle', () => {
 
-	it.only('should find middle item in four item list', () => {
+	it('should find middle item in four item list', () => {
 		const testFindMiddle = createList().findMiddle().data;
 		assert.strictEqual(testFindMiddle, 'C');
 	});
