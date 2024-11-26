@@ -14,18 +14,20 @@ const reverseList = (list) => {
 		}
 		curr.next = prev; // point current to previous
 		if (!nextTemp) {
-			// return result list as a string
-			let result = '';
-			while (curr) {
-				result += curr.data;
-				curr = curr.next;
-			}
-			return result;
+			list.head = curr;
+			return list;
 		}
 		prev = curr;
 		curr = nextTemp;
 	}
 }
 
-module.exports = reverseList;
 
+const list = new LinkedList();
+list.addToTail(1);
+list.addToTail(2);
+list.addToTail(3);
+
+reverseList(list);
+
+module.exports = reverseList;

@@ -13,9 +13,10 @@ const createList = (arr = ['A', 'B', 'C', 'D']) => {
 }
 
 // test reverseList result
-describe('Reverse nodes in list', () => {
-	it('should reverse all nodes in the list', () => {
+describe.only('Reverse nodes in list', () => {
+	it.only('should reverse all nodes in the list', () => {
 		const testReverseList = reverseList(createList());
-		assert.strictEqual(testReverseList, 'DCBA');
-	})
-})
+		assert.deepEqual(testReverseList, createList(['D','C','B','A']));
+	});
+});
+
