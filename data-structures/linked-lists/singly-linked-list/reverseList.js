@@ -7,19 +7,19 @@ const reverseList = (list) => {
 	let curr = list.head;
 	let next = curr.next;
 
-	while (curr) {
-		let nextTemp = next;  // save next for iterating *
-		if (next) {
-			next = next.next;   // setup next for next iteration **
-		}
-		curr.next = prev;     // point current to previous (swap) ***
-		if (!nextTemp) {      // end ******
-			list.head = curr;
-			return list;
-		}
-		prev = curr;          // setup prev for next iteration ****
-		curr = nextTemp;      // iterate *****
-	}
+  while (curr) {
+    let nextTemp = next;  // save next for iterating *
+    if (next) {
+      next = next.next;   // setup next for next iteration **
+    }
+    curr.next = prev;     // point current to previous (swap) ***
+    if (!nextTemp) {      // end ******
+      list.head = curr;
+      return list;
+    }
+    prev = curr;          // setup prev for next iteration ****
+    curr = nextTemp;      // iterate *****
+  }
 }
 
 //     (    start of loop     )    ( swap nodes )    ( setup next iter )
