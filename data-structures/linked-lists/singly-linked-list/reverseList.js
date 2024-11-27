@@ -7,19 +7,16 @@ const reverseList = (list) => {
   let curr = list.head;
   let next = curr.next;
 
-  while (curr) {
+  while (curr && next) {
     let nextTemp = next;  // save next for iterating *
-    if (next) {
-      next = next.next;   // setup next for next iteration **
-    }
+    next = next.next;     // setup next for next iteration **
     curr.next = prev;     // point current to previous (swap) ***
-    if (!nextTemp) {      // end ******
-      list.head = curr;
-      return list;
-    }
     prev = curr;          // setup prev for next iteration ****
     curr = nextTemp;      // iterate *****
   }
+  curr.next = prev;       // point last current to previous (swap) ******
+  list.head = curr;       // update list head with final node
+  return list;            // end
 }
 
 //     (    start of loop     )    ( swap nodes )    ( setup next iter )
@@ -35,6 +32,7 @@ const reverseList = (list) => {
 // *** reverse the pointer for the current node (swap nodes)
 // **** point to this when reversing the pointers
 // ***** move to next node in the sequence
+// ****** exited the loop before final node swap, swap now
 
 // visualize the (swap nodes) process:
 // A->B->C->D->n
