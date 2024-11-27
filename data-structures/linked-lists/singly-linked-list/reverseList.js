@@ -3,9 +3,9 @@
 const LinkedList = require('./LinkedList');
 
 const reverseList = (list) => {
-	let prev = null;
-	let curr = list.head;
-	let next = curr.next;
+  let prev = null;
+  let curr = list.head;
+  let next = curr.next;
 
   while (curr) {
     let nextTemp = next;  // save next for iterating *
