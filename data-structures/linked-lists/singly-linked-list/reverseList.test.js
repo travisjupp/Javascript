@@ -16,7 +16,15 @@ const createList = (arr = ['A', 'B', 'C', 'D']) => {
 describe.only('Reverse nodes in list', () => {
 	it.only('should reverse all nodes in the list', () => {
 		const testReverseList = reverseList(createList());
-		assert.deepEqual(testReverseList, createList(['D','C','B','A']));
+		assert.deepStrictEqual(testReverseList, createList(['D','C','B','A']));
+	});
+});
+
+describe.only('Linked list reference value', () => {
+	it.only('should return reference-equal list', () => {
+		const list = createList();
+		const testReverseListRef = reverseList(list);
+		assert.strictEqual(testReverseListRef, list);
 	});
 });
 
