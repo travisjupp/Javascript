@@ -1,12 +1,16 @@
 // Print node data to console
-// Usage: printNode('some ornery node' node, 'c') => A→B→C→D→n
+
+// Usage: 
+// const node = new Node(...);
+// printNode('MY NODE', node, 'c') => MY NODE A→B→C→D→n
+// printNode('POINT', curr, '☞', prev, 'h') => POINT C ☞ B
 
 const Node = require('./singly-linked-list/Node.js');
 
 function printNode () {
-	let opts;
+	let opts = '';
 	let res = '';
-
+	
 	// get options
 	for (arg in arguments) {
 		if (arguments[arg] === 'c') opts = 'c';
@@ -50,13 +54,12 @@ function printNode () {
 						if (!node.next) res += '\x1b[31mn \x1b[0m'; // append null
 						break;
 
-					case 'd':  // option: dim
+					case 'd': // option: dim
 						res += '\x1b[2m'+node.data+'\x1b[2m' + '\x1b[2m→\x1b[0m';
 						if (!node.next) res += '\x1b[2mn \x1b[0m'; // append null
 						break;
 
-          default:
-						// option: none (default)
+					default: // option: none (default)
 						res += node.data + '→';
 						if (!node.next) res += 'n ';
 				}

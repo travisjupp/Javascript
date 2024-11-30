@@ -1,7 +1,8 @@
 // Reverse a Singly-Linked List (dummy node)
 
 const util = require('util');
-util.inspect.defaultOptions.depth = null; // show complete objects
+// util.inspect.defaultOptions.depth = null; // show complete objects
+util.inspect.defaultOptions.depth = 0; // show truncated objects
 const d = require('../printNode');
 const Node = require('./Node');
 const LinkedList = require('./LinkedList');
