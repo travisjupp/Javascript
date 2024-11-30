@@ -20,17 +20,17 @@ const reverseListDummy = (list) => {
 		let nextTemp = curr.next; // B->C->D->n
 		d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
 
-		d('POINT', curr, '->', nextTemp.next, 'hc');
+		// d('POINT', curr, '->', nextTemp.next, 'hc');
 		curr.next = nextTemp.next; // point  A -> C
-		d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
+		// d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
 
-		d('POINT', nextTemp, '->', prev.next, 'hc');
+		// d('POINT', nextTemp, '->', prev.next, 'hc');
 		nextTemp.next = prev.next; // point B -> A
-		d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
+		// d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
 
-		d('POINT', prev, '->', nextTemp, 'hc');
+		// d('POINT', prev, '->', nextTemp, 'hc');
 		prev.next = nextTemp; // point 0 -> B
-		d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
+		// d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
 
 		console.log('-----------------------');
 	}

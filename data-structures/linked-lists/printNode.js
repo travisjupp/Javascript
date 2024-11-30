@@ -69,7 +69,26 @@ function printNode () {
 		}
 		if (arguments[arg] === null) res += 'n ';
 	}
-	console.log(res);
+	// console.log(res);
+	// console.log('res.length - 300', 300 - res.length);
+	// padding: padding - res.length / num nulls.  add result after n
+	console.log('========^=======');
+	let pcount = 0;
+let newRes = res;
+	while (JSON.stringify(newRes).replace(/\s*\\u001b\[\d*m/g, '').length < 50) {
+		// console.log(newRes);
+	newRes = res.replaceAll('\x1b[31mn \x1b[0m', '\x1b[31mn'.padEnd(pcount, '.')+' \x1b[0m');
+		pcount++
+	}
+	// console.log(res);
+	// console.log(JSON.stringify(res));
+	// console.log(JSON.stringify(res).replace(/\s*\\u001b\[\d*m/g, ''));
+	console.log(newRes);
+	// console.log(JSON.stringify(newRes));
+	// console.log('res.length', res.length, 'newRes.length', newRes.length);
+	console.log('========$=======');
+
+
 }
 
 module.exports = printNode;
