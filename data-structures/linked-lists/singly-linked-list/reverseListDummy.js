@@ -9,36 +9,37 @@ const LinkedList = require('./LinkedList');
 
 const reverseListDummy = (list) => {
 
-	const dummy = new Node(0);
-	dummy.next = list.head;
-	prev = dummy;
-	curr = list.head;
+  const dummy = new Node(0);
+  dummy.next = list.head;
+  prev = dummy;
+  curr = list.head;
 
-	console.log('-----------^-----------');
+  console.log('-----------^-----------');
 
-	while (curr && curr.next) {
-		let nextTemp = curr.next; // B->C->D->n
-		d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
+  while (curr && curr.next) {
+    let nextTemp = curr.next; // B->C->D->n
+    // d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
+    d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp);
 
-		// d('POINT', curr, '->', nextTemp.next, 'hc');
-		curr.next = nextTemp.next; // point  A -> C
-		// d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
+    // d('POINT', curr, '->', nextTemp.next, 'hc');
+    curr.next = nextTemp.next; // point  A -> C
+    // d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
 
-		// d('POINT', nextTemp, '->', prev.next, 'hc');
-		nextTemp.next = prev.next; // point B -> A
-		// d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
+    // d('POINT', nextTemp, '->', prev.next, 'hc');
+    nextTemp.next = prev.next; // point B -> A
+    // d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
 
-		// d('POINT', prev, '->', nextTemp, 'hc');
-		prev.next = nextTemp; // point 0 -> B
-		// d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
+    // d('POINT', prev, '->', nextTemp, 'hc');
+    prev.next = nextTemp; // point 0 -> B
+    // d('DUMMY', dummy, 'CURR', curr, 'NEXTTEMP', nextTemp, 'c');
 
-		console.log('-----------------------');
-	}
+    console.log('-----------------------');
+  }
 
-	console.log('-----------$-----------');
+  console.log('-----------$-----------');
 
-	list.head = dummy.next;
-	return list;
+  list.head = dummy.next;
+  return list;
 }
 
 // -----------^-----------
