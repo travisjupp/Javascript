@@ -48,7 +48,7 @@ class DoublyLinkedList {
     }
     return removedHead.data;
   }
-  
+
   removeTail() {
     const removedTail = this.tail;
     if (!removedTail) {
@@ -101,7 +101,6 @@ class DoublyLinkedList {
     console.log('\x1b[1m%s\x1b[0m',output);
   }
 }
-
 
 module.exports = DoublyLinkedList;
 
