@@ -4,6 +4,11 @@
 // const node = new Node(...);
 // printNode('MY NODE', node, 'c') => MY NODE A→B→C→D→n
 // printNode('POINT', curr, '☞', prev, 'h') => POINT C ☞ B
+//
+// h-rules (add padding to stretch): 
+// start:     printNode('^'); => _________^ 
+// iteration: printNode('i'); => _________N
+// end:       printNode('$'); => _________$
 
 const Node = require('./singly-linked-list/Node.js');
 
@@ -23,7 +28,9 @@ function printNode () {
 
   const optsArr = ['c', 'h', 'hc', 'd', '^', 'i', '$'];
   const optsOb = {};
-
+  let nodesArr = [];
+  
+  // is arg an option?
   function isOpt(checkArg) {
     for (let opts of optsArr) {
       if (checkArg === opts || /p\d+/.test(checkArg)) return true;
@@ -32,7 +39,7 @@ function printNode () {
   }
 
   let res = '';
-  let padAmnt = 10;
+  let padAmnt = 1;
 
   // get options
   for (arg in arguments) {
@@ -40,20 +47,20 @@ function printNode () {
     // store string args
     if (isOpt(arguments[arg])) optsOb[arguments[arg]] = true;
 
-    // padding
+    // padding (add padding: printNode('MY NODE', someNode, 'p3'))
     if (/p\d+/.test(arguments[arg])) {
       padAmnt = Number(arguments[arg].slice(1));
     }
   }
 
-  let padding = `\t`.padEnd(padAmnt, '\t');
+  let padding = ''.padEnd(padAmnt, '\t');
 
   for (arg in arguments) {
 
     // handle strings
     if (typeof arguments[arg] === 'string' &&
       !isOpt(arguments[arg])) {
-      res += arguments[arg] + ' ';
+      res += arguments[arg] + padding;
     };
 
     // find node and print
@@ -61,24 +68,32 @@ function printNode () {
       let node = arguments[arg];
 
       // style first item (head)
-      // let nodeData = '\x1b[1m'+node.data+'\x1b[0m';
       let nodeData = `${SGR.bold}${node.data}${SGR.reset}`;
       let firstItemFlag = true;
 
       while (node) {
 
+        // check circular
+        if (nodesArr.includes(node)) {
+          res += '[Circular]' + node.data + padding;
+          break;
+        };
+
+        // store node in array for next circular check
+        nodesArr.push(node);
+        
         // options
         switch (true) {
 
             // option: show head only
           case optsOb.h:
-            res += node.data + ' ';
+            res += node.data + padding;
             node = false; // break loop
             break;
 
             // option: show head only color
           case optsOb.hc:
-            res += nodeData + ' ';
+            res += nodeData + padding;
             node = false; // break loop
             break;
 
@@ -89,56 +104,46 @@ function printNode () {
             } else { // style following items
               res += `${SGR.dim}${node.data}→${SGR.reset}`
             }
-            if (!node.next) res += `${SGR.red}n ${SGR.reset}`; // append null
+            if (!node.next) res += `${SGR.red}n${padding}${SGR.reset}`; // append null
             break;
 
             // option: dim
           case optsOb.d:
             res += `${SGR.dim}${node.data}→${SGR.reset}`
-            if (!node.next) res += `${SGR.dim}n ${SGR.reset}` // append null
+            if (!node.next) res += `${SGR.dim}n${padding}${SGR.reset}` // append null
             break;
 
             // option: none (default)
           default:
             res += node.data + '→';
-            if (!node.next) res += 'n ';
+            if (!node.next) res += `n${padding}`;
         }
         firstItemFlag = false;
         node = node.next;
       }
+      nodesArr = []; // clear nodes array
+      // console.log(JSON.stringify(res).replace(/\s*\\u001b\[\d*m/g, ''));
     }
 
     // handle null
-    if (arguments[arg] === null && !optsOb['c'] && !optsOb['hc'] && !optsOb['h'] && !optsOb['d']) res += 'n ';
-    if (arguments[arg] === null && optsOb['c']) res += `${SGR.red}n ${SGR.reset}`;
-    if (arguments[arg] === null && optsOb['hc']) res += `${SGR.bold}${SGR.red}n ${SGR.reset}`;
-    if (arguments[arg] === null && optsOb['h']) res += `${SGR.bold}n ${SGR.reset}`;
-    if (arguments[arg] === null && optsOb['d']) res += `${SGR.dim}n ${SGR.reset}`;
+    if (arguments[arg] === null && !optsOb['c'] && !optsOb['hc'] && !optsOb['h'] && !optsOb['d']) res += `n${padding}`;
+    if (arguments[arg] === null && optsOb['c']) res += `${SGR.red}n${padding}${SGR.reset}`;
+    if (arguments[arg] === null && optsOb['hc']) res += `${SGR.bold}${SGR.red}n${padding}${SGR.reset}`;
+    if (arguments[arg] === null && optsOb['h']) res += `${SGR.bold}n${padding}${SGR.reset}`;
+    if (arguments[arg] === null && optsOb['d']) res += `${SGR.dim}n${padding}${SGR.reset}`;
 
     // handle h-rules: start, iteration, end
-    if (arguments[arg] === '^') res += `\x1b[21m${padding}\x1b[0m^\n`;
-    if (arguments[arg] === 'i') {res += `\x1b[4m${padding}\x1b[0m${count}\n`; count++;}
-    if (arguments[arg] === '$') res += `\x1b[21m${padding}\x1b[0m$\n`;
+    if (arguments[arg] === '^') res += `${SGR.dblUnderline}${padding}${SGR.reset}^\n`;
+    if (arguments[arg] === 'i') {res += `${SGR.underline}${padding}${SGR.reset}${SGR.dim}${count}${SGR.reset}\n`; count++;}
+    if (arguments[arg] === '$') res += `${SGR.dblUnderline}${padding}${SGR.reset}$\n`;
   }
 
-  // let pcount = 0;
   let newRes = res;
-  // let l = JSON.stringify(newRes).replace(/\s*\\u001b\[\d*m/g, '').length;
-  // let pad = Math.floor(l*1.2);
-
-  // while (l < pad) {
-  // while (false) {
-    // newRes = res.replaceAll(' ', '#'.padEnd(pcount, '#'));
-    // newRes = res.replaceAll(' ', ' '.padEnd(pcount, '\t'));
-    // console.log('pad', ' '.padEnd(6, ' '), 'afterpad');
-    // console.log(newRes);
-    // console.log(JSON.stringify(newRes));
-    // update length
-    // l = JSON.stringify(newRes).replace(/\s*\\u001b\[\d*m/g, '').length;
-    // pcount++
-  // }
+  // console.log('\x1bP2$t4/8/12/16/20/24/28/32/36\x1b\\'); // set tab stops
+  // console.log('0\t1\t2\t3\t4\t5\t6');
   console.log(newRes);
-  // console.log(optsOb);
+  // console.log('\x1bP2$t9/17/25/33/41/49/57/65/73\x1b\\'); // restore tab stops
+  // console.log('0\t1\t2\t3\t4\t5\t6');
 }
 
 module.exports = printNode;
