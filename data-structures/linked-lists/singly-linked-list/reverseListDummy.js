@@ -11,32 +11,50 @@ const reverseListDummy = (list) => {
 
   const dummy = new Node(0);
   dummy.next = list.head;
-  prev = dummy;
-  curr = list.head;
+  let curr = list.head;
+  let prev = dummy;
+  let next = null;
 
   d('^');
-
+// The head is stationary
   while (curr && curr.next) {
-    let next = curr.next; // B->C->D->n
-    d('DUMMY', dummy, 'CURR', curr, 'NEXT', next, 'c');
-    // d('DUMMY', dummy, 'CURR', curr, 'NEXT', next);
+  d('DUMMY', dummy, 'CURR', curr);
+  d('PREV', prev, 'NEXT', next);
+    d('\nstore next', 'd');
+    next = curr.next; // B->C->D->n
+    // d('DUMMY', dummy, 'd');
+    // d('CURR', curr, 'd');
+    // d('PREV', prev, 'd');
+    d('NEXT', next, 'c');
 
-    d('POINT', curr, '->', next.next, 'hc');
+    d('\norphan next (point curr -> next.next)', 'd');
     curr.next = next.next; // point  A -> C
-    d('DUMMY', dummy, '  CURR', curr, '  NEXT', next, 'c');
+    d('DUMMY', dummy, 'c');
+    d('CURR', curr, 'c');
+    d('PREV', prev, 'c');
+    // d('NEXT', next, 'd');
 
-    d('POINT', next, '->', prev.next, 'hc');
+    d('\npoint orphan -> curr (prev.next)', 'd');
     next.next = prev.next; // point B -> A
-    d('DUMMY', dummy, '  CURR', curr, '  NEXT', next, 'c');
+    // d('DUMMY', dummy, 'd');
+    // d('CURR', curr, 'd');
+    // d('PREV', prev, 'd');
+    d('NEXT', next, 'c');
 
-    d('POINT', prev, '->', next, 'hc');
+    d('\npoint prev -> next', 'd');
     prev.next = next; // point 0 -> B
-    d('DUMMY', dummy, 'CURR', curr, '  NEXT', next, 'c');
+    d('DUMMY', dummy, 'c');
+    // d('CURR', curr, 'd');
+    d('PREV', prev, 'c');
+    // d('NEXT', next, 'd');
 
     d('i');
   }
-  d('DUMMY', dummy, 'CURR', curr, 'c');
+
+  d('DUMMY', dummy, 'CURR', curr, 'd');
+  d('PREV', prev, 'NEXT', next, 'd');
   list.head = dummy.next;
+  d('=>', list.head);
   d('$');
   return list;
 }
@@ -61,7 +79,7 @@ list.addToTail('B');
 list.addToTail('C');
 list.addToTail('D');
 
-reverseListDummy(list);
+// reverseListDummy(list);
 
 module.exports = reverseListDummy;
 
