@@ -1,5 +1,9 @@
 // Reverse a Singly-Linked List
 
+const util = require('util');
+util.inspect.defaultOptions.depth = null; // show complete objects
+// util.inspect.defaultOptions.depth = 0; // show truncated objects
+const d = require('../printNode');
 const LinkedList = require('./LinkedList');
 
 const reverseList = (list) => {
@@ -7,15 +11,19 @@ const reverseList = (list) => {
   let curr = list.head;
   let next = curr.next;
 
+  d('^', 'p5');
   while (curr && next) {
+    d('PREV', prev, 'CURR', curr, 'NEXT', next, 'd');
     let nextTemp = next;  // save next for iterating *
     next = next.next;     // setup next for next iteration **
     curr.next = prev;     // point current to previous (swap) ***
     prev = curr;          // setup prev for next iteration ****
     curr = nextTemp;      // iterate *****
+    d('i', 'p5');
   }
   curr.next = prev;       // point last current to previous (swap) ******
   list.head = curr;       // update list head with final node
+  d('$', 'p5');
   return list;            // end
 }
 
