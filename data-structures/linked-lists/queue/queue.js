@@ -1,17 +1,42 @@
 // Queue
-const Node = require('../singly-linked-list/Node.js');
 const LinkedList = require('../singly-linked-list/LinkedList');
 
 class Queue {
 
-  constructor(maxLength = 4) {
-    this.list = new LinkedList();
-    this.length = 0;
+  constructor(maxSize = Infinity) {
+    this.queue = new LinkedList();
+    this.maxSize = maxSize;
+    this.size = 0;
   }
-  
+
+  isEmpty() {
+    return this.size === 0;
+  }
+
+  hasRoom() {
+    return this.size < this.maxSize;
+  }
+
   enqueue(data) {
-    this.list.addToTail(data);
+    if (this.hasRoom()) {
+      this.queue.addToTail(data);
+      this.size++;
+    } else {
+      throw Error('Queue is full!');
+    }
   }
+
+  dequeue() {
+    if (!this.isEmpty()) {
+      const data = this.queue.removeHead();
+      this.size++;
+      return data;
+    } else {
+      throw Error('Queue is empty!');
+    }
+  }
+
 }
 
 module.exports = Queue;
+

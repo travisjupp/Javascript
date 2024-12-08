@@ -2,6 +2,8 @@ const util = require('node:util');
 const {describe, it} = require('node:test');
 const Queue = require('./queue.js');
 const assert = require('node:assert');
+const d = require('../printNode.js');
+const LinkedList = require('../singly-linked-list/LinkedList.js');
 
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
@@ -9,11 +11,13 @@ util.inspect.defaultOptions.depth = null; // show full objects
 describe.only('Creates queue', () => {
   it.only('should create a 4 item queue', () => {
     const queue = new Queue();
-    queue.enqueue('A');
-    queue.enqueue('B');
-    queue.enqueue('C');
-    queue.enqueue('D');
-    console.log('queue', queue);
-   // assert.ok(true);
+    queue.enqueue('A'); queue.enqueue('B'); queue.enqueue('C'); queue.enqueue('D');
+    d(queue.queue.head);
+    const list = new LinkedList(); 
+    list.addToTail('A'); list.addToTail('B'); list.addToTail('C'); list.addToTail('D');
+    assert.deepStrictEqual(queue.queue, list);
   });
 });
+
+
+
