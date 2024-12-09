@@ -163,6 +163,7 @@ function printNode () {
 
   let newRes = res;
   // console.log('\x1bP2$t18/35/52/69/86/103/120/137/154\x1b\\'); // set tab stops
+  // console.log('\x1bP2$t2/5/9/13/17/21/25/29/33\x1b\\'); // set tab stops
   // console.log('0\t1\t2\t3\t4\t5\t6');
   console.log(newRes);
   // console.log(JSON.stringify(newRes));

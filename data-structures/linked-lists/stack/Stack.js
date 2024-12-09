@@ -9,7 +9,6 @@ class Stack {
     this.size = 0;
   }
 
-  // Add helper methods below this line
   hasRoom() {
     return this.size < this.maxSize;
   }
