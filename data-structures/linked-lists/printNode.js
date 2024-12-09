@@ -9,6 +9,8 @@
 // start:     printNode('^'); => _________^
 // iteration: printNode('i'); => _________N
 // end:       printNode('$'); => _________$
+
+"use strict";
 const process = require('node:process');
 const Node = require('./singly-linked-list/Node.js');
 
@@ -44,7 +46,7 @@ function printNode () {
   let padAmnt = 1;
 
   // get options
-  for (arg in arguments) {
+  for (const arg in arguments) {
 
     // store string args
     if (isOpt(arguments[arg])) optsOb[arguments[arg]] = true;
@@ -58,7 +60,7 @@ function printNode () {
   let padding = ''.padEnd(padAmnt, '\t');
   let hrPadding = '─'.repeat(process.stdout.columns - 1);
 
-  for (arg in arguments) {
+  for (const arg in arguments) {
 
     // handle strings
     if (typeof arguments[arg] === 'string' &&
