@@ -1,5 +1,5 @@
 // Queue
-const LinkedList = require('../singly-linked-list/LinkedList');
+const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
 
 class Queue {
 
