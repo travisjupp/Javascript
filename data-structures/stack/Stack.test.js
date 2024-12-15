@@ -2,8 +2,8 @@ const util = require('node:util');
 const {describe, it} = require('node:test');
 const Stack = require('./Stack.js');
 const assert = require('node:assert');
-const d = require('../printNode.js');
-const LinkedList = require('../singly-linked-list/LinkedList');
+const d = require('../linked-lists/printNode.js');
+const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
 
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects

@@ -1,6 +1,6 @@
 // Singly Linked List: Stack
 
-const LinkedList = require('../singly-linked-list/LinkedList');
+const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
 
 class Stack {
   constructor(maxSize = Infinity) {
