@@ -24,7 +24,7 @@ const reverseListDummyII = (list) => {
   while (curr) {
     d('store next', 'd');
     next = curr.next; d('NEXT',next, 'c');  // next: B->C->D->n
-    
+
     d('point curr -> prev (dummy)', 'd');
     curr.next = prev; d('CURR', curr, 'c'); // curr: A->0->[C]A
 
@@ -32,7 +32,7 @@ const reverseListDummyII = (list) => {
     prev = curr; d('PREV', prev, 'c'); // prev: A->0->[C]A
 
     d('iterate', 'd');
-    curr = next; d('CURR', curr); // curr: B->C->D->n 
+    curr = next; d('CURR', curr); // curr: B->C->D->n
 
     d('i', 'p5');
   }
