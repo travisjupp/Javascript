@@ -13,7 +13,7 @@ describe.only('HashMap', () => {
 
   it.only('should create a 3 item HashMap', () => {
     const threeItemHashmap = new HashMap(3);
-    assert.ok(threeItemHashmap.hashmap.length === 3);
+    assert.equal(threeItemHashmap.hashmap.length, 3);
   });
 
   it.only('should have 3 linked lists', () => {
@@ -26,20 +26,21 @@ describe.only('HashMap', () => {
   it.only('should have 3 linked lists with null', () => {
     const threeItemHashmap = new HashMap(3);
     for (const el of threeItemHashmap.hashmap) {
-      assert.ok(el.head === null);
+      assert.equal(el.head, null);
     }
   });
 
   it.only('should create a hash key', () => {
     const threeItemHashmap = new HashMap(3);
-    assert.ok(threeItemHashmap.hash('someKey') === 2);
+    assert.equal(threeItemHashmap.hash('someKey'), 2);
   });
 
   it.only('should assign an item to the HashMap', () => {
     const threeItemHashmap = new HashMap(3);
     threeItemHashmap.assign('someKey', 'someVal');
     const {key, value} = threeItemHashmap.hashmap[2].head.data;
-    assert.ok(key === 'someKey' && value === 'someVal');
+    assert.equal(key, 'someKey');
+    assert.equal(value, 'someVal');
   });
 
   it.only('should avoid collisions with separate chaining', () => {
@@ -51,7 +52,7 @@ describe.only('HashMap', () => {
     threeItemHashmap.assign('someNewKey', 'someNewVal');
     const linkedList = threeItemHashmap.hashmap[2];
     // next node is 'someNewKey'?
-    assert.ok(linkedList.head.next.data.key === 'someNewKey');
+    assert.equal(linkedList.head.next.data.key, 'someNewKey');
   });
 
   it.only('should update values for items with same key', () => {
@@ -69,7 +70,7 @@ describe.only('HashMap', () => {
     const threeItemHashmap = new HashMap(3);
     threeItemHashmap.assign('someKey', 'someVal');
     const {key, value} = threeItemHashmap.hashmap[2].head.data;
-    assert.ok(threeItemHashmap.retrieve(key) === value);
+    assert.equal(threeItemHashmap.retrieve(key), value);
   });
 
 });
