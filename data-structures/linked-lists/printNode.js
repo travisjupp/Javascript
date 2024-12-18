@@ -58,7 +58,7 @@ function printNode () {
   }
 
   let padding = ''.padEnd(padAmnt, '\t');
-  let hrPadding = '─'.repeat(process.stdout.columns - 1);
+  // let hrPadding = '─'.repeat(process.stdout.columns - 1);
 
   for (const arg in arguments) {
 
@@ -135,7 +135,11 @@ function printNode () {
     }
 
     // handle null
-    if (arguments[arg] === null && !optsOb['c'] && !optsOb['hc'] && !optsOb['h'] && !optsOb['d']) res += `n${padding}`;
+    if (arguments[arg] === null &&
+      !optsOb['c'] &&
+      !optsOb['hc'] &&
+      !optsOb['h'] &&
+      !optsOb['d']) res += `n${padding}`;
 
     if (arguments[arg] === null && optsOb['c']) res += `${SGR.red}n${padding}${SGR.reset}`;
 
@@ -146,19 +150,19 @@ function printNode () {
     if (arguments[arg] === null && optsOb['d']) res += `${SGR.dim}n${padding}${SGR.reset}`;
 
     // handle h-rules: start, iteration, end
+    // to stretch to width of screen, add to zshrc -> export COLUMNS=$(tput cols)
     if (arguments[arg] === '^') res +=
-      `${'═'.repeat(process.stdout.columns - 1)}${SGR.dim}^${SGR.reset}`;
-      // `${SGR.dblUnderline}${hrPadding}${SGR.reset}${SGR.invert}^${SGR.reset}\n`;
+      // `${'═'.repeat(process.stdout.columns - 1)}${SGR.dim}^${SGR.reset}`;
+      `${'═'.repeat(process.env.COLUMNS - 1)}${SGR.dim}^${SGR.reset}\n`;
 
     if (arguments[arg] === 'i') {res +=
-      `${'─'.repeat(process.stdout.columns - 2)}${SGR.dim}↑${count}${SGR.reset}`
-        // `${SGR.underline}${hrPadding}${SGR.reset}${SGR.dim}${count}↑${SGR.reset}\n`;
+      // `${'─'.repeat(process.stdout.columns - 2)}${SGR.dim}↑${count}${SGR.reset}\n`
+      `${'─'.repeat(process.env.COLUMNS - 3)}${SGR.dim}↑${count}${SGR.reset}\n`
       count++;}
 
     if (arguments[arg] === '$') res +=
-      `${'═'.repeat(process.stdout.columns - 1)}${SGR.dim}$${SGR.reset}`
-
-      // `${SGR.dblUnderline}${hrPadding}${SGR.reset}${SGR.invert}$${SGR.reset}\n`;
+      // `${'═'.repeat(process.stdout.columns - 1)}${SGR.dim}$${SGR.reset}`
+      `${'═'.repeat(process.env.COLUMNS - 1)}${SGR.dim}$${SGR.reset}\n`
   }
 
   let newRes = res;
