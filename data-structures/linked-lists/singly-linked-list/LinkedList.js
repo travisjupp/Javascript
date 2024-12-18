@@ -1,11 +1,16 @@
 // Singly Linked List
 
 const Node = require('./Node');
+const printNode = require('../printNode');
 
 class LinkedList {
   constructor() {
     this.head = null;
   }
+
+  printNode(...data) {
+    return printNode(...data);
+  };
 
   addToHead(data) {
     const newHead = new Node(data); // new node from data

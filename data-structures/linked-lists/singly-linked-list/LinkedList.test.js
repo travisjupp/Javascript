@@ -36,3 +36,16 @@ describe('Find middle', () => {
 
 });
 
+// describe('Remove node', () => {
+//   it('should remove specified node', () => {
+//     const testRemoveNode = createList(['fish']);
+//     console.log(testRemoveNode);
+//   });
+// });
+
+describe.only('Print node', () => {
+  it.only('should print list using `printNode` method', () => {
+    const linkedList = createList();
+    linkedList.printNode('^', 'i', '$', linkedList.head, 'hc');
+  });
+});
