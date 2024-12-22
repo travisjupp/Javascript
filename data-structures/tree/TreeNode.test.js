@@ -1,6 +1,6 @@
-const assert = require('node:assert');
-const {describe, it} = require('node:test');
-const TreeNode = require('./TreeNode.js');
+import {describe, it} from 'node:test';
+import assert from 'node:assert';
+import TreeNode from './TreeNode.js';
 
 // test TreeNode
 describe.only('TreeNode', () => {

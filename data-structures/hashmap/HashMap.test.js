@@ -1,7 +1,7 @@
-const assert = require('node:assert/strict');
-const {describe, it} = require('node:test');
-const HashMap = require('./HashMap');
-const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
+import assert from 'node:assert';
+import {describe, it} from 'node:test';
+import HashMap from './HashMap.js';
+import LinkedList from '../linked-lists/singly-linked-list/LinkedList.js';
 
 // test HashMap result
 describe.only('HashMap', () => {

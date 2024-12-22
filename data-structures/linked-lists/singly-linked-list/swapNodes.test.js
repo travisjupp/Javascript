@@ -1,7 +1,7 @@
-const assert = require('node:assert/strict');
-const {describe, it} = require('node:test');
-const swapNodes = require('./swapNodes');
-const LinkedList = require('./LinkedList');
+import assert from 'node:assert/strict';
+import {describe, it} from 'node:test';
+import swapNodes from './swapNodes.js';
+import LinkedList from './LinkedList.js';
 
 // list generator
 const createList = (arr = ['A', 'B', 'C', 'D']) => {

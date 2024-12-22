@@ -1,9 +1,9 @@
-const util = require('node:util');
-const {describe, it} = require('node:test');
-const Queue = require('./Queue.js');
-const assert = require('node:assert');
-const d = require('../linked-lists/printNode.js');
-const LinkedList = require('../linked-lists/singly-linked-list/LinkedList.js');
+import util from 'node:util';
+import assert from 'node:assert/strict';
+import {describe, it} from 'node:test';
+import Queue from './Queue.js';
+import d from '../linked-lists/printNode.js';
+import LinkedList from '../linked-lists/singly-linked-list/LinkedList.js';
 
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
@@ -18,6 +18,4 @@ describe.only('Creates queue', () => {
     assert.deepStrictEqual(queue.queue, list);
   });
 });
-
-
 

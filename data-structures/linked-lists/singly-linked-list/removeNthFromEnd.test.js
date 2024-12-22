@@ -1,7 +1,7 @@
-const assert = require('node:assert/strict');
-const {describe, it} = require('node:test');
-const LinkedList = require('./LinkedList');
-const removeNthFromEnd = require('./removeNthFromEnd');
+import assert from 'node:assert/strict';
+import {describe, it} from 'node:test';
+import LinkedList from './LinkedList.js';
+import removeNthFromEnd from './removeNthFromEnd.js';
 
 // list generator
 const createList = (arr = [1, 2, 3, 4]) => {

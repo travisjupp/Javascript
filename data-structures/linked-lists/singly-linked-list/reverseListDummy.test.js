@@ -1,8 +1,8 @@
-const assert = require('node:assert/strict');
-const {describe, it} = require('node:test');
-const reverseListDummy = require('./reverseListDummy');
-const reverseListDummyII = require('./reverseListDummyII');
-const LinkedList = require('./LinkedList');
+import assert from 'node:assert/strict';
+import {describe, it} from 'node:test';
+import reverseListDummy from './reverseListDummy.js';
+import reverseListDummyII from './reverseListDummyII.js';
+import LinkedList from './LinkedList.js';
 
 // list generator
 const createList = (arr = ['A', 'B', 'C', 'D']) => {
