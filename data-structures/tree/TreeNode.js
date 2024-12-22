@@ -28,7 +28,7 @@ class TreeNode {
       this.children.forEach(child => {
         child.removeChild(childToRemove);
       });
-    } 
+    }
   }
 
   print(level = 0) {
@@ -69,5 +69,6 @@ tree.depthFirstTraversal();
 tree.breadthFirstTraversal();
 // tree.removeChild('x');
 
-module.exports = TreeNode;
+
+export default TreeNode;
 

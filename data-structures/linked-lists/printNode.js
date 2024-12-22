@@ -11,8 +11,10 @@
 // end:       printNode('$'); => _________$
 
 "use strict";
-const process = require('node:process');
-const Node = require('./singly-linked-list/Node.js');
+// const process = require('node:process');
+import process from 'node:process';
+// const Node = require('./singly-linked-list/Node.js');
+import Node from './singly-linked-list/Node.js';
 
 let count = 0;
 
@@ -175,5 +177,5 @@ function printNode () {
   // console.log('0\t1\t2\t3\t4\t5\t6');
 }
 
-module.exports = printNode;
+export default printNode;
 

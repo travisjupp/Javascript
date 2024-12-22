@@ -47,5 +47,5 @@ const removeNthFromEnd = (head, n) => {
   return result;
 }
 
-module.exports = removeNthFromEnd;
+export default removeNthFromEnd;
 

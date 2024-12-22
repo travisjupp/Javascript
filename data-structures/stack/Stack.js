@@ -1,6 +1,7 @@
 // Singly Linked List: Stack
 
-const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
+// const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
+import LinkedList from '../linked-lists/singly-linked-list/LinkedList.js';
 
 class Stack {
   constructor(maxSize = Infinity) {
@@ -46,5 +47,5 @@ class Stack {
 
 }
 
-module.exports = Stack;
+export default Stack;
 

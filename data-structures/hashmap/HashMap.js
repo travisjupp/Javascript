@@ -1,7 +1,9 @@
 // HashMap
 
-const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
-const Node = require('../linked-lists/singly-linked-list/Node');
+// const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
+import LinkedList from '../linked-lists/singly-linked-list/LinkedList.js';
+// const Node = require('../linked-lists/singly-linked-list/Node');
+import Node from '../linked-lists/singly-linked-list/Node.js';
 
 class HashMap {
   constructor(size = 0) {
@@ -53,4 +55,4 @@ class HashMap {
   }
 }
 
-module.exports = HashMap;
+export default HashMap;

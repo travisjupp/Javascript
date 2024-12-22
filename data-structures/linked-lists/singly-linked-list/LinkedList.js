@@ -1,7 +1,9 @@
 // Singly Linked List
 
-const Node = require('./Node');
-const printNode = require('../printNode');
+// const Node = require('./Node');
+import Node from './Node.js';
+// const printNode = require('../printNode');
+import printNode from '../printNode.js';
 
 class LinkedList {
   constructor() {
@@ -118,5 +120,4 @@ class LinkedList {
   }
 }
 
-module.exports = LinkedList;
-
+export default LinkedList;

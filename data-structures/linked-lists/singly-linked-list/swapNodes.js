@@ -1,6 +1,7 @@
 // Swap Nodes in a Singly-Linked List
 
-const LinkedList = require('./LinkedList');
+// const LinkedList = require('./LinkedList');
+import LinkedList from './LinkedList.js';
 
 const swapNodes = (list, data1, data2) => {
   let node1 = list.head;
@@ -58,5 +59,5 @@ const swapNodes = (list, data1, data2) => {
   return list;
 }
 
-module.exports = swapNodes;
+export default swapNodes;
 

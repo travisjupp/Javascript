@@ -1,11 +1,16 @@
 // Reverse a Singly-Linked List (dummy node)
 
-const util = require('util');
+// const util = require('util');
+import util from 'util';
 // util.inspect.defaultOptions.depth = null; // show complete objects
 util.inspect.defaultOptions.depth = 0; // show truncated objects
-const d = require('../printNode');
-const Node = require('./Node');
-const LinkedList = require('./LinkedList');
+// const d = require('../printNode');
+// const d = require('../printNode');
+import d from '../printNode.js';
+// const Node = require('./Node');
+import Node from './Node.js';
+// const LinkedList = require('./LinkedList');
+import LinkedList from './LinkedList.js';
 
 const reverseListDummy = (list) => {
 
@@ -81,5 +86,5 @@ list.addToTail('D');
 
 // reverseListDummy(list);
 
-module.exports = reverseListDummy;
+export default reverseListDummy;
 
