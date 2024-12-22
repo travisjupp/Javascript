@@ -1,7 +1,6 @@
 // Print node data to console
 
 // Usage:
-// const node = new Node(...);
 // printNode('MY NODE', node, 'c') => MY NODE A→B→C→D→n
 // printNode('POINT', curr, '☞', prev, 'h') => POINT C ☞ B
 //
@@ -11,9 +10,7 @@
 // end:       printNode('$'); => _________$
 
 "use strict";
-// const process = require('node:process');
 import process from 'node:process';
-// const Node = require('./singly-linked-list/Node.js');
 import Node from './singly-linked-list/Node.js';
 
 let count = 0;

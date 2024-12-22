@@ -1,5 +1,4 @@
 // Queue
-// const LinkedList = require('../linked-lists/singly-linked-list/LinkedList');
 import LinkedList from '../linked-lists/singly-linked-list/LinkedList.js';
 
 class Queue {

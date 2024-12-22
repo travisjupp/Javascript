@@ -1,14 +1,11 @@
 
 // Reverse a Singly-Linked List (dummy node II)
 
-// const util = require('util');
 import util from 'util';
 util.inspect.defaultOptions.depth = null; // show complete objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
 import d from '../printNode.js';
-// const Node = require('./Node');
 import Node from './Node.js';
-// const LinkedList = require('./LinkedList');
 import LinkedList from './LinkedList.js';
 
 const reverseListDummyII = (list) => {

@@ -1,8 +1,6 @@
 // Singly Linked List
 
-// const Node = require('./Node');
 import Node from './Node.js';
-// const printNode = require('../printNode');
 import printNode from '../printNode.js';
 
 class LinkedList {

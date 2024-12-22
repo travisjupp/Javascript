@@ -1,6 +1,5 @@
 // Swap Nodes in a Singly-Linked List
 
-// const LinkedList = require('./LinkedList');
 import LinkedList from './LinkedList.js';
 
 const swapNodes = (list, data1, data2) => {
