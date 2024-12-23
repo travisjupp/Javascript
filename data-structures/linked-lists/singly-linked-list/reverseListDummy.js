@@ -73,13 +73,6 @@ const reverseListDummy = (list) => {
 // DUMMY 0→D→C→B→A→n CURR A→n
 // -----------------------
 // -----------$-----------
-const list = new LinkedList();
-list.addToTail('A');
-list.addToTail('B');
-list.addToTail('C');
-list.addToTail('D');
-
-// reverseListDummy(list);
 
 export default reverseListDummy;
 

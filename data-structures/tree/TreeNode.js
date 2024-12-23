@@ -69,6 +69,5 @@ tree.depthFirstTraversal();
 tree.breadthFirstTraversal();
 // tree.removeChild('x');
 
-
 export default TreeNode;
 

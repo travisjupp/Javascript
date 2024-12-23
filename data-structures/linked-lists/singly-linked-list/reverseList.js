@@ -52,13 +52,5 @@ const reverseList = (list) => {
 // [n<-A<-B<-C]<-D
 // which ultimately results in: D->C->B->A->n
 
-const list = new LinkedList();
-list.addToTail('A');
-list.addToTail('B');
-list.addToTail('C');
-list.addToTail('D');
-
-reverseList(list);
-
 export default reverseList;
 

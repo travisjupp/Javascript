@@ -47,13 +47,5 @@ const reverseListDummyII = (list) => {
   return list;
 }
 
-const list = new LinkedList();
-list.addToTail('A');
-list.addToTail('B');
-list.addToTail('C');
-list.addToTail('D');
-
-// reverseListDummyII(list);
-
 export default reverseListDummyII;
 
