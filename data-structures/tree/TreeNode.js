@@ -51,19 +51,5 @@ class TreeNode {
   }
 }
 
-const tree = new TreeNode(1);
-tree.addChild(15);
-const node = new TreeNode(30);
-tree.addChild(node);
-console.log('tree', tree, '\n\n\n');
-tree.removeChild(15);
-console.log('tree', tree, '\n\n\n');
-tree.removeChild(node);
-console.log('tree', tree, '\n\n\n');
-tree.print();
-tree.depthFirstTraversal();
-tree.breadthFirstTraversal();
-// tree.removeChild('x');
-
 export default TreeNode;
 
