@@ -1,5 +1,5 @@
 {
-  "name": "find-your-hat",
+  "name": "find-your-hat-solution",
   "version": "1.0.0",
   "description": "A terminal maze-solving game.",
   "main": "main.js",
