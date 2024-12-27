@@ -5,12 +5,42 @@
   "description": "",
   "main": "",
   "jest": {
-    "verbose": false
+    "verbose": false,
+    "watchman": false,
+    "collectCoverage": false,
+    "transform": {
+      "^.+\\.(js|jsx|tsx)$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(svg)$": "<rootDir>/__mocks__/svgTransform.js"
+    }
   },
   "scripts": {
-  "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-  "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@svgr/cli": "^8.1.0",
+    "@testing-library/react": "^16.1.0",
+    "babel-jest": "^29.7.0",
+    "jest-transform-stub": "^2.0.0",
+    "react-markdown": "^9.0.1",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1",
+    "react-test-renderer": "^19.0.0"
+  }
 }
