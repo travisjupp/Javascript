@@ -59,7 +59,6 @@ describe('TreeNode', () => {
     assert.ok(!tree.children.length);
   });
 
-
   it('should remove a child (node)', () => {
     const tree = new TreeNode(1);
     const node = new TreeNode(15);
