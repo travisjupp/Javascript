@@ -5,6 +5,8 @@ import {jest} from '@jest/globals';
 // suppress jests tracing console logs
 import console from 'console';
 const jestConsole = console;
+beforeEach(() => { global.console = console; });
+afterEach(() => { global.console = jestConsole; });
 
 const randNum = () => {
   return Math.floor(Math.random() * 20);
@@ -21,16 +23,9 @@ const buildTree = (arg) => {
   return tree;
 }
 
+
 // test TreeNode
 describe('TreeNode', () => {
-  // suppress jests tracing console logs
-  beforeEach(() => {
-    global.console = console;
-  });
-
-  afterEach(() => {
-    global.console = jestConsole;
-  });
 
   it('should create a tree node', () => {
     const tree = new TreeNode(1);
