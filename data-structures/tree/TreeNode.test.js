@@ -1,4 +1,4 @@
-import {describe, it} from 'node:test';
+// import {describe, it} from 'node:test';
 import assert from 'node:assert';
 import TreeNode from './TreeNode.js';
 import {jest} from '@jest/globals';
@@ -62,7 +62,7 @@ describe('TreeNode', () => {
     assert.ok(!tree.children.length);
   });
 
-  test('should traverse the tree by depth', () => {
+  it('should traverse the tree by depth', () => {
     const consoleSpy = jest.spyOn(console, 'log');
     const tree = buildTree(2);
     tree.depthFirstTraversal();

@@ -13,8 +13,10 @@ afterEach(() => { global.console = jestConsole; });
 import MinHeap from './MinHeap.js';
 
 describe('MinHeap', () => {
-  test('should create a minheap', () => {
-    const minheap = new MinHeap(1);
+  it('should create a minheap', () => {
+    const minheap = new MinHeap();
+    minheap.add(1);
+    console.log(minheap);
     assert.ok(minheap);
   });
 });

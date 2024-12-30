@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict';
-import {describe, it} from 'node:test';
+// import {describe, it} from 'node:test';
 import reverseListDummy from './reverseListDummy.js';
 import reverseListDummyII from './reverseListDummyII.js';
 import LinkedList from './LinkedList.js';
-
+import {jest} from '@jest/globals';
+// suppress jests tracing console logs
+import console from 'console';
+const jestConsole = console;
+beforeEach(() => { global.console = console; });
+afterEach(() => { global.console = jestConsole; });
 // list generator
 const createList = (arr = ['A', 'B', 'C', 'D']) => {
   const list = new LinkedList();
@@ -21,8 +26,8 @@ describe('Reverse nodes in 4 item list (dummy node)', () => {
   });
 });
 
-describe.only('Reverse nodes in 2 item list (dummy node)', () => {
-  it.only('should reverse all nodes in the list (dummy node)', () => {
+describe('Reverse nodes in 2 item list (dummy node)', () => {
+  it('should reverse all nodes in the list (dummy node)', () => {
     const testReverseListDummy = reverseListDummy(createList(['A','B']));
     assert.deepStrictEqual(testReverseListDummy, createList(['B','A']));
   });

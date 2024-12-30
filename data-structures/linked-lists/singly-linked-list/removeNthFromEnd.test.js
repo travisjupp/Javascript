@@ -1,7 +1,13 @@
 import assert from 'node:assert/strict';
-import {describe, it} from 'node:test';
+// import {describe, it} from 'node:test';
+import {jest} from '@jest/globals';
 import LinkedList from './LinkedList.js';
 import removeNthFromEnd from './removeNthFromEnd.js';
+// suppress jests tracing console logs
+import console from 'console';
+const jestConsole = console;
+beforeEach(() => { global.console = console; });
+afterEach(() => { global.console = jestConsole; });
 
 // list generator
 const createList = (arr = [1, 2, 3, 4]) => {

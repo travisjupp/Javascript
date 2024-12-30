@@ -1,7 +1,13 @@
 import assert from 'node:assert';
-import {describe, it} from 'node:test';
+// import {describe, it} from 'node:test';
 import HashMap from './HashMap.js';
+import {jest} from '@jest/globals';
 import LinkedList from '../linked-lists/singly-linked-list/LinkedList.js';
+// suppress jests tracing console logs
+import console from 'console';
+const jestConsole = console;
+beforeEach(() => { global.console = console; });
+afterEach(() => { global.console = jestConsole; });
 
 // test HashMap result
 describe.only('HashMap', () => {
@@ -54,6 +60,7 @@ describe.only('HashMap', () => {
     // next node is 'someNewKey'?
     assert.equal(linkedList.head.next.data.key, 'someNewKey');
   });
+
 
   it.only('should update values for items with same key', () => {
     const threeItemHashmap = new HashMap(3);
