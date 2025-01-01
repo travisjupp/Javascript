@@ -27,7 +27,20 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch"
   },
-  "author": "",
+  "prettier": {
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "arrowParens": "avoid",
+    "bracketSpacing": false,
+    "bracketSameLine": false,
+    "experimentalTernaries": true,
+    "semi": true,
+    "useTabs": false,
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "printWidth": 80
+  },
+  "author": "tjupp",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.26.4",
