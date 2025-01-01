@@ -152,7 +152,7 @@ function printNode () {
     // to stretch to width of screen, add to zshrc -> export COLUMNS=$(tput cols)
     if (arguments[arg] === '^') res +=
       // `${'═'.repeat(process.stdout.columns - 1)}${SGR.dim}^${SGR.reset}`;
-      `${'═'.repeat(process.env.COLUMNS - 1)}${SGR.dim}^${SGR.reset}\n`;
+      `\n${'═'.repeat(process.env.COLUMNS - 1)}${SGR.dim}^${SGR.reset}\n`;
 
     if (arguments[arg] === 'i') {res +=
       // `${'─'.repeat(process.stdout.columns - 2)}${SGR.dim}↑${count}${SGR.reset}\n`
