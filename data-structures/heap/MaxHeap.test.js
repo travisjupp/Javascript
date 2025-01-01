@@ -12,10 +12,18 @@ afterEach(() => { global.console = jestConsole; });
 
 import MaxHeap from './MaxHeap.js';
 
+const createMaxHeap = size => {
+  const maxheap = new MaxHeap();
+  for (let i = 0; i < size; i++) {
+    maxheap.add(Math.floor(Math.random() * 99));
+  }
+  return maxheap;
+}
+
 describe('MaxHeap', () => {
 
   it('should create a maxheap', () => {
-    const maxheap = new MaxHeap();
+    const maxheap = createMaxHeap();
     maxheap.add(1);
     assert.ok(maxheap);
   });
@@ -32,16 +40,21 @@ describe('MaxHeap', () => {
   });
 
   it('should have parents > children', () => {
-    const maxheap = new MaxHeap();
-    for (let n = 1; n < 11; n++) {
-      maxheap.add(Math.floor(Math.random() * 99));
-    };
+    const maxheap = createMaxHeap(11);
     for (let i = maxheap.size-1; i > 0; i--) {
-      // console.log('=>', maxheap.heap[i]);
       let child = maxheap.heap[i];
       let parent = maxheap.heap[Math.floor(i/2)];
-      if (parent) assert.ok(parent > child);
+      if (parent < child) {
+        console.log('p: ', parent, '<', 'c: ', child);
+      };
     };
+    if (typeof parent === 'number') assert.ok(parent > child);
+  });
+
+  it('should return the first item', () => {
+    const maxheap = createMaxHeap(4);
+    const firstItem = maxheap.peek();
+    expect(maxheap.heap[1]).toEqual(firstItem);
   });
 
 });

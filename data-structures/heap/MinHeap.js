@@ -6,7 +6,7 @@ class MinHeap {
 
   popMin() {
     if (this.size === 0) {
-      return null 
+      return null
     }
     const min = this.heap[1];
     this.swap(1, this.size);
@@ -22,9 +22,14 @@ class MinHeap {
     this.bubbleUp();
   }
 
+  peek() {
+    return this.size ? this.heap[1] : null;
+  }
+
   bubbleUp() {
     let current = this.size;
-    while (current > 1 && this.heap[getParent(current)] > this.heap[current]) {
+    while (current > 1 &&
+      this.heap[getParent(current)] > this.heap[current]) {
       this.swap(current, getParent(current));
       current = getParent(current);
     }
@@ -38,8 +43,7 @@ class MinHeap {
     while (this.canSwap(current, leftChild, rightChild)) {
       // Only compare left & right if they both exist
       if (this.exists(leftChild) && this.exists(rightChild)) {
-
-        // Make sure to swap with the smaller of the two children
+        // Swap with the smaller of the two children
         if (this.heap[leftChild] < this.heap[rightChild]) {
           this.swap(current, leftChild);
           current = leftChild;
@@ -48,7 +52,7 @@ class MinHeap {
           current = rightChild;
         }
       } else {
-        // If only one child exist, always swap with the left
+        // If only one child exists, always swap with the left
         this.swap(current, leftChild);
         current = leftChild;
       }
@@ -64,8 +68,10 @@ class MinHeap {
   canSwap(current, leftChild, rightChild) {
     // Check that one of the possible swap conditions exists
     return (
-      this.exists(leftChild) && this.heap[current] > this.heap[leftChild]
-      || this.exists(rightChild) && this.heap[current] > this.heap[rightChild]
+      this.exists(leftChild) &&
+      this.heap[current] > this.heap[leftChild] ||
+      this.exists(rightChild) &&
+      this.heap[current] > this.heap[rightChild]
     );
   }
 

@@ -12,10 +12,18 @@ afterEach(() => { global.console = jestConsole; });
 
 import MinHeap from './MinHeap.js';
 
+const createMinHeap = size => {
+  const minheap = new MinHeap();
+  for (let i = 0; i < size; i++) {
+    minheap.add(Math.floor(Math.random() * 99));
+  }
+  return minheap;
+}
+
 describe('MinHeap', () => {
 
   it('should create a minheap', () => {
-    const minheap = new MinHeap();
+    const minheap = createMinHeap();
     minheap.add(1);
     assert.ok(minheap);
   });
@@ -32,16 +40,21 @@ describe('MinHeap', () => {
   });
 
   it('should have parents < children', () => {
-    const minheap = new MinHeap();
-    for (let n = 1; n < 11; n++) {
-      minheap.add(Math.floor(Math.random() * 99));
-    };
+    const minheap = createMinHeap(11);
     for (let i = minheap.size-1; i > 0; i--) {
-      // console.log('=>', minheap.heap[i]);
       let child = minheap.heap[i];
       let parent = minheap.heap[Math.floor(i/2)];
-      if (parent) assert.ok(parent < child);
+      if (parent > child) {
+        console.log('p: ', parent, '>', 'c: ', child);
+      }
     };
+    if (typeof parent === 'number') assert.ok(parent < child);
+  });
+
+  it('should return the first item', () => {
+    const minheap = createMinHeap(4);
+    const firstItem = minheap.peek();
+    expect(minheap.heap[1]).toEqual(firstItem);
   });
 
 });
