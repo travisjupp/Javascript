@@ -9,7 +9,7 @@ class MinHeap {
       return null 
     }
     const min = this.heap[1];
-    this.heap[1] = this.heap[this.size];
+    this.swap(1, this.size);
     this.heap.pop();
     this.size--;
     this.heapify();
