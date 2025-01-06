@@ -28,6 +28,14 @@ describe('Graph', () => {
     expect(g.vertices[0]).toBeInstanceOf(Vertex);
   });
 
+  it('should remove a Vertex', () => {
+    const g = new Graph();
+    const vtx1 = g.addVertex('vtx1');
+    expect(g.vertices[0]).toBeInstanceOf(Vertex);
+    g.removeVertex(vtx1);
+    expect(g.vertices[0]).toBeUndefined();
+  });
+
   it('should add an Edge', () => {
     const g = new Graph();
     const vtx1 = g.addVertex('vtx1');
@@ -35,6 +43,28 @@ describe('Graph', () => {
     g.addEdge(vtx1, vtx2);
     expect(vtx1.edges[0]).toBeInstanceOf(Edge);
     expect(vtx2.edges[0]).toBeInstanceOf(Edge);
+  });
+
+  it('should remove an Edge', () => {
+    const g = new Graph();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    g.addEdge(vtx1, vtx2);
+    expect(vtx1.edges[0]).toBeInstanceOf(Edge);
+    expect(vtx2.edges[0]).toBeInstanceOf(Edge);
+    g.removeEdge(vtx1, vtx2);
+    expect(vtx1.edges[0]).toBeUndefined();
+    expect(vtx2.edges[0]).toBeUndefined();
+  });
+
+  it('should add a weighted Edge', () => {
+    const g = new Graph(true);
+    expect(g.isWeighted).toBeTruthy();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    g.addEdge(vtx1, vtx2, 200);
+    expect(vtx1.edges[0].weight).toBe(200);
+    expect(vtx2.edges[0].weight).toBe(200);
   });
 
 });

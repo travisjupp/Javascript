@@ -6,9 +6,9 @@ class Vertex {
     this.edges = [];
   }
 
-  addEdge(vtx) {
+  addEdge(vtx, weight) {
     if (vtx instanceof Vertex) {
-      this.edges.push(new Edge(this, vtx));
+      this.edges.push(new Edge(this, vtx, weight));
     } else {
       throw Error('Edge start and end must both be Vertex');
     }

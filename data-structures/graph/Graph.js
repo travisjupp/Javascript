@@ -2,8 +2,9 @@ import Edge from './Edge.js';
 import Vertex from './Vertex.js';
 
 class Graph {
-  constructor() {
+  constructor(isWeighted = false) {
     this.vertices = [];
+    this.isWeighted = isWeighted;
   }
 
   addVertex(data) {
@@ -16,10 +17,11 @@ class Graph {
     this.vertices = this.vertices.filter(v => v !== vtx);
   }
 
-  addEdge(vtx1, vtx2) {
+  addEdge(vtx1, vtx2, weight) {
+    const edgeWeight = this.isWeighted ? weight : null;
     if (vtx1 instanceof Vertex && vtx2 instanceof Vertex) {
-      vtx1.addEdge(vtx2);
-      vtx2.addEdge(vtx1);
+      vtx1.addEdge(vtx2, edgeWeight);
+      vtx2.addEdge(vtx1, edgeWeight);
     } else {
       throw Error('Expected Vertex arguments.');
     }
