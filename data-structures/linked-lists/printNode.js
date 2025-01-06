@@ -17,6 +17,7 @@ let count = 0;
 
 function printNode () {
 
+  // Select Graphic Rendition
   const SGR = {
     reset: '\x1b[0m',
     bold: '\x1b[1m',
