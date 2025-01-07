@@ -2,9 +2,10 @@ import Edge from './Edge.js';
 import Vertex from './Vertex.js';
 
 class Graph {
-  constructor(isWeighted = false) {
+  constructor(isWeighted = false, isDirected = false) {
     this.vertices = [];
     this.isWeighted = isWeighted;
+    this.isDirected = isDirected;
   }
 
   addVertex(data) {
@@ -21,7 +22,9 @@ class Graph {
     const edgeWeight = this.isWeighted ? weight : null;
     if (vtx1 instanceof Vertex && vtx2 instanceof Vertex) {
       vtx1.addEdge(vtx2, edgeWeight);
-      vtx2.addEdge(vtx1, edgeWeight);
+      if (!this.isDirected) {
+        vtx2.addEdge(vtx1, edgeWeight);
+      }
     } else {
       throw Error('Expected Vertex arguments.');
     }
@@ -30,7 +33,9 @@ class Graph {
   removeEdge(vtx1, vtx2) {
     if (vtx1 instanceof Vertex && vtx2 instanceof Vertex) {
       vtx1.removeEdge(vtx2);
-      vtx2.removeEdge(vtx1);
+      if (!this.isDirected) {
+        vtx2.removeEdge(vtx1);
+      }
     } else {
       throw Error('Expected Vertex arguments.');
     }

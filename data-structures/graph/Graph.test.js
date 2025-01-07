@@ -67,5 +67,32 @@ describe('Graph', () => {
     expect(vtx2.edges[0].weight).toBe(200);
   });
 
+  it('should create a directed Graph', () => {
+    const g = new Graph(false, true);
+    expect(g.isDirected).toBeTruthy();
+  });
+
+  it('should add edge to a directed Graph', () => {
+    const g = new Graph(false, true);
+    expect(g.isDirected).toBeTruthy();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    g.addEdge(vtx1, vtx2);
+    expect(vtx1.edges[0]).toBeTruthy();
+    expect(vtx2.edges[0]).toBeFalsy();
+  });
+
+  it('should remove edge from a directed Graph', () => {
+    const g = new Graph(false, true);
+    expect(g.isDirected).toBeTruthy();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    g.addEdge(vtx1, vtx2);
+    expect(vtx1.edges[0]).toBeTruthy();
+    expect(vtx2.edges[0]).toBeFalsy();
+    g.removeEdge(vtx1, vtx2);
+    expect(vtx1.edges[0]).toBeFalsy();
+  });
+
 });
 
