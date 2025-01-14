@@ -4,7 +4,7 @@ const formatNumber = number => {
     // convert num to string, remove decimals
     let numStr = String(Math.floor(number));
     // iterate from end of str adding commas for every 3rd num
-    loopCount = 0;
+    let loopCount = 0;
     for (let i = numStr.length - 3; i > 0; i -= 3) {
         loopCount++;
         console.log('----------', loopCount);
