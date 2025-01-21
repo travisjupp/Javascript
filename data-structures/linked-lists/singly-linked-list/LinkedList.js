@@ -93,6 +93,16 @@ class LinkedList {
     return current;
   }
 
+  findNode(data) {
+    let current = this.head;
+    while (current) {
+      if (current.data === data)
+        return current;
+      current = current.next;
+    }
+    return null;
+  }
+
   findMiddle() {
     let fast = this.head;
     let slow = this.head;
