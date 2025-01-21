@@ -93,12 +93,23 @@ class LinkedList {
     return current;
   }
 
-  findNode(data) {
+  findNodeIteratively(data) {
     let current = this.head;
     while (current) {
       if (current.data === data)
         return current;
       current = current.next;
+    }
+    return null;
+  }
+
+  findNodeRecursively(data, currentNode = this.head) {
+    if (currentNode === null) {
+      return null;
+    } else if (currentNode.data === data) {
+      return currentNode;
+    } else {
+      return this.findNodeRecursively(data, currentNode.next);
     }
     return null;
   }

@@ -54,23 +54,32 @@ describe('Find middle', () => {
 
 });
 
-// describe('Remove node', () => {
-//   it('should remove specified node', () => {
-//     const testRemoveNode = createList(['fish']);
-//     console.log(testRemoveNode);
-//   });
-// });
-
 describe('Find node', () => {
   describe('iteratively', () => {
     it('should find the specified node', () => {
       const list = createList();
-      expect(list.head.next.next).toStrictEqual(list.findNode('C'));
+      expect(list.head.next.next)
+        .toStrictEqual(list.findNodeIteratively('C'));
     });
 
     it('should return null', () => {
       const list = createList();
-      expect(list.findNode('X')).toBeNull();
+      expect(list.findNodeIteratively('X'))
+        .toBeNull();
+    });
+  });
+
+  describe('recursively', () => {
+    it('should find the specified node', () => {
+      const list = createList();
+      expect(list.head.next.next)
+        .toStrictEqual(list.findNodeRecursively('C'));
+    });
+
+    it('should return null', () => {
+      const list = createList();
+      expect(list.findNodeRecursively('X'))
+        .toBeNull();
     });
   });
 });
