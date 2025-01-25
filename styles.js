@@ -23,10 +23,10 @@ const style = {
     single: `\n${'─'.repeat(process.env.COLUMNS - 1)}`
   },
   color(r,g,b) {
-    return g === undefined ? `\x1b[38:5:${r}m` : `\x1b[38:2:${r}:${g}:${b}m`;
+    return g === undefined ? `\x1b[38;5;${r}m` : `\x1b[38;2;${r};${g};${b}m`;
   },
   bgColor(r,g,b) {
-    return g === undefined ? `\x1b[48:5:${r}m` : `\x1b[48:2:${r}:${g}:${b}m`;
+    return g === undefined ? `\x1b[48;5;${r}m` : `\x1b[48;2;${r};${g};${b}m`;
   },
 }
 
