@@ -2,13 +2,21 @@
 import assert from 'node:assert/strict';
 import {jest} from '@jest/globals';
 import util from 'node:util';
+import {style} from '/users/travisjupp/Javascript/styles.js';
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
 // suppress jests tracing console logs
 import console from 'console';
 const jestConsole = console;
-beforeEach(() => { global.console = console; });
-afterEach(() => { global.console = jestConsole; });
+
+beforeEach(() => {
+    global.console = console;
+    console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); });
+
+afterEach(() => {
+    global.console = jestConsole;
+    console.log(style.color(99), style.hr.double, style.reset);
+});
 
 import MaxHeap from './MaxHeap.js';
 
@@ -41,6 +49,7 @@ describe('MaxHeap', () => {
 
   it('should have parents > children', () => {
     const maxheap = createMaxHeap(11);
+    console.log(maxheap);
     for (let i = maxheap.size-1; i > 0; i--) {
       let child = maxheap.heap[i];
       let parent = maxheap.heap[Math.floor(i/2)];

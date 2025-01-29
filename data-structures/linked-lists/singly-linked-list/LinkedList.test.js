@@ -85,7 +85,7 @@ describe('Find node', () => {
 });
 
 describe('Print node', () => {
-  it.skip('should print list using `printNode` method', () => {
+  it('should print list using `printNode` method', () => {
     const linkedList = createList();
     linkedList.printNode('^', 'i', '$',);
     linkedList.printNode(linkedList.head);
@@ -93,5 +93,6 @@ describe('Print node', () => {
     linkedList.printNode(linkedList.head, 'h');
     linkedList.printNode(linkedList.head, 'hc');
     linkedList.printNode(linkedList.head, 'd');
+    linkedList.printList();
   });
 });

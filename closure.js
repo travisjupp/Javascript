@@ -47,6 +47,7 @@ function object(object) {
     }
   }
 }
+
 const color = object('cube');
 let size = color('blue');
 console.log(size('large')); // => large blue cube
