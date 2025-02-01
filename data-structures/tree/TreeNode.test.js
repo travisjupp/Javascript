@@ -12,10 +12,10 @@ const randNum = () => {
   return Math.floor(Math.random() * 20);
 }
 
-const buildTree = (arg) => {
+const buildTree = (size) => {
   const tree = new TreeNode(1);
 
-  for (let i = 0; i < arg; i++) {
+  for (let i = 0; i < size; i++) {
     tree.addChild('c'+ i); 
     tree.children[i].addChild('gc'+ i);
     tree.children[i].children[0].addChild('ggc' + i);
