@@ -20,7 +20,7 @@ const merge = (leftArray, rightArray) => {
       sortedArray.push(rightArray.shift());
     }
   }
-
+console.log(sortedArray, leftArray, rightArray);
   return sortedArray.concat(leftArray).concat(rightArray);
 }
 
