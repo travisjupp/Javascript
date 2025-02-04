@@ -46,7 +46,7 @@ As the recursion unfurls, previous `mergeSort` calls await with the previous `me
 >
 > You may want to comment out console logs  
 > --dev-tools ingore-list may be useless:  
-> ```sed
+> ```zsh
 > # uncomment line containing 'console':  
 > sed -i '.bak' 's,\(console.*\),\/\/ \1,g' getX.js
 >
