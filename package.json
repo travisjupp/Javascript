@@ -25,7 +25,8 @@
   },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch"
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "showConfig": "jest --show-config | bat -l json"
   },
   "prettier": {
     "singleQuote": true,
