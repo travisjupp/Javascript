@@ -7,7 +7,6 @@ util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
 // dont wrap long arrays
 util.inspect.defaultOptions.compact = true;
-// util.inspect.defaultOptions.compact = false;
 
 // suppress jests tracing console logs
 import console from 'console';
@@ -26,10 +25,11 @@ afterEach(() => {
 describe('quickSort', () => {
   it('should sort an array incrementally', () => {
     // console.log(quickSort([3, 2, 7, 9], 0, 3));
-    console.log(quickSort([12, 92, 45, 3, 92, 72, 89], 0, 6));
-    console.log({key: 'val', key2: 2, key3: 'three'});
-  });
+    // console.log(quickSort([3, 1, 4, 2, 8, 9], 0, 5));
+    // console.log(util.inspect(quickSort([12, 92, 45, 3, 92, 72, 89], 0, 6), {}));
+    console.log(quickSort([1]));
 
+  });
 });
 
 
