@@ -41,7 +41,7 @@
     "tabWidth": 2,
     "printWidth": 80
   },
- "author": "tjupp",
+  "author": "tjupp",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.26.4",
