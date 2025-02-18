@@ -94,5 +94,17 @@ describe('Graph', () => {
     expect(vtx1.edges[0]).toBeFalsy();
   });
 
+  it('should complete depth first traversal', () => {
+    const g = new Graph();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    const vtx3 = g.addVertex('vtx3');
+    g.addEdge(vtx1, vtx2);
+    g.addEdge(vtx2, vtx3);
+    // g.print();
+    console.log(vtx1);
+    g.depthFirstTraversal(vtx1, (vtx) => console.log(vtx.data));
+  });
+
 });
 

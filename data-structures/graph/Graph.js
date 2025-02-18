@@ -40,7 +40,19 @@ class Graph {
       throw Error('Expected Vertex arguments.');
     }
   }
-
+  
+  depthFirstTraversal(startVtx, cb, visited=[startVtx]) {
+    cb(startVtx);
+    startVtx.edges.forEach(edge => {
+      const neighbor = edge.end;
+      if (!visited.includes(neighbor)) {
+        visited.push(neighbor);
+        this.depthFirstTraversal(neighbor, cb, visited);
+      }
+    });
+    
+  }
+  
   print() {
     this.vertices.forEach(v => v.print());
   }
