@@ -29,7 +29,7 @@ class Queue {
   dequeue() {
     if (!this.isEmpty()) {
       const data = this.queue.removeHead();
-      this.size++;
+      this.size--;
       return data;
     } else {
       throw Error('Queue is empty!');
