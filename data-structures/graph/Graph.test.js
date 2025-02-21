@@ -3,10 +3,13 @@ import assert from 'node:assert/strict';
 import {jest} from '@jest/globals';
 import util from 'node:util';
 import {style} from '/users/travisjupp/Javascript/styles.js';
-util.inspect.defaultOptions.depth = null; // show full objects
+// util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
-util.inspect.defaultOptions.compact = true; // dont break objects to new lines
+// util.inspect.defaultOptions.depth = 1; // show truncated objects
+// util.inspect.defaultOptions.breakLength = 30;
+// util.inspect.defaultOptions.compact = true; // dont break objects to new lines
 // util.inspect.defaultOptions.compact = false; // break objects to new lines
+
 // suppress jests tracing console logs
 import console from 'console';
 const jestConsole = console;
@@ -104,25 +107,42 @@ describe('Graph', () => {
     expect(vtx1.edges[0]).toBeFalsy();
   });
 
-  it.skip('should complete depth first traversal', () => {
-    const g = new Graph();
-    const vtx1 = g.addVertex('vtx1');
-    const vtx2 = g.addVertex('vtx2');
-    const vtx3 = g.addVertex('vtx3');
-    g.addEdge(vtx1, vtx2);
-    g.addEdge(vtx2, vtx3);
-    g.depthFirstTraversal(vtx1, (vtx) => console.log(vtx.data));
-  });
-
   it('should complete depth first traversal', () => {
     const g = new Graph(true, false);
-    const vtx1 = g.addVertex('vtx1');
-    const vtx2 = g.addVertex('vtx2');
-    const vtx3 = g.addVertex('vtx3');
-    g.addEdge(vtx1, vtx2);
-    g.addEdge(vtx2, vtx3);
+    const vtxStart = g.addVertex('vtxStart');
+    const vtxA = g.addVertex('vtxA');
+    const vtxB = g.addVertex('vtxB');
+    const vtxC = g.addVertex('vtxC');
+    g.addEdge(vtxStart, vtxA);
+    g.addEdge(vtxStart, vtxB);
+    g.addEdge(vtxStart, vtxC);
+    g.addEdge(vtxA, vtxC);
+    g.addEdge(vtxB, vtxC);
+    g.addEdge(vtxC, vtxB);
     g.print();
-    g.breadthFirstTraversal(vtx1);
+    const dftResult = [];
+    g.depthFirstTraversal(vtxStart, (vtx) => dftResult.push(vtx.data));
+    expect(dftResult).toStrictEqual(['vtxStart', 'vtxA', 'vtxC', 'vtxB']);
   });
+
+  it('should complete breadth first traversal', () => {
+    const g = new Graph(true, false);
+    const vtxStart = g.addVertex('vtxStart');
+    const vtxA = g.addVertex('vtxA');
+    const vtxB = g.addVertex('vtxB');
+    const vtxC = g.addVertex('vtxC');
+    g.addEdge(vtxStart, vtxA);
+    g.addEdge(vtxStart, vtxB);
+    g.addEdge(vtxStart, vtxC);
+    g.addEdge(vtxA, vtxC);
+    g.addEdge(vtxB, vtxC);
+    g.addEdge(vtxC, vtxB);
+    g.print();
+    const dftResult = [];
+    g.breadthFirstTraversal(vtxStart, (vtx) => dftResult.push(vtx.data));
+    expect(dftResult).toStrictEqual(['vtxStart', 'vtxA', 'vtxB', 'vtxC']);
+  });
+
 });
+
 

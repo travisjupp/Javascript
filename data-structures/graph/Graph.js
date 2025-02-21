@@ -53,13 +53,13 @@ class Graph {
     });
   }
 
-  breadthFirstTraversal(startVtx) {
+  breadthFirstTraversal(startVtx, cb) {
     const visitedVertices = [startVtx];
     const visitQueue = new Queue();
     visitQueue.enqueue(startVtx);
     while (!visitQueue.isEmpty()) {
       const current = visitQueue.dequeue();
-      console.log(current.data);
+      cb(current);
       current.edges.forEach(edge => {
         const neighbor = edge.end;
         if (!visitedVertices.includes(neighbor)) {

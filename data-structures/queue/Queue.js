@@ -35,7 +35,11 @@ class Queue {
       throw Error('Queue is empty!');
     }
   }
-
+  
+  print() {
+    console.log('print queue');
+    return this.queue.printList();
+  }
 }
 
 export default Queue;

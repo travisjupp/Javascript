@@ -5,6 +5,13 @@ import util from 'node:util';
 import {style} from '/users/travisjupp/Javascript/styles.js';
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
+// util.inspect.defaultOptions.depth = null; // show full objects
+// util.inspect.defaultOptions.depth = 0; // show truncated objects
+// util.inspect.defaultOptions.depth = 1; // show truncated objects
+// util.inspect.defaultOptions.breakLength = 30;
+util.inspect.defaultOptions.compact = true; // dont break objects to new lines
+// util.inspect.defaultOptions.compact = false; // break objects to new lines
+
 // suppress jests tracing console logs
 import console from 'console';
 const jestConsole = console;
