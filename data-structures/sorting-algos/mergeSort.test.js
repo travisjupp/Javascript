@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {jest} from '@jest/globals';
 import util from 'node:util';
-import {style} from '/users/travisjupp/Javascript/styles.js';
+import {style} from '../../styles.js';
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
 // util.inspect.defaultOptions.depth = null; // show full objects
@@ -18,12 +18,12 @@ const jestConsole = console;
 import mergeSort from './mergeSort';
 
 beforeEach(() => {
-    global.console = console;
-    console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); });
+  global.console = console;
+  console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); });
 
 afterEach(() => {
-    global.console = jestConsole;
-    console.log(style.color(99), style.hr.double, style.reset);
+  global.console = jestConsole;
+  console.log(style.color(99), style.hr.double, style.reset);
 });
 
 describe('mergeSort', () => {

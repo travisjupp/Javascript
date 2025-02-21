@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {jest} from '@jest/globals';
 import util from 'node:util';
-import {style} from '/users/travisjupp/Javascript/styles.js';
+import {style} from '../styles.js';
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
 util.inspect.defaultOptions.compact = true; // dont break objects to new lines
@@ -24,24 +24,37 @@ afterEach(() => {
 });
 describe('sortedArrayToBST', () => {
   it('should convert array to height-balanced BST', () => {
-    const bt = sortedArrayToBST([-10, -3, 0, 5, 9]);
-    expect(BSTToArray(bt)).toStrictEqual([0, -3, 9, -10, null, 5])
+    const arr = [-10, -3, 0, 5, 9];
+    const res = [0, -3, 9, -10, null, 5];
+    const bt = sortedArrayToBST(arr);
+    console.log(arr, '->', BSTToArray(bt));
+    expect(BSTToArray(bt)).toStrictEqual(res);
   });
 
   it('should convert two-item array to height-balanced BST', () => {
-    const bt = sortedArrayToBST([1, 3]);
-    expect(BSTToArray(bt)).toStrictEqual([3, 1])
+    const arr = [1, 3];
+    const res = [3, 1];
+    const bt = sortedArrayToBST(arr);
+    console.log(arr, '->', BSTToArray(bt));
+    expect(BSTToArray(bt)).toStrictEqual(res)
   });
 
   it('should convert three-item array to height-balanced BST', () => {
-    const bt = sortedArrayToBST([2, 3, 4]);
-    expect(BSTToArray(bt)).toStrictEqual([3, 2, 4])
+    const arr = [2, 3, 4];
+    const res = [3, 2, 4];
+    const bt = sortedArrayToBST(arr);
+    console.log(arr, '->', BSTToArray(bt));
+    expect(BSTToArray(bt)).toStrictEqual(res)
   });
 
   it('should convert five-item array to height-balanced BST', () => {
-    const bt = sortedArrayToBST([-12, -1, 0, 4, 998]);
-    expect(BSTToArray(bt)).toStrictEqual([0,-1,998,-12,null,4])
+    const arr = [-12, -1, 0, 4, 998];
+    const res = [0,-1,998,-12,null,4];
+    const bt = sortedArrayToBST(arr);
+    console.log(arr, '->', BSTToArray(bt));
+    expect(BSTToArray(bt)).toStrictEqual(res)
   });
+
 });
 
 

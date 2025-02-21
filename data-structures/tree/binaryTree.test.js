@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {jest} from '@jest/globals';
 import util from 'node:util';
-import {style} from '/users/travisjupp/Javascript/styles.js';
+import {style} from '../../styles.js';
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
 // util.inspect.defaultOptions.compact = true; // dont break objects to new lines

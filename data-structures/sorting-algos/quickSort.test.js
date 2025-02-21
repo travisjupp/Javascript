@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {jest} from '@jest/globals';
 import util from 'node:util';
-import {style} from '/users/travisjupp/Javascript/styles.js';
+import {style} from '../../styles.js';
 util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
 // dont wrap long arrays
@@ -24,12 +24,26 @@ afterEach(() => {
 
 describe('quickSort', () => {
   it('should sort an array incrementally', () => {
-    // console.log(quickSort([3, 2, 7, 9], 0, 3));
-    // console.log(quickSort([3, 1, 4, 2, 8, 9], 0, 5));
-    // console.log(util.inspect(quickSort([12, 92, 45, 3, 92, 72, 89], 0, 6), {}));
-    console.log(quickSort([1]));
-
+    const arr = [3, 2, 7, 9];
+    console.log(arr);
+    expect(quickSort(arr, 0, 3)).toStrictEqual([2, 3, 7, 9]);
+    console.log(arr);
   });
+
+  it('should sort a sub-array incrementally', () => {
+    const arr = [3, 1, 4, 2, 8, 9];
+    console.log(arr);
+    expect(quickSort(arr, 0, 2)).toStrictEqual([1, 3, 4, 2, 8, 9]);
+    console.log(arr);
+  });
+
+  it('should sort a one-item-array incrementally', () => {
+    const arr = [1];
+    console.log(arr);
+    expect(quickSort(arr)).toStrictEqual([1]);
+    console.log(arr);
+  });
+
 });
 
 
