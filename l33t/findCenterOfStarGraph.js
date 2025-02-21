@@ -36,3 +36,5 @@ var findCenter = function (edges) {
     }
     return edges[0][1];
 };
+
+export default findCenter;
