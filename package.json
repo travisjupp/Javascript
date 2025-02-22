@@ -5,6 +5,10 @@
   "description": "",
   "main": "",
   "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.js"
+    ],
     "verbose": false,
     "watchman": false,
     "collectCoverage": false,
@@ -20,8 +24,20 @@
       "node"
     ],
     "moduleNameMapper": {
-      "^.+\\.(svg)$": "<rootDir>/__mocks__/svgTransform.js"
+      "^.+\\.(svg)$": "<rootDir>/__mocks__/svgTransform.js",
+      "^.+\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      [
+        "@babel/preset-react",
+        {
+          "runtime": "automatic"
+        }
+      ]
+    ]
   },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
@@ -50,10 +66,13 @@
     "@babel/preset-react": "^7.26.3",
     "@reduxjs/toolkit": "^2.5.0",
     "@svgr/cli": "^8.1.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "jest-transform-stub": "^2.0.0",
+    "jsdom": "^26.0.0",
     "react-markdown": "^9.0.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.1",
