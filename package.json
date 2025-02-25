@@ -6,9 +6,6 @@
   "main": "",
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest-setup.js"
-    ],
     "verbose": false,
     "watchman": false,
     "collectCoverage": false,
@@ -42,6 +39,8 @@
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "test:inspect": "NODE_OPTIONS=\"--experimental-vm-modules --inspect-brk=127.0.0.1:0\" jest --watch",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "showConfig": "jest --show-config | bat -l json"
   },
   "prettier": {
