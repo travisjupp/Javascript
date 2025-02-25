@@ -27,64 +27,86 @@ import Edge from './Edge.js';
 import Vertex from './Vertex.js';
 
 describe('Graph', () => {
-  it.skip('should render a Graph', () => {
+  it('should render a Graph', () => {
     const g = new Graph();
     expect(g).toBeTruthy();
     expect(g).toBeInstanceOf(Graph);
     expect(g.vertices).toBeInstanceOf(Array);
+    console.log(g);
   });
 
-  it.skip('should add a Vertex', () => {
+  it('should add a Vertex', () => {
     const g = new Graph();
     const vtx1 = g.addVertex('vtx1');
+    console.log(g);
     expect(g.vertices[0]).toBeInstanceOf(Vertex);
   });
 
-  it.skip('should remove a Vertex', () => {
+  it('should remove a Vertex', () => {
     const g = new Graph();
     const vtx1 = g.addVertex('vtx1');
+    console.log(g);
     expect(g.vertices[0]).toBeInstanceOf(Vertex);
     g.removeVertex(vtx1);
+    console.log(g);
     expect(g.vertices[0]).toBeUndefined();
   });
 
-  it.skip('should add an Edge', () => {
+  it('should add an Edge', () => {
     const g = new Graph();
     const vtx1 = g.addVertex('vtx1');
     const vtx2 = g.addVertex('vtx2');
+    vtx1.print();
     g.addEdge(vtx1, vtx2);
+    vtx1.print();
     expect(vtx1.edges[0]).toBeInstanceOf(Edge);
     expect(vtx2.edges[0]).toBeInstanceOf(Edge);
   });
 
-  it.skip('should remove an Edge', () => {
+  it('should remove an Edge', () => {
     const g = new Graph();
     const vtx1 = g.addVertex('vtx1');
     const vtx2 = g.addVertex('vtx2');
     g.addEdge(vtx1, vtx2);
     expect(vtx1.edges[0]).toBeInstanceOf(Edge);
     expect(vtx2.edges[0]).toBeInstanceOf(Edge);
+    vtx1.print();
     g.removeEdge(vtx1, vtx2);
+    vtx1.print();
     expect(vtx1.edges[0]).toBeUndefined();
     expect(vtx2.edges[0]).toBeUndefined();
   });
 
-  it.skip('should add a weighted Edge', () => {
+  it('should add a weighted Edge', () => {
     const g = new Graph(true);
     expect(g.isWeighted).toBeTruthy();
     const vtx1 = g.addVertex('vtx1');
     const vtx2 = g.addVertex('vtx2');
     g.addEdge(vtx1, vtx2, 200);
+    vtx1.print();
     expect(vtx1.edges[0].weight).toBe(200);
     expect(vtx2.edges[0].weight).toBe(200);
   });
 
-  it.skip('should create a directed Graph', () => {
+  it('should create a directed Graph', () => {
     const g = new Graph(false, true);
     expect(g.isDirected).toBeTruthy();
+    console.log(g);
   });
 
-  it.skip('should add edge to a directed Graph', () => {
+  it('should add edge to a directed Graph', () => {
+    const g = new Graph(false, true);
+    expect(g.isDirected).toBeTruthy();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    vtx1.print();
+    g.addEdge(vtx1, vtx2);
+    vtx1.print();
+    expect(vtx1.edges[0]).toBeTruthy();
+    expect(vtx2.edges[0]).toBeFalsy();
+  });
+
+  it('should remove edge from a directed Graph', () => {
     const g = new Graph(false, true);
     expect(g.isDirected).toBeTruthy();
     const vtx1 = g.addVertex('vtx1');
@@ -92,46 +114,19 @@ describe('Graph', () => {
     g.addEdge(vtx1, vtx2);
     expect(vtx1.edges[0]).toBeTruthy();
     expect(vtx2.edges[0]).toBeFalsy();
-  });
-
-  it.skip('should remove edge from a directed Graph', () => {
-    const g = new Graph(false, true);
-    expect(g.isDirected).toBeTruthy();
-    const vtx1 = g.addVertex('vtx1');
-    const vtx2 = g.addVertex('vtx2');
-    g.addEdge(vtx1, vtx2);
-    expect(vtx1.edges[0]).toBeTruthy();
-    expect(vtx2.edges[0]).toBeFalsy();
+    vtx1.print();
     g.removeEdge(vtx1, vtx2);
+    vtx1.print();
     expect(vtx1.edges[0]).toBeFalsy();
   });
 
-  // it('should complete depth first traversal', () => {
-  //   const g = new Graph(true, false);
-  //   const vtxStart = g.addVertex('vtxStart');
-  //   const vtxA = g.addVertex('vtxA');
-  //   const vtxB = g.addVertex('vtxB');
-  //   const vtxC = g.addVertex('vtxC');
-  //   g.addEdge(vtxStart, vtxA);
-  //   g.addEdge(vtxStart, vtxB);
-  //   g.addEdge(vtxStart, vtxC);
-  //   g.addEdge(vtxA, vtxC);
-  //   g.addEdge(vtxB, vtxC);
-  //   g.addEdge(vtxC, vtxB);
-  //   g.print();
-  //   const dftResult = [];
-  //   g.depthFirstTraversal(vtxStart, (vtx) => dftResult.push(vtx.data));
-  //   expect(dftResult).toStrictEqual(['vtxStart', 'vtxA', 'vtxC', 'vtxB']);
-  // });
-
   it('should complete depth first traversal', () => {
 
-    //              A---1
-    //                 / \
-    //            B---2---3---C
+    console.log("      A---1        ");
+    console.log("         / \\      ");
+    console.log("    B---2---3---C  ");
 
     const g = new Graph(false, false); // graph is undirected, unweighted
-    // debugger;
     // NOTE: the order of adding vertices will not affect the result,
     // however, the order of adding edges will
     const vtx1 = g.addVertex('vtx1');
@@ -140,6 +135,7 @@ describe('Graph', () => {
     const vtxA = g.addVertex('vtxA');
     const vtxB = g.addVertex('vtxB');
     const vtxC = g.addVertex('vtxC');
+
     // How does DFT choose which path to follow when there's a fork in the road?
     //
     // vtx1 has three neighbors: 2, 3, and A; which means traversal starting at
@@ -164,31 +160,59 @@ describe('Graph', () => {
     g.depthFirstTraversal(vtx1,
       (vtx) => {
         dftResult.push(vtx.data);
-        console.log(vtx.data);
       });
-    console.log(g);
+
+    console.log(dftResult);
     expect(dftResult)
       .toStrictEqual(['vtx1', 'vtx2', 'vtx3', 'vtxC', 'vtxB', 'vtxA']);
   });
 
-  it.skip('should complete breadth first traversal', () => {
-    const g = new Graph(true, false);
-    const vtxStart = g.addVertex('vtxStart');
+
+  it('should complete breadth first traversal', () => {
+
+    console.log("      A---1        ");
+    console.log("         / \\      ");
+    console.log("    B---2---3---C  ");
+
+    const g = new Graph(false, false); // graph is undirected, unweighted
+    // NOTE: the order of adding vertices will not affect the result,
+    // however, the order of adding edges will
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    const vtx3 = g.addVertex('vtx3');
     const vtxA = g.addVertex('vtxA');
     const vtxB = g.addVertex('vtxB');
     const vtxC = g.addVertex('vtxC');
-    g.addEdge(vtxStart, vtxA);
-    g.addEdge(vtxStart, vtxB);
-    g.addEdge(vtxStart, vtxC);
-    g.addEdge(vtxA, vtxC);
-    g.addEdge(vtxB, vtxC);
-    g.addEdge(vtxC, vtxB);
+
+    // How does BFT choose which path to follow when there's a fork in the road?
+    //
+    // vtx1 has three neighbors: 2, 3, and A; which means traversal starting at
+    // vtx1 *could* follow any of the three, but it won't, because the
+    // traversal algorithm will follow the first neighbor it encounters in a
+    // vertices' edges array which is determined by the order of calls to the
+    // graphs .addEdge method. So, when we do a depth traversal starting at
+    // vtx1, whether the path taken starts with A or 2 or 3 is determined by
+    // the method calls below.
+
+    g.addEdge(vtx1, vtx2); // <-- if we swap this with g.addEdge(vtx1, vtxA)...
+    g.addEdge(vtx2, vtx3);
+    g.addEdge(vtx3, vtx1);
+    g.addEdge(vtx1, vtxA); // ...the order of edges in edges array changes...
+    g.addEdge(vtx2, vtxB);
+    g.addEdge(vtx3, vtxC);
+    // ...and the test will fail. But, the structure will not have changed!
+
     g.print();
-    const dftResult = [];
-    g.breadthFirstTraversal(vtxStart, (vtx) => dftResult.push(vtx.data));
-    expect(dftResult).toStrictEqual(['vtxStart', 'vtxA', 'vtxB', 'vtxC']);
+    const bftResult = [];
+
+    g.breadthFirstTraversal(vtx1,
+      (vtx) => {
+        bftResult.push(vtx.data);
+      });
+    console.log(bftResult);
+    expect(bftResult)
+      .toStrictEqual(['vtx1', 'vtx2', 'vtx3', 'vtxA', 'vtxB', 'vtxC']);
   });
 
 });
-
 
