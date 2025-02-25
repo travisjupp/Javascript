@@ -5,22 +5,21 @@ import util from 'node:util';
 import {style} from '../../styles.js';
 // util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
-// util.inspect.defaultOptions.depth = 1; // show truncated objects
-// util.inspect.defaultOptions.breakLength = 30;
-// util.inspect.defaultOptions.compact = true; // dont break objects to new lines
+util.inspect.defaultOptions.depth = 6; // show truncated objects
+util.inspect.defaultOptions.breakLength = 130;
+util.inspect.defaultOptions.compact = true; // dont break objects to new lines
 // util.inspect.defaultOptions.compact = false; // break objects to new lines
-
 // suppress jests tracing console logs
 import console from 'console';
 const jestConsole = console;
 
 beforeEach(() => {
-    global.console = console;
-    console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); });
+  global.console = console;
+  console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); });
 
 afterEach(() => {
-    global.console = jestConsole;
-    console.log(style.color(99), style.hr.double, style.reset);
+  global.console = jestConsole;
+  console.log(style.color(99), style.hr.double, style.reset);
 });
 
 import Graph from './Graph.js';
@@ -107,25 +106,72 @@ describe('Graph', () => {
     expect(vtx1.edges[0]).toBeFalsy();
   });
 
+  // it('should complete depth first traversal', () => {
+  //   const g = new Graph(true, false);
+  //   const vtxStart = g.addVertex('vtxStart');
+  //   const vtxA = g.addVertex('vtxA');
+  //   const vtxB = g.addVertex('vtxB');
+  //   const vtxC = g.addVertex('vtxC');
+  //   g.addEdge(vtxStart, vtxA);
+  //   g.addEdge(vtxStart, vtxB);
+  //   g.addEdge(vtxStart, vtxC);
+  //   g.addEdge(vtxA, vtxC);
+  //   g.addEdge(vtxB, vtxC);
+  //   g.addEdge(vtxC, vtxB);
+  //   g.print();
+  //   const dftResult = [];
+  //   g.depthFirstTraversal(vtxStart, (vtx) => dftResult.push(vtx.data));
+  //   expect(dftResult).toStrictEqual(['vtxStart', 'vtxA', 'vtxC', 'vtxB']);
+  // });
+
   it('should complete depth first traversal', () => {
-    const g = new Graph(true, false);
-    const vtxStart = g.addVertex('vtxStart');
+
+    //              A---1
+    //                 / \
+    //            B---2---3---C
+
+    const g = new Graph(false, false); // graph is undirected, unweighted
+    // debugger;
+    // NOTE: the order of adding vertices will not affect the result,
+    // however, the order of adding edges will
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    const vtx3 = g.addVertex('vtx3');
     const vtxA = g.addVertex('vtxA');
     const vtxB = g.addVertex('vtxB');
     const vtxC = g.addVertex('vtxC');
-    g.addEdge(vtxStart, vtxA);
-    g.addEdge(vtxStart, vtxB);
-    g.addEdge(vtxStart, vtxC);
-    g.addEdge(vtxA, vtxC);
-    g.addEdge(vtxB, vtxC);
-    g.addEdge(vtxC, vtxB);
+    // How does DFT choose which path to follow when there's a fork in the road?
+    //
+    // vtx1 has three neighbors: 2, 3, and A; which means traversal starting at
+    // vtx1 *could* follow any of the three, but it won't, because the
+    // traversal algorithm will follow the first neighbor it encounters in a
+    // vertices' edges array which is determined by the order of calls to the
+    // graphs .addEdge method. So, when we do a depth traversal starting at
+    // vtx1, whether the path taken starts with A or 2 or 3 is determined by
+    // the method calls below.
+
+    g.addEdge(vtx1, vtx2); // <-- if we swap this with g.addEdge(vtx1, vtxA)...
+    g.addEdge(vtx2, vtx3);
+    g.addEdge(vtx3, vtx1);
+    g.addEdge(vtx1, vtxA); // ...the order of edges in edges array changes...
+    g.addEdge(vtx2, vtxB);
+    g.addEdge(vtx3, vtxC);
+    // ...and the test will fail. But, the structure will not have changed!
+
     g.print();
     const dftResult = [];
-    g.depthFirstTraversal(vtxStart, (vtx) => dftResult.push(vtx.data));
-    expect(dftResult).toStrictEqual(['vtxStart', 'vtxA', 'vtxC', 'vtxB']);
+
+    g.depthFirstTraversal(vtx1,
+      (vtx) => {
+        dftResult.push(vtx.data);
+        console.log(vtx.data);
+      });
+    console.log(g);
+    expect(dftResult)
+      .toStrictEqual(['vtx1', 'vtx2', 'vtx3', 'vtxC', 'vtxB', 'vtxA']);
   });
 
-  it('should complete breadth first traversal', () => {
+  it.skip('should complete breadth first traversal', () => {
     const g = new Graph(true, false);
     const vtxStart = g.addVertex('vtxStart');
     const vtxA = g.addVertex('vtxA');

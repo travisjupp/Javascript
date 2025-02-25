@@ -43,6 +43,7 @@ class Graph {
   }
 
   depthFirstTraversal(startVtx, cb, visited=[startVtx]) {
+    debugger;
     cb(startVtx);
     startVtx.edges.forEach(edge => {
       const neighbor = edge.end;
