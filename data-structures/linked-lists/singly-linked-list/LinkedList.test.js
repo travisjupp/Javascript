@@ -17,7 +17,7 @@ beforeEach(() => {
 
 afterEach(() => {
     global.console = jestConsole;
-    console.log(style.color(99), style.hr.double, style.reset);
+    console.log(style.color(135, 95, 255), style.hr.double, style.reset);
 });
 
 // list generator
