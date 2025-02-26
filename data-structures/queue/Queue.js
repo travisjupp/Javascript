@@ -37,7 +37,6 @@ class Queue {
   }
   
   print() {
-    console.log('print queue');
     return this.queue.printList();
   }
 }

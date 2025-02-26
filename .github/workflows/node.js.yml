@@ -39,5 +39,23 @@ jobs:
       run: echo "COLUMNS=$COLUMNS"
 
     - name: Run tests
-      run: npm test
+      run: |
+        npm test > test-results.txt
+
+    - name: Convert ANSI to HTML
+      run: |
+        npx ansi-to-html < test-results.txt > test-results.html
+
+    - name: Save as Markdown
+      run: |
+        echo '## Latest Test Results' > TESTS.md
+        echo '<div>' >> TESTS.md
+        cat test-results.html >> TESTS.md
+        echo '</div>' >> TESTS.md
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: TESTS.md
 
