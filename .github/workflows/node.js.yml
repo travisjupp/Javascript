@@ -29,6 +29,9 @@ jobs:
     - name: Set COLUMNS environment variable
       run: echo "COLUMNS=$(tput cols)" >> $GITHUB_ENV
 
+    - name: Check COLUMNS value
+      run: echo "COLUMNS=$COLUMNS"
+
     - name: Run tests
       run: npm test
 
