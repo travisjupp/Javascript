@@ -34,21 +34,33 @@ describe('Find middle', () => {
 
   it('should find middle item in four item list', () => {
     const list = createList();
-    expect(list.findMiddle().data).toBe('C');
+    list.printList();
+    const mid = list.findMiddle().data;
+    console.log(mid);
+    expect(mid).toBe('C');
   });
 
   it('should find middle item in three item list', () => {
     const list = createList(['A', 'B', 'C']);
+    list.printList();
+    const mid = list.findMiddle().data;
+    console.log(mid);
     expect(list.findMiddle().data).toBe('B');
   });
 
   it('should find middle item in two item list', () => {
     const list = createList(['A', 'B']);
+    list.printList();
+    const mid = list.findMiddle().data;
+    console.log(mid);
     expect(list.findMiddle().data).toBe('B');
   });
 
   it('should find middle item in one item list', () => {
     const list = createList(['A']);
+    list.printList();
+    const mid = list.findMiddle().data;
+    console.log(mid);
     expect(list.findMiddle().data).toBe('A');
   });
 
@@ -56,31 +68,44 @@ describe('Find middle', () => {
 
 describe('Find node', () => {
   describe('iteratively', () => {
+
     it('should find the specified node', () => {
       const list = createList();
+      list.printList();
+      const expected = list.findNodeIteratively('C');
+      console.log(expected);
       expect(list.head.next.next)
-        .toStrictEqual(list.findNodeIteratively('C'));
+        .toStrictEqual(expected);
     });
 
     it('should return null', () => {
       const list = createList();
-      expect(list.findNodeIteratively('X'))
+      const expected = list.findNodeIteratively('X');
+      console.log(expected);
+      expect(expected)
         .toBeNull();
     });
+
   });
 
   describe('recursively', () => {
+
     it('should find the specified node', () => {
       const list = createList();
+      const expected = list.findNodeRecursively('C');
+      console.log(expected);
       expect(list.head.next.next)
-        .toStrictEqual(list.findNodeRecursively('C'));
+        .toStrictEqual(expected);
     });
 
     it('should return null', () => {
       const list = createList();
-      expect(list.findNodeRecursively('X'))
+      const expected = list.findNodeRecursively('X');
+      console.log(expected);
+      expect(expected)
         .toBeNull();
     });
+
   });
 });
 
