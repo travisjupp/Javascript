@@ -26,6 +26,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Set TERM environment variable
+      run: echo "TERM=xterm-256color" >> $GITHUB_ENV
+
     - name: Set COLUMNS environment variable
       run: echo "COLUMNS=$(tput cols)" >> $GITHUB_ENV
 
