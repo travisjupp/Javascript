@@ -19,8 +19,8 @@ const style = {
   primaryFont: '\x1b[10m',
   strike: '\x1b[9m',
   hr: {
-    double: `\n${'═'.repeat(process.env.COLUMNS - 1 || 80)}`,
-    single: `\n${'─'.repeat(process.env.COLUMNS - 1 || 80)}`
+    double: `${'═'.repeat(process.env.COLUMNS - 1 || 80)}`,
+    single: `${'─'.repeat(process.env.COLUMNS - 1 || 80)}`
   },
   color(r,g,b) {
     return g === undefined ? `\x1b[38;5;${r}m` : `\x1b[38;2;${r};${g};${b}m`;

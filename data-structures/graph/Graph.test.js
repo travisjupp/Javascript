@@ -23,12 +23,15 @@ beforeEach(() => {
   console.log(style.dim, 'should be DIM', style.reset);
 
   console.log('test dim not imported style');
-  console.log('\x1b[2m', 'should be DIM', 'x1b[0m');
+  console.log('\x1b[2m', 'should be DIM', '\x1b[0m');
 
   console.log('test imported style color 99 on hardcoded h-rule');
     console.log(style.color(99), '════════════════════════════════════════════════════════════════════════════════', style.reset);
   console.log('test imported style color 99 on imported h-rule');
     console.log(style.color(99), style.hr.double, style.reset);
+
+  // console.log('test imported style color 99 on imported h-rule with reset removed');
+    // console.log(style.color(99), style.hr.double);
 
   console.log('test hardcoded style color 99 on imported h-rule');
     console.log('\x1b[38;5;99m', style.hr.double, '\x1b[0m');
@@ -47,12 +50,15 @@ afterEach(() => {
   console.log(style.dim, 'should be DIM', style.reset);
 
   console.log('test dim not imported style');
-  console.log('\x1b[2m', 'should be DIM', 'x1b[0m');
+  console.log('\x1b[2m', 'should be DIM', '\x1b[0m');
 
   console.log('test imported style color 99 on hardcoded h-rule');
     console.log(style.color(99), '════════════════════════════════════════════════════════════════════════════════', style.reset);
   console.log('test imported style color 99 on imported h-rule');
     console.log(style.color(99), style.hr.double, style.reset);
+
+  // console.log('test imported style color 99 on imported h-rule with reset removed');
+    // console.log(style.color(99), style.hr.double);
 
   console.log('test hardcoded style color 99 on imported h-rule');
     console.log('\x1b[38;5;99m', style.hr.double, '\x1b[0m');
