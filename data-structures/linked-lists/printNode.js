@@ -39,7 +39,7 @@ function printNode () {
     for (let opts of optsArr) {
       if (checkArg === opts || /p\d+/.test(checkArg)) return true;
     }
-      return false;
+    return false;
   }
 
   let res = '';
@@ -151,18 +151,22 @@ function printNode () {
 
     // handle h-rules: start, iteration, end
     // to stretch to width of screen, add to zshrc -> export COLUMNS=$(tput cols)
-    if (arguments[arg] === '^') res +=
-      // `${'═'.repeat(process.stdout.columns - 1)}${SGR.dim}^${SGR.reset}`;
-      `\n${'═'.repeat(process.env.COLUMNS - 1 || 80)}${SGR.dim}^${SGR.reset}\n`;
+    if (arguments[arg] === '^') {
+      count = 0;
+      res +=
+        `${'═'.repeat(process.env.COLUMNS - 1 || 80)}${SGR.dim}^${SGR.reset}`;
+    }
 
-    if (arguments[arg] === 'i') {res +=
-      // `${'─'.repeat(process.stdout.columns - 2)}${SGR.dim}↑${count}${SGR.reset}\n`
-      `${'─'.repeat(process.env.COLUMNS - 3 || 80)}${SGR.dim}↑${count}${SGR.reset}\n`
-      count++;}
+    if (arguments[arg] === 'i') {
+      res +=
+        `${'─'.repeat(process.env.COLUMNS - 3 || 80)}${SGR.dim}↑${count}${SGR.reset}`;
+      count++;
+    }
 
-    if (arguments[arg] === '$') res +=
-      // `${'═'.repeat(process.stdout.columns - 1)}${SGR.dim}$${SGR.reset}`
-      `${'═'.repeat(process.env.COLUMNS - 1 || 80)}${SGR.dim}$${SGR.reset}\n`
+    if (arguments[arg] === '$') {
+      res +=
+        `${'═'.repeat(process.env.COLUMNS - 1 || 80)}${SGR.dim}$${SGR.reset}`
+    }
   }
 
   let newRes = res;

@@ -13,7 +13,7 @@ const reverseList = (list) => {
 
   d('^', 'p5');
   while (curr && next) {
-    d('PREV', prev, 'CURR', curr, 'NEXT', next, 'd');
+    d('PREV', prev, 'CURR', curr, 'NEXT', next, 'c');
     let nextTemp = next;  // save next for iterating *
     next = next.next;     // setup next for next iteration **
     curr.next = prev;     // point current to previous (swap) ***
