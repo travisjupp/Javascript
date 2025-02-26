@@ -13,7 +13,7 @@ const reverseList = (list) => {
 
   d('^', 'p5');
   while (curr && next) {
-    d('PREV', prev, 'CURR', curr, 'NEXT', next, 'c');
+    d('PREV', prev, 'CURR', curr, 'NEXT', next, 'c'); // show process
     let nextTemp = next;  // save next for iterating *
     next = next.next;     // setup next for next iteration **
     curr.next = prev;     // point current to previous (swap) ***
@@ -22,6 +22,7 @@ const reverseList = (list) => {
     d('i', 'p5');
   }
   curr.next = prev;       // point last current to previous (swap) ******
+  d('PREV', prev, 'CURR', curr, 'NEXT', next, 'c'); // show result
   list.head = curr;       // update list head with final node
   d('$', 'p5');
   return list;            // end

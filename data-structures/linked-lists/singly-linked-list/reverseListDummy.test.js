@@ -4,11 +4,21 @@ import reverseListDummy from './reverseListDummy.js';
 import reverseListDummyII from './reverseListDummyII.js';
 import LinkedList from './LinkedList.js';
 import {jest} from '@jest/globals';
+import util from 'node:util';
+import {style} from '../../../styles.js';
 // suppress jests tracing console logs
 import console from 'console';
 const jestConsole = console;
-beforeEach(() => { global.console = console; });
-afterEach(() => { global.console = jestConsole; });
+
+beforeEach(() => {
+    global.console = console;
+    console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); });
+
+afterEach(() => {
+    global.console = jestConsole;
+    console.log(style.color(99), style.hr.double, style.reset);
+});
+
 // list generator
 const createList = (arr = ['A', 'B', 'C', 'D']) => {
   const list = new LinkedList();

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import reverseList from './reverseList.js';
 import LinkedList from './LinkedList.js';
 import util from 'node:util';
-import {style} from '/users/travisjupp/Javascript/styles.js';
+import {style} from '../../../styles.js';
 import {jest} from '@jest/globals';
 // suppress jests tracing console logs
 import console from 'console';
@@ -44,6 +44,7 @@ describe.only('Linked list reference value', () => {
     const list = createList();
     list.printList();
     const reversed = reverseList(list);
+    console.log("list === reversed ?", list === reversed);
     assert.strictEqual(reversed, list);
   });
 });

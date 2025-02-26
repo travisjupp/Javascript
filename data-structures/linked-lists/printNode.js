@@ -152,7 +152,7 @@ function printNode () {
     // handle h-rules: start, iteration, end
     // to stretch to width of screen, add to zshrc -> export COLUMNS=$(tput cols)
     if (arguments[arg] === '^') {
-      count = 0;
+      count = 0; // reset count
       res +=
         `${'═'.repeat(process.env.COLUMNS - 1 || 80)}${SGR.dim}^${SGR.reset}`;
     }
