@@ -16,55 +16,11 @@ const jestConsole = console;
 beforeEach(() => {
   global.console = console;
   console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); 
-
-  console.log('BEGIN ansi color test (beforeEach)');
-
-  console.log('test dim imported style');
-  console.log(style.dim, 'should be DIM', style.reset);
-
-  console.log('test dim not imported style');
-  console.log('\x1b[2m', 'should be DIM', '\x1b[0m');
-
-  console.log('test imported style color 99 on hardcoded h-rule');
-    console.log(style.color(99), '════════════════════════════════════════════════════════════════════════════════', style.reset);
-  console.log('test imported style color 99 on imported h-rule');
-    console.log(style.color(99), style.hr.double, style.reset);
-
-  // console.log('test imported style color 99 on imported h-rule with reset removed');
-    // console.log(style.color(99), style.hr.double);
-
-  console.log('test hardcoded style color 99 on imported h-rule');
-    console.log('\x1b[38;5;99m', style.hr.double, '\x1b[0m');
-
-  console.log('END ansi color test (beforeEach)');
-
-
 });
 
 afterEach(() => {
   global.console = jestConsole;
-
-  console.log('BEGIN ansi color test (afterEach)');
-
-  console.log('test dim imported style');
-  console.log(style.dim, 'should be DIM', style.reset);
-
-  console.log('test dim not imported style');
-  console.log('\x1b[2m', 'should be DIM', '\x1b[0m');
-
-  console.log('test imported style color 99 on hardcoded h-rule');
-    console.log(style.color(99), '════════════════════════════════════════════════════════════════════════════════', style.reset);
-  console.log('test imported style color 99 on imported h-rule');
-    console.log(style.color(99), style.hr.double, style.reset);
-
-  // console.log('test imported style color 99 on imported h-rule with reset removed');
-    // console.log(style.color(99), style.hr.double);
-
-  console.log('test hardcoded style color 99 on imported h-rule');
-    console.log('\x1b[38;5;99m', style.hr.double, '\x1b[0m');
-
-  console.log('END ansi color test (afterEach)');
-
+  console.log(style.color(99), style.hr.double, style.reset);
 });
 
 import Graph from './Graph.js';
