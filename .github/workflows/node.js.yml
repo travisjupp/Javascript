@@ -53,9 +53,13 @@ jobs:
         cat test-results.html >> TESTS.md
         echo '</div>' >> TESTS.md
 
-    - name: Upload Test Results
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: TESTS.md
+    - name: Commit and push TESTS.md
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add TESTS.md
+        git commit -m 'Add latest test results'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
