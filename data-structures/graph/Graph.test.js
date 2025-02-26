@@ -23,7 +23,7 @@ afterEach(() => {
   console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n');
   console.log(style.color(100),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); 
   console.log(style.color(99), style.hr.double, style.reset);
-  console.log('x1b[38;2;0;255;0m','ansi color test', style.hr.double, 'x1b[0m');
+  console.log('\x1b[38;2;0;255;0m','ansi color test', style.hr.double, '\x1b[0m');
   console.log('process', process);
 });
 
