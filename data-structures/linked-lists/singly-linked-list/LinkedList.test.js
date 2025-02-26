@@ -17,7 +17,6 @@ beforeEach(() => {
 
 afterEach(() => {
     global.console = jestConsole;
-    // console.log(style.color(135, 95, 255), style.hr.double, style.reset);
     console.log(style.color(0, 255, 0), style.hr.double, style.reset);
 });
 
