@@ -39,27 +39,5 @@ jobs:
       run: echo "COLUMNS=$COLUMNS"
 
     - name: Run tests
-      run: |
-        npm test > test-results.txt
-
-    - name: Convert ANSI to HTML
-      run: |
-        npx ansi-to-html < test-results.txt > test-results.html
-
-    - name: Save as Markdown
-      run: |
-        echo '## Latest Test Results' > TESTS.md
-        echo '<div>' >> TESTS.md
-        cat test-results.html >> TESTS.md
-        echo '</div>' >> TESTS.md
-
-    - name: Commit and push TESTS.md
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add TESTS.md
-        git commit -m 'Add latest test results'
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm test
 
