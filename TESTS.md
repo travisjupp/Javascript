@@ -51,48 +51,34 @@ A
 A→B→C→D→n	
 <b><head> A B C D <tail></b>
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should render a Graph </span> 
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (undirected):  should render a Graph </span> 
 
 Graph { vertices: [], isWeighted: <span style="color:#A50">false<span style="color:#FFF">, isDirected: <span style="color:#A50">false<span style="color:#FFF"> }
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should add a Vertex </span> 
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (undirected):  should add a Vertex </span> 
 
 Graph { vertices: [ Vertex { data: <span style="color:#0A0">'vtx1'<span style="color:#FFF">, edges: [] } ], isWeighted: <span style="color:#A50">false<span style="color:#FFF">, isDirected: <span style="color:#A50">false<span style="color:#FFF"> }
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should remove a Vertex </span> 
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (undirected):  should remove a Vertex </span> 
 
 Graph { vertices: [ Vertex { data: <span style="color:#0A0">'vtx1'<span style="color:#FFF">, edges: [] } ], isWeighted: <span style="color:#A50">false<span style="color:#FFF">, isDirected: <span style="color:#A50">false<span style="color:#FFF"> }
 Graph { vertices: [], isWeighted: <span style="color:#A50">false<span style="color:#FFF">, isDirected: <span style="color:#A50">false<span style="color:#FFF"> }
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should add an Edge </span> 
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (undirected):  should add an Edge </span> 
 
 vtx1 --> 
 vtx1 --> vtx2
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should remove an Edge </span> 
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (undirected):  should remove an Edge </span> 
 
 vtx1 --> vtx2
 vtx1 --> 
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should add a weighted Edge </span> 
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (undirected):  should add a weighted Edge </span> 
 
 vtx1 --> vtx2 (200)
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should create a directed Graph </span> 
-
-Graph { vertices: [], isWeighted: <span style="color:#A50">false<span style="color:#FFF">, isDirected: <span style="color:#A50">true<span style="color:#FFF"> }
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should add edge to a directed Graph </span> 
-
-vtx1 --> 
-vtx1 --> vtx2
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should remove edge from a directed Graph </span> 
-
-vtx1 --> vtx2
-vtx1 --> 
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should complete depth first traversal </span> 
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (undirected):  should complete depth first traversal </span> 
 
       A---1        
          / \      
@@ -105,7 +91,7 @@ vtxB --> vtx2
 vtxC --> vtx3
 [ <span style="color:#0A0">'vtx1'<span style="color:#FFF">, <span style="color:#0A0">'vtx2'<span style="color:#FFF">, <span style="color:#0A0">'vtx3'<span style="color:#FFF">, <span style="color:#0A0">'vtxC'<span style="color:#FFF">, <span style="color:#0A0">'vtxB'<span style="color:#FFF">, <span style="color:#0A0">'vtxA'<span style="color:#FFF"> ]
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph should complete breadth first traversal </span> 
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (undirected):  should complete breadth first traversal </span> 
 
       A---1        
          / \      
@@ -118,6 +104,51 @@ vtxB --> vtx2
 vtxC --> vtx3
 [ <span style="color:#0A0">'vtx1'<span style="color:#FFF">, <span style="color:#0A0">'vtx2'<span style="color:#FFF">, <span style="color:#0A0">'vtx3'<span style="color:#FFF">, <span style="color:#0A0">'vtxA'<span style="color:#FFF">, <span style="color:#0A0">'vtxB'<span style="color:#FFF">, <span style="color:#0A0">'vtxC'<span style="color:#FFF"> ]
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span></span></span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (directed):  should create a Graph </span> 
+
+Graph { vertices: [], isWeighted: <span style="color:#A50">false<span style="color:#FFF">, isDirected: <span style="color:#A50">true<span style="color:#FFF"> }
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (directed):  should add edge to a Graph </span> 
+
+vtx1 --> 
+vtx1 --> vtx2
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (directed):  should remove edge from Graph </span> 
+
+vtx1 --> vtx2
+vtx1 --> 
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Graph (directed):  should complete depth first traversal </span> 
+
+vtxA --> vtxC, vtxB, vtxD
+vtxB --> vtxC, vtxA
+vtxC --> vtxA, vtxB
+vtxD --> vtxA
+Graph {
+  vertices:
+   [ <span style="color:#0AA"><ref *1><span style="color:#FFF"> Vertex {
+       data: <span style="color:#0A0">'vtxA'<span style="color:#FFF">,
+       edges:
+        [ Edge { start: <span style="color:#0AA">[Circular *1]<span style="color:#FFF">, end: Vertex { data: <span style="color:#0A0">'vtxC'<span style="color:#FFF">, edges: [ <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF"> ] }, weight: <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> },
+          Edge { start: <span style="color:#0AA">[Circular *1]<span style="color:#FFF">, end: Vertex { data: <span style="color:#0A0">'vtxB'<span style="color:#FFF">, edges: [ <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF"> ] }, weight: <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> },
+          Edge { start: <span style="color:#0AA">[Circular *1]<span style="color:#FFF">, end: Vertex { data: <span style="color:#0A0">'vtxD'<span style="color:#FFF">, edges: [ <span style="color:#0AA">[Edge]<span style="color:#FFF"> ] }, weight: <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> } ] },
+     <span style="color:#0AA"><ref *2><span style="color:#FFF"> Vertex {
+       data: <span style="color:#0A0">'vtxB'<span style="color:#FFF">,
+       edges:
+        [ Edge { start: <span style="color:#0AA">[Circular *2]<span style="color:#FFF">, end: Vertex { data: <span style="color:#0A0">'vtxC'<span style="color:#FFF">, edges: [ <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF"> ] }, weight: <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> },
+          Edge { start: <span style="color:#0AA">[Circular *2]<span style="color:#FFF">, end: <span style="color:#0AA"><ref *1><span style="color:#FFF"> Vertex { data: <span style="color:#0A0">'vtxA'<span style="color:#FFF">, edges: [ <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF"> ] }, weight: <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> } ] },
+     <span style="color:#0AA"><ref *3><span style="color:#FFF"> Vertex {
+       data: <span style="color:#0A0">'vtxC'<span style="color:#FFF">,
+       edges:
+        [ Edge { start: <span style="color:#0AA">[Circular *3]<span style="color:#FFF">, end: <span style="color:#0AA"><ref *1><span style="color:#FFF"> Vertex { data: <span style="color:#0A0">'vtxA'<span style="color:#FFF">, edges: [ <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF"> ] }, weight: <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> },
+          Edge { start: <span style="color:#0AA">[Circular *3]<span style="color:#FFF">, end: <span style="color:#0AA"><ref *2><span style="color:#FFF"> Vertex { data: <span style="color:#0A0">'vtxB'<span style="color:#FFF">, edges: [ <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF"> ] }, weight: <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> } ] },
+     <span style="color:#0AA"><ref *4><span style="color:#FFF"> Vertex {
+       data: <span style="color:#0A0">'vtxD'<span style="color:#FFF">,
+       edges: [ Edge { start: <span style="color:#0AA">[Circular *4]<span style="color:#FFF">, end: <span style="color:#0AA"><ref *1><span style="color:#FFF"> Vertex { data: <span style="color:#0A0">'vtxA'<span style="color:#FFF">, edges: [ <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF">, <span style="color:#0AA">[Edge]<span style="color:#FFF"> ] }, weight: <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> } ] } ],
+  isWeighted: <span style="color:#A50">true<span style="color:#FFF">,
+  isDirected: <span style="color:#A50">false<span style="color:#FFF"> }
+[ <span style="color:#0A0">'vtxA'<span style="color:#FFF">, <span style="color:#0A0">'vtxC'<span style="color:#FFF">, <span style="color:#0A0">'vtxB'<span style="color:#FFF">, <span style="color:#0A0">'vtxD'<span style="color:#FFF"> ]
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span></span></span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></b></span></span></span></span></span></span></span></b></span></span></span></span></span></span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span>
 Storing someVal at index 2
 Storing someVal at index 2
 Storing someNewVal at index 2
@@ -357,8 +388,24 @@ ggc0
 c1
 gc1
 ggc1
+<span style="color:#ff00ff"> ▷ </span></span></span> <span style="color:#00afff"> sortedArrayToBST should convert array to height-balanced BST </span> 
+
+[ <span style="color:#A50">-10<span style="color:#FFF">, <span style="color:#A50">-3<span style="color:#FFF">, <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">5<span style="color:#FFF">, <span style="color:#A50">9<span style="color:#FFF"> ] -> [ <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">-3<span style="color:#FFF">, <span style="color:#A50">9<span style="color:#FFF">, <span style="color:#A50">-10<span style="color:#FFF">, <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal">, <span style="color:#A50">5<span style="color:#FFF"> ]
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> sortedArrayToBST should convert two-item array to height-balanced BST </span> 
+
+[ <span style="color:#A50">1<span style="color:#FFF">, <span style="color:#A50">3<span style="color:#FFF"> ] -> [ <span style="color:#A50">3<span style="color:#FFF">, <span style="color:#A50">1<span style="color:#FFF"> ]
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> sortedArrayToBST should convert three-item array to height-balanced BST </span> 
+
+[ <span style="color:#A50">2<span style="color:#FFF">, <span style="color:#A50">3<span style="color:#FFF">, <span style="color:#A50">4<span style="color:#FFF"> ] -> [ <span style="color:#A50">3<span style="color:#FFF">, <span style="color:#A50">2<span style="color:#FFF">, <span style="color:#A50">4<span style="color:#FFF"> ]
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span></span></span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> sortedArrayToBST should convert five-item array to height-balanced BST </span> 
+
+[ <span style="color:#A50">-12<span style="color:#FFF">, <span style="color:#A50">-1<span style="color:#FFF">, <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">4<span style="color:#FFF">, <span style="color:#A50">998<span style="color:#FFF"> ] -> [ <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">-1<span style="color:#FFF">, <span style="color:#A50">998<span style="color:#FFF">, <span style="color:#A50">-12<span style="color:#FFF">, <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal">, <span style="color:#A50">4<span style="color:#FFF"> ]
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
 <span style="color:#ff00ff"> ▷ <span style="color:#00afff"> findJudge
- should find judge among 2 people </span></span></span></span> 
+ should find judge among 2 people </span></span> 
 
 <span style="color:#A50">2<span style="color:#FFF"> [ [ <span style="color:#A50">1<span style="color:#FFF">, <span style="color:#A50">2<span style="color:#FFF"> ] ]
 (truster) [ <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">1<span style="color:#FFF">, <span style="color:#A50">0<span style="color:#FFF"> ]
@@ -421,22 +468,6 @@ ggc1
 (trusted) [ <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">2<span style="color:#FFF">, <span style="color:#A50">1<span style="color:#FFF"> ]
 <span style="color:#A50">-1<span style="color:#FFF">
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> sortedArrayToBST should convert array to height-balanced BST </span> 
-
-[ <span style="color:#A50">-10<span style="color:#FFF">, <span style="color:#A50">-3<span style="color:#FFF">, <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">5<span style="color:#FFF">, <span style="color:#A50">9<span style="color:#FFF"> ] -> [ <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">-3<span style="color:#FFF">, <span style="color:#A50">9<span style="color:#FFF">, <span style="color:#A50">-10<span style="color:#FFF">, <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal">, <span style="color:#A50">5<span style="color:#FFF"> ]
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> sortedArrayToBST should convert two-item array to height-balanced BST </span> 
-
-[ <span style="color:#A50">1<span style="color:#FFF">, <span style="color:#A50">3<span style="color:#FFF"> ] -> [ <span style="color:#A50">3<span style="color:#FFF">, <span style="color:#A50">1<span style="color:#FFF"> ]
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> sortedArrayToBST should convert three-item array to height-balanced BST </span> 
-
-[ <span style="color:#A50">2<span style="color:#FFF">, <span style="color:#A50">3<span style="color:#FFF">, <span style="color:#A50">4<span style="color:#FFF"> ] -> [ <span style="color:#A50">3<span style="color:#FFF">, <span style="color:#A50">2<span style="color:#FFF">, <span style="color:#A50">4<span style="color:#FFF"> ]
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></span></span></span></span></span></span></span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> sortedArrayToBST should convert five-item array to height-balanced BST </span> 
-
-[ <span style="color:#A50">-12<span style="color:#FFF">, <span style="color:#A50">-1<span style="color:#FFF">, <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">4<span style="color:#FFF">, <span style="color:#A50">998<span style="color:#FFF"> ] -> [ <span style="color:#A50">0<span style="color:#FFF">, <span style="color:#A50">-1<span style="color:#FFF">, <span style="color:#A50">998<span style="color:#FFF">, <span style="color:#A50">-12<span style="color:#FFF">, <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal">, <span style="color:#A50">4<span style="color:#FFF"> ]
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
 <span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> MaxHeap should create a maxheap </span> 
 
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span>
@@ -448,13 +479,13 @@ MaxHeap { heap: [ <b>null<span style="font-weight:normal;text-decoration:none;fo
 
 MaxHeap {
   heap: [
-    <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal">, <span style="color:#A50">90<span style="color:#FFF">, <span style="color:#A50">47<span style="color:#FFF">, <span style="color:#A50">58<span style="color:#FFF">,
-    <span style="color:#A50">30<span style="color:#FFF">,   <span style="color:#A50">42<span style="color:#FFF">, <span style="color:#A50">54<span style="color:#FFF">, <span style="color:#A50">13<span style="color:#FFF">,
-    <span style="color:#A50">7<span style="color:#FFF">,    <span style="color:#A50">9<span style="color:#FFF">,  <span style="color:#A50">24<span style="color:#FFF">, <span style="color:#A50">35<span style="color:#FFF">
+    <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal">, <span style="color:#A50">83<span style="color:#FFF">, <span style="color:#A50">80<span style="color:#FFF">, <span style="color:#A50">71<span style="color:#FFF">,
+    <span style="color:#A50">48<span style="color:#FFF">,   <span style="color:#A50">78<span style="color:#FFF">, <span style="color:#A50">53<span style="color:#FFF">, <span style="color:#A50">53<span style="color:#FFF">,
+    <span style="color:#A50">0<span style="color:#FFF">,    <span style="color:#A50">25<span style="color:#FFF">, <span style="color:#A50">15<span style="color:#FFF">, <span style="color:#A50">55<span style="color:#FFF">
   ],
   size: <span style="color:#A50">11<span style="color:#FFF">
 }
-p:  <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> < c:  <span style="color:#A50">90<span style="color:#FFF">
+p:  <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal"> < c:  <span style="color:#A50">83<span style="color:#FFF">
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></b>
 <span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> MaxHeap should return the first item </span> 
 
@@ -462,27 +493,7 @@ p:  <b>null<span style="font-weight:normal;text-decoration:none;font-style:norma
 Data is equal
 Missing data: element(s) do not exist
 MinHeap { heap: [ <b>null<span style="font-weight:normal;text-decoration:none;font-style:normal">, <span style="color:#A50">1<span style="color:#FFF">, <span style="color:#A50">2<span style="color:#FFF">, <span style="color:#A50">3<span style="color:#FFF">, <span style="color:#A50">4<span style="color:#FFF"> ], size: <span style="color:#A50">4<span style="color:#FFF"> }
-<span style="color:#ff00ff"> ▷ </span></span></span></span></span></span></span></span></span></span></span></span></b> <span style="color:#00afff"> getX should return Xth number in order </span> 
-
-<span style="color:#A50">-3<span style="color:#FFF">
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return 0 from an x value of 0 </span> 
-
-<span style="color:#A50">0<span style="color:#FFF">
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return 0 from an x value of 1 </span> 
-
-<span style="color:#A50">-3<span style="color:#FFF">
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return 0 from an x value larger than array </span> 
-
-<span style="color:#A50">0<span style="color:#FFF">
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return undefined from an empty array arg </span> 
-
-<span style="color:#555">undefined<span style="color:#FFF">
-<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
-<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> Reverse nodes in list should reverse all nodes in the list </span> 
+<span style="color:#ff00ff"> ▷ </span></span></span></span></span></span></span></span></span></span></span></span></b> <span style="color:#00afff"> Reverse nodes in list should reverse all nodes in the list </span> 
 
 <b><head> A B C D <tail></b>
 ═══════════════════════════════════════════════════════════════════════════════^
@@ -509,6 +520,26 @@ PREV	<b>B</b>→A→<span style="color:#A00">n	</span>CURR	<b>C</b>→D→<span 
 PREV	<b>C</b>→B→A→<span style="color:#A00">n	</span>CURR	<b>D</b>→C→B→A→<span style="color:#A00">n	</span>NEXT	<span style="color:#A00">n	</span>
 ═══════════════════════════════════════════════════════════════════════════════$
 list === reversed ? <span style="color:#A50">true<span style="color:#FFF">
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return Xth number in order </span> 
+
+<span style="color:#A50">-3<span style="color:#FFF">
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return 0 from an x value of 0 </span> 
+
+<span style="color:#A50">0<span style="color:#FFF">
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return 0 from an x value of 1 </span> 
+
+<span style="color:#A50">-3<span style="color:#FFF">
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return 0 from an x value larger than array </span> 
+
+<span style="color:#A50">0<span style="color:#FFF">
+<span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
+<span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> getX should return undefined from an empty array arg </span> 
+
+<span style="color:#555">undefined<span style="color:#FFF">
 <span style="color:#875fff"> ═══════════════════════════════════════════════════════════════════════════════ </span></span></span>
 <span style="color:#ff00ff"> ▷ </span> <span style="color:#00afff"> quickSort should sort an array incrementally </span> 
 
