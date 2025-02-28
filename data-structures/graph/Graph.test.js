@@ -27,7 +27,7 @@ import Graph from './Graph.js';
 import Edge from './Edge.js';
 import Vertex from './Vertex.js';
 
-describe('Graph', () => {
+describe('Graph (undirected): ', () => {
   it('should render a Graph', () => {
     const g = new Graph();
     expect(g).toBeTruthy();
@@ -89,38 +89,6 @@ describe('Graph', () => {
     expect(vtx2.edges[0].weight).toBe(200);
   });
 
-  it('should create a directed Graph', () => {
-    const g = new Graph(false, true);
-    expect(g.isDirected).toBeTruthy();
-    console.log(g);
-  });
-
-  it('should add edge to a directed Graph', () => {
-    const g = new Graph(false, true);
-    expect(g.isDirected).toBeTruthy();
-    const vtx1 = g.addVertex('vtx1');
-    const vtx2 = g.addVertex('vtx2');
-    vtx1.print();
-    g.addEdge(vtx1, vtx2);
-    vtx1.print();
-    expect(vtx1.edges[0]).toBeTruthy();
-    expect(vtx2.edges[0]).toBeFalsy();
-  });
-
-  it('should remove edge from a directed Graph', () => {
-    const g = new Graph(false, true);
-    expect(g.isDirected).toBeTruthy();
-    const vtx1 = g.addVertex('vtx1');
-    const vtx2 = g.addVertex('vtx2');
-    g.addEdge(vtx1, vtx2);
-    expect(vtx1.edges[0]).toBeTruthy();
-    expect(vtx2.edges[0]).toBeFalsy();
-    vtx1.print();
-    g.removeEdge(vtx1, vtx2);
-    vtx1.print();
-    expect(vtx1.edges[0]).toBeFalsy();
-  });
-
   it('should complete depth first traversal', () => {
 
     console.log("      A---1        ");
@@ -168,7 +136,6 @@ describe('Graph', () => {
       .toStrictEqual(['vtx1', 'vtx2', 'vtx3', 'vtxC', 'vtxB', 'vtxA']);
   });
 
-
   it('should complete breadth first traversal', () => {
 
     console.log("      A---1        ");
@@ -214,6 +181,64 @@ describe('Graph', () => {
     expect(bftResult)
       .toStrictEqual(['vtx1', 'vtx2', 'vtx3', 'vtxA', 'vtxB', 'vtxC']);
   });
+});
+
+describe('Graph (directed): ', () => {
+
+  it('should create a Graph', () => {
+    const g = new Graph(false, true);
+    expect(g.isDirected).toBeTruthy();
+    console.log(g);
+  });
+
+  it('should add edge to a Graph', () => {
+    const g = new Graph(false, true);
+    expect(g.isDirected).toBeTruthy();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    vtx1.print();
+    g.addEdge(vtx1, vtx2);
+    vtx1.print();
+    expect(vtx1.edges[0]).toBeTruthy();
+    expect(vtx2.edges[0]).toBeFalsy();
+  });
+
+  it('should remove edge from Graph', () => {
+    const g = new Graph(false, true);
+    expect(g.isDirected).toBeTruthy();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    g.addEdge(vtx1, vtx2);
+    expect(vtx1.edges[0]).toBeTruthy();
+    expect(vtx2.edges[0]).toBeFalsy();
+    vtx1.print();
+    g.removeEdge(vtx1, vtx2);
+    vtx1.print();
+    expect(vtx1.edges[0]).toBeFalsy();
+  });
+
+  it('should complete depth first traversal', () => {
+    const g = new Graph(true);
+    const vtxA = g.addVertex('vtxA');
+    const vtxB = g.addVertex('vtxB');
+    const vtxC = g.addVertex('vtxC');
+    const vtxD = g.addVertex('vtxD');
+    g.addEdge(vtxA, vtxC);
+    g.addEdge(vtxC, vtxB);
+    g.addEdge(vtxB, vtxA);
+    g.addEdge(vtxA, vtxD);
+    g.print();
+    const dftResult = [];
+console.log(g);
+    g.depthFirstTraversal(vtxA, 
+      (vtx) => {
+        dftResult.push(vtx.data);
+      });
+    console.log(dftResult);
+    expect(dftResult)
+      .toStrictEqual(['vtxA', 'vtxC', 'vtxB', 'vtxD']);
+  });
 
 });
+
 
