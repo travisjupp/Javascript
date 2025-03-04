@@ -181,6 +181,23 @@ describe('Graph (undirected): ', () => {
     expect(bftResult)
       .toStrictEqual(['vtx1', 'vtx2', 'vtx3', 'vtxA', 'vtxB', 'vtxC']);
   });
+
+  it.only('should traverse the graph', () => {
+    const g = new Graph();
+    const vtx1 = g.addVertex('vtx1');
+    const vtx2 = g.addVertex('vtx2');
+    const vtx3 = g.addVertex('vtx3');
+    const vtx4 = g.addVertex('vtx4');
+    g.addEdge(vtx1, vtx2);
+    g.addEdge(vtx1, vtx4);
+    g.addEdge(vtx2, vtx3);
+    g.addEdge(vtx3, vtx4);
+    console.log(g);
+    g.print();
+    g.breadthFirstTraversal(vtx1,
+      vtx => console.log(vtx.data)
+    );
+  });
 });
 
 describe('Graph (directed): ', () => {

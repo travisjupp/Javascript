@@ -29,7 +29,7 @@ const createList = (arr = ['A', 'B', 'C', 'D']) => {
 }
 
 // test reverseList result
-describe.only('Reverse nodes in list', () => {
+describe.only('Linked List: ', () => {
   it.only('should reverse all nodes in the list', () => {
     const list = createList();
     list.printList();
@@ -39,7 +39,7 @@ describe.only('Reverse nodes in list', () => {
   });
 });
 
-describe.only('Linked list reference value', () => {
+describe.only('Linked List: ', () => {
   it.only('should return reference-equal list', () => {
     const list = createList();
     list.printList();

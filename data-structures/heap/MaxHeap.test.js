@@ -33,6 +33,7 @@ describe('MaxHeap', () => {
   it('should create a maxheap', () => {
     const maxheap = createMaxHeap();
     maxheap.add(1);
+    console.log(maxheap);
     assert.ok(maxheap);
   });
 
@@ -49,11 +50,11 @@ describe('MaxHeap', () => {
 
   it('should have parents > children', () => {
     const maxheap = createMaxHeap(11);
-    console.log(maxheap);
     for (let i = maxheap.size-1; i > 0; i--) {
       let child = maxheap.heap[i];
       let parent = maxheap.heap[Math.floor(i/2)];
-      if (parent < child) {
+      console.log('p: ', parent, 'c: ', child);
+      if (parent < child && parent !== null) {
         console.log('p: ', parent, '<', 'c: ', child);
       };
     };
@@ -62,7 +63,9 @@ describe('MaxHeap', () => {
 
   it('should return the first item', () => {
     const maxheap = createMaxHeap(4);
+    console.log(maxheap);
     const firstItem = maxheap.peek();
+    console.log('=>', firstItem);
     expect(maxheap.heap[1]).toEqual(firstItem);
   });
 
