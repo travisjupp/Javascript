@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import {jest} from '@jest/globals';
 import util from 'node:util';
 import {style} from '../../styles.js';
-util.inspect.defaultOptions.depth = null; // show full objects
-// util.inspect.defaultOptions.depth = 0; // show truncated objects
-// util.inspect.defaultOptions.compact = true; // dont break objects to new lines
+// util.inspect.defaultOptions.depth = null; // show full objects
+util.inspect.defaultOptions.depth = 0; // show truncated objects
+util.inspect.defaultOptions.compact = true; // dont break objects to new lines
 // util.inspect.defaultOptions.compact = false; // break objects to new lines
 
 // suppress jests tracing console logs
@@ -75,6 +75,25 @@ describe('Dijkstras', () => {
     console.log('              │                   ');
     console.log('              └──10──▶ F          ');
     console.log(results.distances);
+
+    /* show shortest path for each vtx */
+    for (const vtx in results.previous) {
+      const path = [];
+      let startVtx = vtx;
+      let sv = startVtx;
+      while (startVtx) {
+        const prev = results.previous[startVtx];
+        if (prev) path.unshift(prev.data);
+        if (results.previous[startVtx]) {
+          startVtx = results.previous[startVtx].data;
+        } else {
+          break;
+        }
+      }
+      console.log(`Shortest path from ${startVtx} to ${sv}: ${path.length ?
+          path.join('─▶')+'─▶'+sv : sv} weight: ${results.distances[sv]}`); }
+    /* /show shortest path for each vtx */
+
     expect(results.distances)
       .toStrictEqual(
         { A: 0, B: 3, C: 7, D: 4, E: 12, F: 22, G: -38 }

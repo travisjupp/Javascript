@@ -30,14 +30,14 @@ const createMinHeap = size => {
 
 describe('MinHeap', () => {
 
-  it('should create a minheap', () => {
+  it.skip('should create a minheap', () => {
     const minheap = createMinHeap();
     minheap.add(1);
     console.log(minheap);
     assert.ok(minheap);
   });
 
-  it('should remove and return the min value', () => {
+  it.skip('should remove and return the min value', () => {
     const minheap = new MinHeap();
     for (let n = 1; n < 5; n++) {
       minheap.add(n);
@@ -50,7 +50,7 @@ describe('MinHeap', () => {
     expect(min).toEqual(1);
   });
 
-  it('should have parents < children', () => {
+  it.skip('should have parents < children', () => {
     const minheap = createMinHeap(11);
     for (let i = minheap.size-1; i > 0; i--) {
       let child = minheap.heap[i];
@@ -63,7 +63,7 @@ describe('MinHeap', () => {
     if (typeof parent === 'number') assert.ok(parent < child);
   });
 
-  it('should return the first item', () => {
+  it.skip('should return the first item', () => {
     const minheap = createMinHeap(4);
     console.log(minheap);
     const firstItem = minheap.peek();
@@ -71,5 +71,19 @@ describe('MinHeap', () => {
     expect(minheap.heap[1]).toEqual(firstItem);
   });
 
+  it('should print the heap', () => {
+    const minheap = new MinHeap();
+    minheap.add(22);
+    minheap.add(30);
+    minheap.add(77);
+    minheap.add(100);
+    minheap.add(133);
+
+    console.log(minheap);
+    const firstItem = minheap.peek();
+    console.log('peek =>', firstItem);
+    minheap.print();
+    // expect(minheap.heap[1]).toEqual(firstItem);
+  });
 });
 

@@ -75,6 +75,25 @@ class PriorityQueue {
       || this.exists(rightChild) && this.heap[current].priority > this.heap[rightChild].priority
     );
   }
+
+  print() {
+    for (const el of this.heap) {
+      if (el) {
+        const vdata = el.vertex.data;
+        const priority = el.priority;
+        const currentIdx = this.heap.indexOf(el);
+        const left = this.heap[getLeft(currentIdx)];
+        const right = this.heap[getRight(currentIdx)];
+        console.log('current: ', vdata, priority);
+        if (left) {
+          console.log('left: ', left.vertex.data, left.priority);
+          if (right) {
+            console.log('right: ', right.vertex.data, right.priority);
+          }
+        }
+      }
+    }
+  }
 }
 
 const getParent = current => Math.floor((current / 2));

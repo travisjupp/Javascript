@@ -75,6 +75,24 @@ class MinHeap {
     );
   }
 
+  print() {
+    let count = this.heap.length;
+    let res = '';
+
+    for (const node of this.heap) {
+        const left = this.heap[getLeft(this.heap.indexOf(node))];
+        const right = this.heap[getRight(this.heap.indexOf(node))];
+      if (node && left) {
+        console.log(res, '', node);
+        console.log(res, '/  \\');
+        console.log(res, left, right);
+
+      }
+      res += '--';
+      count--;
+    }
+  }
+
   swap(a, b) {
     [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
   }
