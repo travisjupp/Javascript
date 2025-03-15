@@ -4,10 +4,10 @@ const Dijkstras = (graph, startingVertex) => {
   const distances = {}; // track distance from startVertex
   const previous = {}; // for path reconstruction
   const queue = new PriorityQueue(); // for graph traversal
-  queue.add({ vertex: startingVertex, priority: 0 });
+  queue.add({vertex: startingVertex, priority: 0});
 
   // initialize placeholder vals for each vertex
-  graph.vertices.forEach((vertex) => {
+  graph.vertices.forEach(vertex => {
     distances[vertex.data] = Infinity;
     previous[vertex.data] = null;
   });
@@ -16,9 +16,9 @@ const Dijkstras = (graph, startingVertex) => {
 
   // traverse graph
   while (!queue.isEmpty()) {
-    const { vertex } = queue.popMin();
+    const {vertex} = queue.popMin();
     // iterate neighbors
-    vertex.edges.forEach((edge) => {
+    vertex.edges.forEach(edge => {
       // distance from start point to current
       const alternate = edge.weight + distances[vertex.data];
       const neighborValue = edge.end.data;
@@ -31,14 +31,12 @@ const Dijkstras = (graph, startingVertex) => {
         previous[neighborValue] = vertex;
         // other vertices may have shorter paths, explore
         // neighbors of this neighbor
-        queue.add({ vertex: edge.end, priority: distances[neighborValue] })
+        queue.add({vertex: edge.end, priority: distances[neighborValue]});
       }
     });
   }
 
-  return { distances, previous };
+  return {distances, previous};
 };
 
-
 export default Dijkstras;
-
