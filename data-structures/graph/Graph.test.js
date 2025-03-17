@@ -30,26 +30,26 @@ import Vertex from './Vertex.js';
 describe('Graph (undirected): ', () => {
   it('should render a Graph', () => {
     const g = new Graph();
+    console.log(g);
     expect(g).toBeTruthy();
     expect(g).toBeInstanceOf(Graph);
     expect(g.vertices).toBeInstanceOf(Array);
-    console.log(g);
+    
   });
 
   it('should add a Vertex', () => {
     const g = new Graph();
     const vtx1 = g.addVertex('vtx1');
-    console.log(g);
+    console.log('Vertices: ', g.vertices);
     expect(g.vertices[0]).toBeInstanceOf(Vertex);
   });
 
   it('should remove a Vertex', () => {
     const g = new Graph();
     const vtx1 = g.addVertex('vtx1');
-    console.log(g);
     expect(g.vertices[0]).toBeInstanceOf(Vertex);
     g.removeVertex(vtx1);
-    console.log(g);
+    console.log('Vertices: ', g.vertices);
     expect(g.vertices[0]).toBeUndefined();
   });
 
@@ -182,7 +182,7 @@ describe('Graph (undirected): ', () => {
       .toStrictEqual(['vtx1', 'vtx2', 'vtx3', 'vtxA', 'vtxB', 'vtxC']);
   });
 
-  it.only('should traverse the graph', () => {
+  it('should traverse the graph', () => {
     const g = new Graph();
     const vtx1 = g.addVertex('vtx1');
     const vtx2 = g.addVertex('vtx2');
@@ -192,7 +192,6 @@ describe('Graph (undirected): ', () => {
     g.addEdge(vtx1, vtx4);
     g.addEdge(vtx2, vtx3);
     g.addEdge(vtx3, vtx4);
-    console.log(g);
     g.print();
     g.breadthFirstTraversal(vtx1,
       vtx => console.log(vtx.data)
@@ -202,10 +201,10 @@ describe('Graph (undirected): ', () => {
 
 describe('Graph (directed): ', () => {
 
-  it('should create a Graph', () => {
+  it('should create a directed Graph', () => {
     const g = new Graph(false, true);
-    expect(g.isDirected).toBeTruthy();
     console.log(g);
+    expect(g.isDirected).toBeTruthy();
   });
 
   it('should add edge to a Graph', () => {
@@ -246,7 +245,7 @@ describe('Graph (directed): ', () => {
     g.addEdge(vtxA, vtxD);
     g.print();
     const dftResult = [];
-console.log(g);
+
     g.depthFirstTraversal(vtxA, 
       (vtx) => {
         dftResult.push(vtx.data);
