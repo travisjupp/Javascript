@@ -11,7 +11,7 @@ util.inspect.defaultOptions.depth = null; // show full objects
 // suppress jests tracing console logs
 import console from 'console';
 const jestConsole = console;
-import soe from './sieveOfEratosthenes.js';
+import sieve from './sieveOfEratosthenes.js';
 
 beforeEach(() => {
   global.console = console;
@@ -34,7 +34,7 @@ const isPrime = (num) => {
 describe('sieveOfEratosthenes', () => {
 
   it('should find primes in list', () => {
-    const res = soe(160);
+    const res = sieve(160);
     console.log(res.filter(isPrime));
     expect(res)
       .toStrictEqual(res.filter(isPrime));
