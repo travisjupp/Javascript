@@ -12,15 +12,12 @@ const sieveOfEratosthenes = n => {
     if (list[p]) {
       // starting at p^2 mark composites
       for (let i = p * p; i <= n; i = i + p) {
-        console.log('i =', i);
         list[i] = false; // mark composites
-        list[p] = true; // mark current prime
       }
     }
     p++;
   }
   const res = list.map((p, i) => (p ? i : null)).filter(p => p);
-  console.log(res);
   return res;
 };
 
