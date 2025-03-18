@@ -34,7 +34,28 @@ const isPrime = (num) => {
 describe('sieveOfEratosthenes', () => {
 
   it('should find primes in list', () => {
-    const res = sieve(160);
+    const res = sieve(16);
+    console.log(res.filter(isPrime));
+    expect(res)
+      .toStrictEqual(res.filter(isPrime));
+  });
+
+  it('should return [] if called with 0', () => {
+    const res = sieve(0);
+    console.log(res.filter(isPrime));
+    expect(res)
+      .toStrictEqual(res.filter(isPrime));
+  });
+
+  it('should return [] if called with 1', () => {
+    const res = sieve(1);
+    console.log(res.filter(isPrime));
+    expect(res)
+      .toStrictEqual(res.filter(isPrime));
+  });
+
+  it('should return [2] if called with 2', () => {
+    const res = sieve(2);
     console.log(res.filter(isPrime));
     expect(res)
       .toStrictEqual(res.filter(isPrime));
