@@ -4,22 +4,28 @@
 // The numbers that remain are Prime.
 
 const sieveOfEratosthenes = n => {
-  let p = 2; // hold prime
-  const list = new Array(null, false);
-  list.length = n + 1;
-  list.fill(true, 2, n + 1);
-  while (p < n) {
-    if (list[p]) {
-      // starting at p^2 mark composites
-      for (let i = p * p; i <= n; i = i + p) {
-        list[i] = false; // mark composites
+  let p = 2;
+  const arr = new Array(false, false);
+  arr.length = n + 1;
+  arr.fill(true, 2, n + 1);
+  // boundary optimization (sqrt of n)
+  while (p < sqrt(n)) {
+    if (arr[p]) {
+      // first multiple optimization (p^2)
+      for (let i = pow(p, 2); i <= n; i = i + p) {
+        arr[i] = false; // mark composites
       }
     }
     p++;
   }
-  const res = list.map((p, i) => (p ? i : null)).filter(p => p);
-  return res;
+  const primes = [];
+  const res = arr.forEach((el, i) => {
+    if (el) primes.push(i);
+  });
+  return primes;
 };
+
+const {sqrt, pow} = Math;
 
 export default sieveOfEratosthenes;
 
