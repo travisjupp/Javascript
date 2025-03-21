@@ -13,22 +13,22 @@ import console from 'console';
 const jestConsole = console;
 
 beforeEach(() => {
-    global.console = console;
-    console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); });
+  global.console = console;
+  console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset,'\n'); });
 
 afterEach(() => {
-    global.console = jestConsole;
-    console.log(style.color(99), style.hr.double, style.reset);
+  global.console = jestConsole;
+  console.log(style.color(99), style.hr.double, style.reset);
 });
 
 import rainWater from './rainWater.js';
 
-describe('someTest', () => {
-  it('should ', () => {
+describe('rainWater', () => {
+  it('should calculate trapped rainwater', () => {
     const input = [4, 2, 1, 3, 0, 1, 2];
     const rain = rainWater(input);
-    // expect(rain)
-    //   .toStrictEqual(6);
+    expect(rain)
+      .toStrictEqual(6);
   });
 
 });

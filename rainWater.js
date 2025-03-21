@@ -20,7 +20,7 @@ const collectRainWater = heights => {
     }
   }
   console.log('rainWater: ', rainWater);
-
+  return rainWater;
 }
 
 export default collectRainWater;
