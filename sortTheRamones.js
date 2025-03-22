@@ -31,8 +31,8 @@ const ramonesArray = [
 
 // create comparator func for the sort method
 function putJoeyFirst(a, b) {
-  // a is 6, b is 5.9
-  // b - a is >0
+  // a.height is 6, b.height is 5.9
+  // b - a is <0
   // sort 6.0 before 5.9
   return b.height - a.height;
 }
@@ -48,5 +48,12 @@ console.log('Put Joey first!', ramonesArray.sort(putJoeyFirst));
 //   {ramone: 'Tommy', height:5.5}
 // ];
 
-// console.log('Line up the Ramones: ', ramonesArray.sort(putTommyFirst));
+console.log('Put Tommy first?!', ramonesArray.sort(putTommyFirst));
+
+// Put Tommy first?! [
+//   { ramone: 'Tommy', height: 5.5 },
+//   { ramone: 'Dee Dee', height: 5.9 },
+//   { ramone: 'Johnny', height: 6 },
+//   { ramone: 'Joey', height: 6.7 }
+// ]
 
