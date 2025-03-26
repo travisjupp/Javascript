@@ -13,10 +13,10 @@ console.log(`word count: ${count} \n`);
 
 // filter all words that are not unnecessary
 storyWords = storyWords.filter(word => {
-if (word !== unnecessaryWord){
-  return word;
-}
-})
+  if (word !== unnecessaryWord){
+    return word;
+  }
+});
 
 // reassign storyWords to new storyWords array after replacing misspelledWord
 storyWords = storyWords.map(word => {
@@ -25,48 +25,25 @@ storyWords = storyWords.map(word => {
   } else {
     return word;
   }
-})
+});
+
 // badWord map method
 storyWords = storyWords.map(word => {
-    if (word === badWord){
-        return badWord = 'REALLY';
-    } else {
-        return word;
-    }
-})
-
-// // badWord findIndex method
-// let badWordIndex = storyWords.findIndex(word => {
-//   if (word === badWord){
-//     return word;
-//   }
-// })
-// // console.log(badWordIndex); // 78
-// storyWords[badWordIndex] = 'really'; // replacing badWord at storyWords[78]
-
+  if (word === badWord){
+    return badWord = 'REALLY';
+  } else {
+    return word;
+  }
+});
 
 // replacing long words map method
 storyWords = storyWords.map(word => {
-    if (word.length > 10){
-        return word = 'DAZZLING';
-    } else {
-        return word;
-    }
+  if (word.length > 10){
+    return word = 'DAZZLING';
+  } else {
+    return word;
+  }
 })
 
-// // check for long words
-// let lengthCheck = storyWords.every(word => word.length <= 10);
-// console.log(`every word length less than 10? ${lengthCheck} \n`); // false
-// // replacing long words findIndex method
-// let longWord = storyWords.findIndex(word => {
-//   if (word.length > 10){
-//     return word
-//   }
-// })
-
-// // console.log(longWord); // 111
-// storyWords[longWord] = 'dazzling';
-
-// console.log(storyWords)
 console.log(storyWords.join(' '));
-// console.log(story)
+
