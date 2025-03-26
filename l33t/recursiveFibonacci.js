@@ -7,13 +7,18 @@
 //       |    |    |    |    |    |    |
 // Pos. F_0  F_1  F_2  F_3  F_4  F_5  F_6
 
+
+const memo = {};
+
 const recursiveFibonacci = (n) => {
-  if (n < 2) {
-    return n;
-  }
-  return recursiveFibonacci(n - 1) + 
+  if (memo[n]) return memo[n];
+  if (n < 2) return n;
+  const result = recursiveFibonacci(n - 1) + 
     recursiveFibonacci(n - 2);
+  memo[n] = result;
+  console.log(memo);
+  return result;
 };
 
-console.log(recursiveFibonacci(4));
+export default recursiveFibonacci;
 
