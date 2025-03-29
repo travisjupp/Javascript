@@ -23,11 +23,11 @@ afterEach(() => {
 });
 
 describe('recursiveKnapsack', () => {
-  it('should ', () => {
+  it('should return optimal value', () => {
     let weightCap = 5;
     const weights = [1, 3, 5];
     const values = [250, 300, 500];
-    const i = 3;
+    const i = weights.length;
     expect(knapsack(weightCap, weights, values, i))
       .toBe(550);
   });
