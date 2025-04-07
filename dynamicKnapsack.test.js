@@ -7,6 +7,8 @@ util.inspect.defaultOptions.depth = null; // show full objects
 // util.inspect.defaultOptions.depth = 0; // show truncated objects
 util.inspect.defaultOptions.compact = true; // dont break objects to new lines
 // util.inspect.defaultOptions.compact = false; // break objects to new lines
+util.inspect.defaultOptions.maxArrayLength = 11;
+// util.inspect.defaultOptions.breakLength = 155;
 
 // suppress jests tracing console logs
 import console from 'console';
@@ -27,6 +29,7 @@ describe('dynamicKnapsack', () => {
     const weightCap = 50;
     const weights = [31, 10, 20, 19, 4, 3, 6];
     const values = [70, 20, 39, 37, 7, 5, 10];
+    console.log('weightCap', weightCap, '\nweights', weights, '\nvalues', values);
     expect(knapsack(weightCap, weights, values))
       .toBe(107);
   });
@@ -35,6 +38,7 @@ describe('dynamicKnapsack', () => {
     const weightCap = 5;
     const weights = [1, 3, 5];
     const values = [250, 300, 500];
+    console.log('weightCap', weightCap, '\nweights', weights, '\nvalues', values);
     expect(knapsack(weightCap, weights, values))
       .toBe(550);
   });
