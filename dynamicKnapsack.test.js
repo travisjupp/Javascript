@@ -34,7 +34,7 @@ describe('dynamicKnapsack', () => {
       .toBe(107);
   });
 
-  it('should return optimal value (5 items)', () => {
+  it('should return optimal value (3 items)', () => {
     const weightCap = 5;
     const weights = [1, 3, 5];
     const values = [250, 300, 500];
