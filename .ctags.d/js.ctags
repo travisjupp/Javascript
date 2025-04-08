@@ -1,3 +1,6 @@
-# types
---kinds-JavaScript=C
+--exclude=.git
+--exclude=log
+--exclude=tmp
+
 --languages=JavaScript
+
