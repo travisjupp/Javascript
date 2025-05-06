@@ -24,10 +24,34 @@ afterEach(() => {
 import fib from './recursiveFibonacci.js';
 
 describe('fibonacci (recursive)', () => {
-  it('should return the fib num at given location', () => {
+  it('should return the fib num 0 when 0 is input', () => {
+    expect(fib(0))
+      .toBe(0);
+  });
+
+  it('should return the fib num 1 when 1 is input', () => {
+    expect(fib(1))
+      .toBe(1);
+  });
+
+  it('should return the fib num 1 when 2 is input', () => {
+    expect(fib(2))
+      .toBe(1);
+  });
+
+  it('should return the fib num 2 when 3 is input', () => {
+    expect(fib(3))
+      .toBe(2);
+  });
+
+  it('should return the fib num 3 when 4 is input', () => {
     expect(fib(4))
       .toBe(3);
   });
 
+  it('should return the fib num 5 when 5 is input', () => {
+    expect(fib(5))
+      .toBe(5);
+  });
 });
 
