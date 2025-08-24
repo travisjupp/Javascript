@@ -10,6 +10,7 @@ const style = {
   invert: '\x1b[7m',
   black: '\x1b[30m',
   red: '\x1b[31m',
+  orange: '\x1b[38;5;208m',
   green: '\x1b[32m',
   yellow: '\x1b[33m',
   blue: '\x1b[34m',

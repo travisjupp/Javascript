@@ -1,12 +1,12 @@
-// binarySearch (iterative)
-const binarySearch = (arr, target) => {
+
+// BINARY SEARCH (ITERATIVE)
+export const binarySearchIterative = (arr, target) => {
   let left = 0;
   let right = arr.length;
   
   while (right > left) {
     const indexToCheck = Math.floor((left + right) / 2);
     const checking = arr[indexToCheck];
-    console.log(`indexToCheck equals: ${indexToCheck}`)
   
     if (checking === target) {
       return indexToCheck;
@@ -15,17 +15,30 @@ const binarySearch = (arr, target) => {
     } else {
       right = indexToCheck;
     }
-     
+  }
+  return null;
+};
+
+// BINARY SEARCH (RECURSIVE)
+export const binarySearchRecursive = (arr, target, left = 0, right = arr.length) => {
+  const indexToCheck = Math.floor((left + right) / 2);
+  const valueToCheck = arr[indexToCheck];
+  // console.log('arr', arr, 'valueToCheck', valueToCheck, 'target', target);
+  if (arr.length > 0) {
+    if (valueToCheck === target) {
+      // console.log('valueToCheck === target', valueToCheck === target, 'indexToCheck', indexToCheck, 'valueToCheck', valueToCheck);
+      return indexToCheck;
+    } else if (valueToCheck < target) {
+      left = indexToCheck + 1;
+      // console.log('calling binarySearchRecursive(rarr, target, left)');
+      return binarySearchRecursive(arr, target, left, right);
+    } else if (valueToCheck > target) {
+      right = indexToCheck;
+      // console.log('calling binarySearchRecursive(larr, target, left, right)');
+      return binarySearchRecursive(arr, target, left, right);
+    }
   }
   return null;
 }
 
-const searchable = [1, 2, 7, 8, 22, 28, 41, 58, 67, 71, 94];
-const target = 8;
-
-const targetIndex = binarySearch(searchable, target);
-
-console.log(`The target index is ${targetIndex}.`);
-
-export default binarySearch;
 
