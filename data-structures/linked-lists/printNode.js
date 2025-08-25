@@ -1,7 +1,7 @@
 // Print node data to console
 
 // Usage:
-// printNode('MY NODE', node, 'c') => MY NODE A→B→C→D→n
+// printNode('MY NODE', node, 'c') => MY NODE A→ B→ C→ D→ n
 // printNode('POINT', curr, '☞', prev, 'h') => POINT C ☞ B
 //
 // h-rules (add padding to stretch):
@@ -109,22 +109,22 @@ function printNode () {
             // option: color
           case optsOb.c:
             if (firstItemFlag) { // style first item
-              res += `${SGR.bold}${node.data}${SGR.reset}${SGR.dim}→${SGR.reset}`;
+              res += `${SGR.bold}${node.data}${SGR.reset}${SGR.dim}→ ${SGR.reset}`;
             } else { // style following items
-              res += `${SGR.dim}${node.data}→${SGR.reset}`
+              res += `${SGR.dim}${node.data}→ ${SGR.reset}`
             }
             if (!node.next) res += `${SGR.red}n${padding}${SGR.reset}`; // append null
             break;
 
             // option: dim
           case optsOb.d:
-            res += `${SGR.dim}${node.data}→${SGR.reset}`
+            res += `${SGR.dim}${node.data}→ ${SGR.reset}`
             if (!node.next) res += `${SGR.dim}n${padding}${SGR.reset}` // append null
             break;
 
             // option: none (default)
           default:
-            res += node.data + '→';
+            res += node.data + '→ ';
             if (!node.next) res += `n${padding}`;
         }
         firstItemFlag = false;
@@ -159,7 +159,7 @@ function printNode () {
 
     if (arguments[arg] === 'i') {
       res +=
-        `${'─'.repeat(process.env.COLUMNS - 3 || 80)}${SGR.dim}↑${count}${SGR.reset}`;
+        `${'─'.repeat(process.env.COLUMNS - 3 || 80)}${SGR.dim}↑ ${count}${SGR.reset}`;
       count++;
     }
 
@@ -180,4 +180,5 @@ function printNode () {
 }
 
 export default printNode;
+// @tjupp
 
