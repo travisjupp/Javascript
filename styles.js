@@ -44,10 +44,18 @@ const style = {
   wrap: (...styles) => {
     let chainedStyles = '';
     for (const styleName of styles) {
+      const isEscSeq = JSON.stringify(styleName).slice(0,6) === '"\\u001';
+      if (isEscSeq) {
+        chainedStyles += styleName;
+      }
+      // Last item is not style key
       if (styles.indexOf(styleName) === styles.length -1) {
         chainedStyles += styleName;
       } else {
-        chainedStyles += style[styleName];
+        if (!isEscSeq) {
+          // Add style keys
+          chainedStyles += style[styleName];
+        }
       }
     }
     chainedStyles += style.reset;
@@ -56,7 +64,7 @@ const style = {
   list: (...listItems) => {
     let list = '';
     for (const item of listItems) {
-      list += '\n ☞  '+item;
+      list += `\n ☞  ${item}`;
     }
     return list;
   },
@@ -64,13 +72,13 @@ const style = {
     let list = '';
     for (const item of listItems) {
       if (item[0] === '+') {
-      list += '\n - [ ] '+item.slice(1);
+        list += '\n - [ ] '+item.slice(1);
       }
       if (item[0] === '-') {
-      list += '\n - [x] '+item.slice(1);
+        list += '\n - [x] '+item.slice(1);
       }
       if (item[0] === '~') {
-      list += '\n - [~] '+style.strike+item.slice(1)+style.reset;
+        list += '\n - [~] '+style.strike+item.slice(1)+style.reset;
       }
       if (item[0] === '!') {
         if (item[1] === '+') {
@@ -98,18 +106,22 @@ const style = {
   },
   test: () => {
     console.log(
-      style.color(255,0,255),'Styled with Custom RGB Color',style.reset,
-      style.color(39),' Some Styled Text',style.reset,
-      style.bgColor(18),style.orange,' Some Background Styled Text',style.reset,
-      style.bgColor(0,255,0),style.black,style.bold,' Some Background Styled Text',style.reset,
-      style.hr.double,style.reset,
-      style.wrap('italic', 'Make me ITALIC (reset included for `style.wrap()`)'),
-      style.wrap('black', 'redbg', 'bold', 'strike', 'Make me RED BACKGROUND STRIKED'),
-      style.chain('red', 'bold'), 'Make me RED BOLD', style.reset,
-      style.dim, 'Make me DIM', style.reset,
-      style.list('Make me a LIST ITEM','Make me a LIST ITEM'), style.reset,
-      style.list(`Make me a ${style.italic}INLINE STYLED${style.reset} LIST ITEM`,`Make me a LIST ITEM`), style.reset,
-      style.todo('+Make me a TODO LIST ITEM','-Make me a DONE LIST ITEM','~Make me a STRIKED LIST ITEM','!Make me a IMPORTANT TODO LIST ITEM', '!+Make me a IMPORTANT TODO LIST ITEM', '!-Make me a IMPORTANT DONE LIST ITEM'), style.reset,
+      style.color(255,0,255)+'Styled with Custom RGB Color'+style.reset+
+      style.color(39)+'Some Styled Text'+style.reset+'\n'+
+      style.bgColor(18)+style.orange+'Some Background Styled Text'+style.reset+
+      style.redbg+style.black+style.bold+'Some Background Styled Text'+style.reset+'\n'+
+      '\x1b[33m'+'Some Styled Text'+'\x1b[0m'+'\n'+
+      style.hr.double,
+      style.wrap('red', style.hr.single),
+      style.wrap(style.color(255,0,255), style.hr.single),
+      style.wrap('\x1b[33m', style.hr.single),
+      style.wrap('italic', 'Make me ITALIC (reset included for `style.wrap()`)')+'\n'+
+      style.wrap('black', 'redbg', 'bold', 'strike', 'Make me RED BACKGROUND STRIKED')+
+      style.chain('red', 'bold')+ 'Make me RED BOLD'+ style.reset+'\n'+
+      style.dim+ 'Make me DIM'+ style.reset+'\n'+
+      style.list('Make me a LIST ITEM','Make me a LIST ITEM')+ style.reset+
+      style.list(`Make me a ${style.italic}INLINE STYLED${style.reset} LIST ITEM`,`Make me a LIST ITEM`)+ style.reset+
+      style.todo('+Make me a TODO LIST ITEM','-Make me a DONE LIST ITEM','~Make me a STRIKED LIST ITEM','!Make me a IMPORTANT TODO LIST ITEM', '!+Make me a IMPORTANT TODO LIST ITEM', '!-Make me a IMPORTANT DONE LIST ITEM')+ style.reset
     );
   },
   help: () => {
@@ -129,30 +141,31 @@ E.g., console.log(style.bold, 'Bold ME!', style.reset);
 
 SAMPLES (run \`styles.test()\` to view styled in console)
 
-  style.color(255,0,255),'Styled with Custom RGB Color',style.reset,
-  style.color(39),' Some Styled Text',style.reset,
-  style.bgColor(18),style.orange,' Some Background Styled Text',style.reset,
-  style.bgColor(0,255,0),style.black,style.bold,' Some Background Styled Text',style.reset,
-  style.hr.double,style.reset,
-  style.wrap('italic', 'Make me ITALIC (reset included for \`style.wrap()\`)'),
-  style.wrap('black', 'redbg', 'bold', 'strike', 'Make me RED BACKGROUND STRIKED'),
-  style.chain('red', 'bold'), 'Make me RED BOLD', style.reset,
-  style.dim, 'Make me DIM', style.reset,
+      style.color(255,0,255)+'Styled with Custom RGB Color'+style.reset+
+      style.color(39)+'Some Styled Text'+style.reset+'\\n'+
+      style.bgColor(18)+style.orange+'Some Background Styled Text'+style.reset+
+      style.redbg+style.black+style.bold+'Some Background Styled Text'+style.reset+'\\n'+
+      '\\x1b[33m'+'Some Styled Text'+'\\x1b[0m'+'\\n'+
 
-  style.list( 'Make me a LIST ITEM', 'Make me a LIST ITEM'), style.reset,
+      style.hr.double,
+      style.wrap('red', style.hr.single),
+      style.wrap(style.color(255,0,255), style.hr.single),
+      style.wrap('\\x1b[33m', style.hr.single),
 
-  style.list(
-    \`Make me a \${style.italic}INLINE STYLED\${style.reset} LIST ITEM\`,
-    \`Make me a LIST ITEM\`), style.reset,
+      style.wrap('italic', 'Make me ITALIC (reset included for \`style.wrap()\`)')+'\\n'+
+      style.wrap('black', 'redbg', 'bold', 'strike', 'Make me RED BACKGROUND STRIKED')+
 
-  style.todo(
-    '+Make me a TODO LIST ITEM',
-    '-Make me a DONE LIST ITEM',
-    '~Make me a STRIKED LIST ITEM',
-    '!Make me a IMPORTANT TODO LIST ITEM', 
-    '!+Make me a IMPORTANT TODO LIST ITEM', 
-    '!-Make me a IMPORTANT DONE LIST ITEM'), style.reset,
-    `);
+      style.chain('red', 'bold')+ 'Make me RED BOLD'+ style.reset+'\\n'+
+      style.dim+ 'Make me DIM'+ style.reset+'\\n'+
+      style.list('Make me a LIST ITEM','Make me a LIST ITEM')+ style.reset+
+      style.list(\`Make me a \${style.italic}INLINE STYLED\${style.reset} LIST ITEM\`,\`Make me a LIST ITEM\`)+ style.reset+
+      style.todo('+Make me a TODO LIST ITEM',
+                 '-Make me a DONE LIST ITEM',
+                 '~Make me a STRIKED LIST ITEM',
+                 '!Make me a IMPORTANT TODO LIST ITEM',
+                 '!+Make me a IMPORTANT TODO LIST ITEM',
+                 '!-Make me a IMPORTANT DONE LIST ITEM')+ style.reset
+`);
   }
 }
 
