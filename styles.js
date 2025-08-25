@@ -46,6 +46,12 @@ const style = {
   h4: (text) => {
     return `${style.bold}${style.blue}${text}${style.reset}`;
   },
+  h5: (text) => {
+    return `${style.underline}${style.green}${text}${style.reset}`;
+  },
+  h6: (text) => {
+    return `${style.underline}${style.magenta}${text}${style.reset}`;
+  },
   chain: (...styles) => {
     let chainedStyles = '';
     for (const styleName of styles) {
@@ -126,7 +132,7 @@ const style = {
       style.hr.double,
       style.wrap('red', style.hr.single),
       style.wrap(style.color(255,0,255), style.hr.single),
-      style.wrap('\x1b[33m', style.hr.single),
+      style.wrap('\x1b[33m', style.hr.single)+'\n',
       style.wrap('italic', 'Make me ITALIC (reset included for `style.wrap()`)')+'\n'+
       style.wrap('black', 'redbg', 'bold', 'strike', 'Make me RED BACKGROUND STRIKED')+
       style.chain('red', 'bold')+ 'Make me RED BOLD'+ style.reset+'\n'+
@@ -162,7 +168,7 @@ SAMPLES (run \`styles.test()\` to view styled in console)
       style.hr.double,
       style.wrap('red', style.hr.single),
       style.wrap(style.color(255,0,255), style.hr.single),
-      style.wrap('\\x1b[33m', style.hr.single),
+      style.wrap('\\x1b[33m', style.hr.single)+'\\n',
 
       style.wrap('italic', 'Make me ITALIC (reset included for \`style.wrap()\`)')+'\\n'+
       style.wrap('black', 'redbg', 'bold', 'strike', 'Make me RED BACKGROUND STRIKED')+

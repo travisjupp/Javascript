@@ -22,6 +22,7 @@ export const binarySearchIterative = (arr, targetVal) => {
       rightPointer = midIdx;
     }
   }
+  console.log('targetVal not found');
   return null;
 };
 
@@ -49,6 +50,7 @@ export const binarySearchRecursive = (arr, targetVal, leftPointer = 0, rightPoin
       return binarySearchRecursive(arr, targetVal, leftPointer, rightPointer);
     }
   }
+  console.log('targetVal not found');
   return null;
 }
 

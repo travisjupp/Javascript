@@ -16,7 +16,6 @@ const jestConsole = console;
 beforeEach(() => {
   global.console = console;
   console.log(style.color(255,0,255),'▷',style.reset,style.color(39),expect.getState().currentTestName,style.reset);
-  // console.log(expect.getState());
 });
 
 afterEach(() => {
@@ -190,7 +189,7 @@ ${style.h2('## Steps')}
   });
 
   // BINARY SEARCH (RECURSIVE)
-  describe(`${style.underline}${style.italic}binarySearch (Recursive)\n${style.reset}`, () => {
+  describe(`${style.underline}${style.italic}(Recursive)\n${style.reset}`, () => {
 
     logItDescription('should find index of target AT END of a 4 element searchable', () => {
       const searchable = [2, 4, 6, 8];
