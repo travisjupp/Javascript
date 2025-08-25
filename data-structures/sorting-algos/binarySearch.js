@@ -1,41 +1,52 @@
 
 // BINARY SEARCH (ITERATIVE)
-export const binarySearchIterative = (arr, target) => {
-  let left = 0;
-  let right = arr.length;
+export const binarySearchIterative = (arr, targetVal) => {
+  console.log('searchable', arr, ',','targetVal', targetVal);
+  let leftPointer = 0;
+  let rightPointer = arr.length;
   
-  while (right > left) {
-    const indexToCheck = Math.floor((left + right) / 2);
-    const checking = arr[indexToCheck];
+  while (rightPointer > leftPointer) {
+    const midIdx = Math.floor((leftPointer + rightPointer) / 2);
+    const midVal = arr[midIdx];
+    console.log('setting leftPointer', leftPointer, 'rightPointer', rightPointer, 'midIdx', midIdx, '(val', midVal, ')');
+    console.log('searching arr', arr.slice(leftPointer,rightPointer), 'with midVal', midVal, 'for targetVal', targetVal);
   
-    if (checking === target) {
-      return indexToCheck;
-    } else if (checking < target) {
-      left = indexToCheck + 1;
+    if (midVal === targetVal) {
+      console.log('midVal === targetVal', midVal === targetVal);
+      return midIdx;
+    } else if (midVal < targetVal) {
+      console.log('midVal < targetVal .. moving leftPointer to', midIdx + 1);
+      leftPointer = midIdx + 1;
     } else {
-      right = indexToCheck;
+      console.log('midVal > targetVal .. moving rightPointer to', midIdx);
+      rightPointer = midIdx;
     }
   }
   return null;
 };
 
 // BINARY SEARCH (RECURSIVE)
-export const binarySearchRecursive = (arr, target, left = 0, right = arr.length) => {
-  const indexToCheck = Math.floor((left + right) / 2);
-  const valueToCheck = arr[indexToCheck];
-  // console.log('arr', arr, 'valueToCheck', valueToCheck, 'target', target);
+export const binarySearchRecursive = (arr, targetVal, leftPointer = 0, rightPointer = arr.length) => {
+  console.log('searchable', arr, ',','targetVal', targetVal);
+  const midIdx = Math.floor((leftPointer + rightPointer) / 2);
+  const midVal = arr[midIdx];
+  console.log('setting leftPointer', leftPointer, 'rightPointer', rightPointer, 'midIdx', midIdx, '(val', midVal, ')');
+  console.log('searching arr', arr.slice(leftPointer,rightPointer), 'with midVal', midVal, 'for targetVal', targetVal);
   if (arr.length > 0) {
-    if (valueToCheck === target) {
-      // console.log('valueToCheck === target', valueToCheck === target, 'indexToCheck', indexToCheck, 'valueToCheck', valueToCheck);
-      return indexToCheck;
-    } else if (valueToCheck < target) {
-      left = indexToCheck + 1;
-      // console.log('calling binarySearchRecursive(rarr, target, left)');
-      return binarySearchRecursive(arr, target, left, right);
-    } else if (valueToCheck > target) {
-      right = indexToCheck;
-      // console.log('calling binarySearchRecursive(larr, target, left, right)');
-      return binarySearchRecursive(arr, target, left, right);
+    if (midVal === targetVal) {
+      console.log('midVal === targetVal', midVal === targetVal);
+      return midIdx;
+    } else if (midVal < targetVal) {
+      console.log('midVal < targetVal .. moving leftPointer to', midIdx + 1);
+      leftPointer = midIdx + 1;
+      console.log('calling binarySearchRecursive(rarr, targetVal, leftPointer)');
+      return binarySearchRecursive(arr, targetVal, leftPointer, rightPointer);
+    } else if (midVal > targetVal) {
+      rightPointer = midIdx;
+      console.log('midVal > targetVal .. moving rightPointer to', midIdx);
+      rightPointer = midIdx;
+      console.log('calling binarySearchRecursive(larr, targetVal, leftPointer, rightPointer)');
+      return binarySearchRecursive(arr, targetVal, leftPointer, rightPointer);
     }
   }
   return null;

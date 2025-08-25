@@ -34,6 +34,18 @@ const style = {
   whitebg: '\x1b[47m',
   primaryFont: '\x1b[10m',
   strike: '\x1b[9m',
+  h1: (text) => {
+    return `${style.bold}${style.red}${text}${style.reset}`;
+  },
+  h2: (text) => {
+    return `${style.bold}${style.purple}${text}${style.reset}`;
+  },
+  h3: (text) => {
+    return `${style.bold}${style.orange}${text}${style.reset}`;
+  },
+  h4: (text) => {
+    return `${style.bold}${style.blue}${text}${style.reset}`;
+  },
   chain: (...styles) => {
     let chainedStyles = '';
     for (const styleName of styles) {
