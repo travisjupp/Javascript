@@ -132,7 +132,7 @@ const style = {
       style.hr.double,
       style.wrap('red', style.hr.single),
       style.wrap(style.color(255,0,255), style.hr.single),
-      style.wrap('\x1b[33m', style.hr.single)+'\n',
+      style.wrap('\x1b[33m', style.hr.single)+'\n'+
       style.wrap('italic', 'Make me ITALIC (reset included for `style.wrap()`)')+'\n'+
       style.wrap('black', 'redbg', 'bold', 'strike', 'Make me RED BACKGROUND STRIKED')+
       style.chain('red', 'bold')+ 'Make me RED BOLD'+ style.reset+'\n'+
