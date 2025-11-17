@@ -80,7 +80,6 @@ describe('Queue:', () => {
   it('should enqueue a queue', () => {
     const queue = new Queue();
     queue.enqueue(new Queue());
-    console.log('queue', queue);
     pn("queue.enqueue(new Queue()) ☞", queue.queue.head, 'c');
     queue.print();
     const list = new LinkedList();
