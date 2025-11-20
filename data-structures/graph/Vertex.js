@@ -1,4 +1,4 @@
-import Edge from './Edge';
+import Edge from './Edge.js';
 
 class Vertex {
   constructor(data) {
