@@ -14,7 +14,5 @@ const bubbleSort = input => {
   return input;
 }
 
-console.log(bubbleSort([4,3,2,1]));
-console.log(bubbleSort([4,8,2,21]));
 export default bubbleSort;
 
