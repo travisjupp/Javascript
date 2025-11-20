@@ -1,11 +1,13 @@
 // repl.js
+import { style } from './styles.js';
 import repl from 'node:repl';
 import util from 'node:util';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { JSDOM } from 'jsdom'; // Import JSDOM
 
-// Helper to get __dirname equivalent in ES Modules
+// ... (rest of the __filename, __dirname, and DATA_STRUCTURES_DIR code remains the same)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_STRUCTURES_DIR = path.join(__dirname, 'data-structures');
@@ -23,7 +25,7 @@ async function loadDataStructures(context) {
         '/data-structures/queue/Queue.js',
         '/data-structures/stack/Stack.js',
         '/data-structures/tree/TreeNode.js',
-        '/data-structures/tree/binaryTree.js',
+        '/data-structures/tree/BinaryTree.js',
         '/data-structures/sorting-algos/bubbleSort.js',
         '/data-structures/sorting-algos/getX.js',
         '/data-structures/sorting-algos/mergeSort.js',
@@ -67,6 +69,11 @@ async function loadDataStructures(context) {
     console.log(`\nSuccessfully loaded modules: ${loadedModules.join(', ')}\n`);
 }
 
+// Function to load JSDOM into the REPL context
+function loadJSDOM(context) {
+    context.JSDOM = JSDOM;
+    console.log('JSDOM class loaded into context.');
+}
 
 // --- Start REPL and Expose Context ---
 
@@ -80,7 +87,25 @@ const replServer = repl.start({
 // Load data structures into the REPL context asynchronously
 await loadDataStructures(replServer.context);
 
-console.log("Welcome to @tjupps REPL! Data structures loaded.");
+// Load JSDOM into the REPL context
+loadJSDOM(replServer.context);
+
+console.log(`Welcome to ${style.cyan,style.bold}@tjupps${style.reset} REPL! Data structures and JSDOM loaded.`);
+
+// --- Initialize JSDOM variables for immediate use ---
+
+// Create an initial virtual DOM structure
+const dom = new JSDOM(`<!DOCTYPE html><html><body><h1>REPL DOM!</h1></body></html>`);
+
+// Expose 'window', 'document', and 'body' to the REPL context
+replServer.context.window = dom.window;
+replServer.context.document = dom.window.document;
+replServer.context.body = dom.window.document.body;
+replServer.context.JSDOM = JSDOM; // Ensure JSDOM class is also available if needed for new DOMs
+
+console.log(`A 'document' and 'window' are ready to use. 
+Try: ${style.purple}const div = document.createElement('div'); div.textContent = 'Check me out Son!'; document.body.appendChild(div); document.body.innerHTML${style.reset}`
+);
 
 // Example usage might look like:
 // const list = new LinkedList();

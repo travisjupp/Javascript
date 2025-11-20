@@ -11,10 +11,10 @@ util.inspect.defaultOptions.compact = false; // break objects to new lines
 // suppress jests tracing console logs
 import console from 'console';
 const jestConsole = console;
-import binaryTree from './binaryTree.js';
+import BinaryTree from './BinaryTree.js';
 
 const createBinaryTree = (size) => {
-  const bt = new binaryTree(0);
+  const bt = new BinaryTree(0);
   for (let node = 1; node <= size; node++) {
     bt.insert(node);
   }
