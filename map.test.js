@@ -77,26 +77,28 @@ describe('Map.groupBy()', () => {
       quantity < 10 ? restock : sufficient,
     );
 
-    console.log(style.h1('# The Map.groupBy() static method groups the elements of a given iterable using the values returned by a provided callback function. The final returned Map uses the unique values from the test function as keys, which can be used to get the array of elements in each group\n'));
+    console.log(style.h1('# The Map.groupBy() static method groups the elements of a given iterable using the values returned by a provided callback function. The final returned Map uses the unique values from the test function as keys, which can be used to get the array of elements in each group.\n'));
 
-    console.log(style.h2(`## Given an iterable (inventory):\n\n`),
-      inventory, '\n');
+    console.log(style.h2(`## Given an iterable (inventory):\n`));
+    console.log(inventory, '\n');
 
-    console.log(style.h2(`## ..And grouping values (restock, sufficient):\n\n`),  restock, `\n`, sufficient, `\n`);
+    console.log(style.h2(`## ..And grouping values (restock, sufficient):\n`));
+    console.log(restock);
+    console.log(sufficient, '\n');
 
     console.log(style.h2(
       `## ..Using \`Map.groupBy()\` with a cb that conditionally returns
-the grouping values for each inventory item: 
-${style.green}
+the grouping values for each inventory item:`));
+
+    console.log(`${style.green}
   Map.groupBy(inventory, ({ quantity }) =>
     quantity < 10 ? restock : sufficient,
   );
-${style.reset}`), );
+${style.reset}`);
 
     console.log(style.h2(
     `## ..Will give use the result (Map):\n`));
     console.log(map);
-    
   });
 
   it('should filter inventory using `Map.groupBy()`', () => {
