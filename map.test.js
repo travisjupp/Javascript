@@ -79,12 +79,12 @@ describe('Map.groupBy()', () => {
     console.log(style.h1('The Map.groupBy() static method groups the elements of a given iterable using the values returned by a provided callback function. The final returned Map uses the unique values from the test function as keys, which can be used to get the array of elements in each group\n'));
 
     console.log(style.h2('Given an iterable (inventory):\n\n'),
-      inventory);
+      inventory, '\n');
 
-    console.log(style.h2('\n..And grouping values (restock, sufficient):\n\n'),  restock, '\n', sufficient);
+    console.log(style.h2('..And grouping values (restock, sufficient):\n\n'),  restock, '\n', sufficient, '\n');
 
     console.log(style.h2(
-      `\n..Using \`Map.groupBy()\` with a cb that conditionally returns
+      `..Using \`Map.groupBy()\` with a cb that conditionally returns
 the grouping values for each inventory item: 
 ${style.green}
   Map.groupBy(inventory, ({ quantity }) =>
