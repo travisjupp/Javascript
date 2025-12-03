@@ -86,10 +86,7 @@ describe('Map.groupBy()', () => {
     console.log(restock);
     console.log(sufficient, '\n');
 
-    console.log(style.h2(
-      `## ..Using \`Map.groupBy()\` with a cb that conditionally returns
-the grouping values for each inventory item:`));
-
+    console.log(style.h2(`## ..Using \`Map.groupBy()\` with a cb and grouping vals:`));
     console.log(`${style.green}
   Map.groupBy(inventory, ({ quantity }) =>
     quantity < 10 ? restock : sufficient,
