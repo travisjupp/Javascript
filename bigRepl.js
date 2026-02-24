@@ -21,6 +21,7 @@ async function loadDataStructures(context) {
         '/data-structures/heap/MinHeap.js',
         '/data-structures/heap/MaxHeap.js',
         '/data-structures/linked-lists/singly-linked-list/LinkedList.js',
+        '/data-structures/linked-lists/singly-linked-list/Node.js',
         '/data-structures/priority-queue/PriorityQueue.js',
         '/data-structures/queue/Queue.js',
         '/data-structures/stack/Stack.js',
