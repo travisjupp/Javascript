@@ -113,8 +113,9 @@ const style = {
     return list;
   },
   hr: {
-    double: `${'═'.repeat(process.env.COLUMNS - 1 || 80)}`,
-    single: `${'─'.repeat(process.env.COLUMNS - 1 || 80)}`
+    double: `${'═'.repeat(process.env.COLUMNS - 10 || 80)}`,
+    single: `${'─'.repeat(process.env.COLUMNS - 10 || 80)}`,
+    short: `${'─'.repeat(30)}`
   },
   color(r,g,b) {
     return g === undefined ? `\x1b[38;5;${r}m` : `\x1b[38;2;${r};${g};${b}m`;
